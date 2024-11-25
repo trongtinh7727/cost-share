@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "147109874500",
+    "project_id": "cost-share-7c539",
+    "storage_bucket": "cost-share-7c539.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147109874500:android:eed304732aee5a64956511",
+        "android_client_info": {
+          "package_name": "com.example.cost_share"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3V2tCCmUmJ-U4JKQe08vqt0uE1-Ok3pQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147109874500:android:4f5b8b6cbdcdc852956511",
+        "android_client_info": {
+          "package_name": "com.iiex.costshar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3V2tCCmUmJ-U4JKQe08vqt0uE1-Ok3pQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147109874500:android:8502feccfd296f15956511",
+        "android_client_info": {
+          "package_name": "com.iiex.costshare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3V2tCCmUmJ-U4JKQe08vqt0uE1-Ok3pQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

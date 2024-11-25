@@ -1,0 +1,11 @@
+{
+    "@@locale": "en",
+    "login": "Login",
+    "signUp":"Sign Up",
+    "introTitle1":"Gain total control of your money",
+    "introBody1": "Become your own money manager and make every cent count",
+    "introTitle2":"Know where your money goes",
+    "introBody2": "Track your transaction easily, with categories and financial report",
+    "introTitle3":"Planning ahead",
+    "introBody3": "Setup your budget for each categoryso you in control"
+}
