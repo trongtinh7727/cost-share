@@ -1,4 +1,6 @@
 import 'package:cost_share/gen/assets.gen.dart';
+import 'package:cost_share/presentation/authentication/signin.dart';
+import 'package:cost_share/presentation/authentication/signup.dart';
 import 'package:cost_share/presentation/common/my_app_button.dart';
 import 'package:cost_share/presentation/intro/widgets/intro_slide.dart';
 import 'package:cost_share/utils/app_colors.dart';
@@ -49,7 +51,12 @@ class _IntroScreenState extends State<IntroScreen> {
             width: 342.w,
             height: 56.h,
             child: MyAppButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignUpApp()),
+                );
+              },
               message: context.localization.signUp,
               isPrimary: true,
             ),
@@ -61,7 +68,12 @@ class _IntroScreenState extends State<IntroScreen> {
             width: 342.w,
             height: 56.h,
             child: MyAppButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginApp()),
+                );
+              },
               message: context.localization.login,
               isPrimary: false,
             ),
