@@ -1,10 +1,9 @@
 import 'package:cost_share/gen/assets.gen.dart';
-import 'package:cost_share/presentation/authentication/signin.dart';
-import 'package:cost_share/presentation/authentication/signup.dart';
 import 'package:cost_share/presentation/common/my_app_button.dart';
 import 'package:cost_share/presentation/intro/widgets/intro_slide.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
+import 'package:cost_share/utils/route/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,9 +51,9 @@ class _IntroScreenState extends State<IntroScreen> {
             height: 56.h,
             child: MyAppButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushNamed(
                   context,
-                  MaterialPageRoute(builder: (context) => SignUpApp()),
+                  RouteName.signUp,
                 );
               },
               message: context.localization.signUp,
@@ -69,9 +68,9 @@ class _IntroScreenState extends State<IntroScreen> {
             height: 56.h,
             child: MyAppButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushNamed(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginApp()),
+                  RouteName.signIn,
                 );
               },
               message: context.localization.login,

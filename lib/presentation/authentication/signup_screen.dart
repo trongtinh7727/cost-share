@@ -1,26 +1,8 @@
 import 'package:cost_share/gen/assets.gen.dart';
-import 'package:cost_share/presentation/authentication/signin.dart';
-import 'package:cost_share/presentation/authentication/signup.dart';
 import 'package:cost_share/presentation/common/my_app_button.dart';
-import 'package:cost_share/presentation/intro/widgets/intro_slide.dart';
-import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-void main() {
-  runApp(SignUpApp());
-}
-
-class SignUpApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SignUpScreen(),
-    );
-  }
-}
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -96,10 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 56.h,
                 child: MyAppButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignUpApp()),
-                    );
+                    
                   },
                   message: context.localization.signUp,
                   isPrimary: true,
@@ -110,7 +89,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () {},
-                icon: Icon(Icons.g_mobiledata, color: Colors.red),
+                icon: Assets.icon.svg.iconGoogle.svg(),
                 label: Text("Sign Up with Google"),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 50),

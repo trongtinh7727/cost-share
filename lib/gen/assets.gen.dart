@@ -12,11 +12,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart' as _svg;
 import 'package:vector_graphics/vector_graphics.dart' as _vg;
 
+class $AssetsIconGen {
+  const $AssetsIconGen();
+
+  /// Directory path: assets/icon/svg
+  $AssetsIconSvgGen get svg => const $AssetsIconSvgGen();
+}
+
 class $AssetsImageGen {
   const $AssetsImageGen();
 
   /// Directory path: assets/image/svg
   $AssetsImageSvgGen get svg => const $AssetsImageSvgGen();
+}
+
+class $AssetsIconSvgGen {
+  const $AssetsIconSvgGen();
+
+  /// File path: assets/icon/svg/icon_google.svg
+  SvgGenImage get iconGoogle =>
+      const SvgGenImage('assets/icon/svg/icon_google.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [iconGoogle];
 }
 
 class $AssetsImageSvgGen {
@@ -42,6 +60,7 @@ class $AssetsImageSvgGen {
 class Assets {
   Assets._();
 
+  static const $AssetsIconGen icon = $AssetsIconGen();
   static const $AssetsImageGen image = $AssetsImageGen();
 }
 

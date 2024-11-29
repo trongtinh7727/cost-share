@@ -1,25 +1,15 @@
+import 'package:cost_share/utils/app_colors.dart';
+import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
-  runApp(LoginApp());
-}
 
-class LoginApp extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
-    );
-  }
+  _SignInScreenState createState() => _SignInScreenState();
 }
 
-class LoginScreen extends StatefulWidget {
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   bool isPasswordVisible = false;
 
   @override
@@ -45,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 40),
+            SizedBox(height: 40.h),
             TextField(
               decoration: InputDecoration(
                 labelText: "Email",
@@ -82,11 +72,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
-                backgroundColor: Colors.purple,
+                backgroundColor: AppColors.colorViolet100,
               ),
               child: Text(
                 "Login",
-                style: TextStyle(fontSize: 16, color: Colors.white),
+                style: AppTextStyles.title3.copyWith(color: AppColors.colorLight80),
               ),
             ),
             SizedBox(height: 20),
