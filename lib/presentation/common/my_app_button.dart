@@ -26,8 +26,8 @@ class MyAppButton extends StatelessWidget {
               return AppColors.colorViolet20;
             }
             return isPrimary
-                  ? AppColors.colorViolet100
-                  : AppColors.colorViolet20;
+                ? AppColors.colorViolet100
+                : AppColors.colorViolet20;
           },
         )),
         child: Text(
