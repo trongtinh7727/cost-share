@@ -1,5 +1,7 @@
 import 'package:cost_share/presentation/authentication/signin_screen.dart';
 import 'package:cost_share/presentation/authentication/signup_screen.dart';
+import 'package:cost_share/presentation/home/MainSreen.dart';
+import 'package:cost_share/presentation/intro/intro_screen.dart';
 import 'package:cost_share/splash_creen.dart';
 import 'package:cost_share/utils/route/route_name.dart';
 import 'package:flutter/material.dart';
@@ -9,17 +11,24 @@ extension GenerateRoute on RouteSettings {
     switch (name) {
       case RouteName.splash:
         return MaterialPageRoute(
-          builder: (context) => const SplashCreen(),
+          builder: (context) => const SplashScreen(),
+        );
+      case RouteName.main:
+        return MaterialPageRoute(
+          builder: (context) => const MainScreen(),
+        );
+      case RouteName.intro:
+        return MaterialPageRoute(
+          builder: (context) => const IntroScreen(),
         );
       case RouteName.signUp:
         return MaterialPageRoute(
-          builder: (context) =>  SignUpScreen(),
+          builder: (_) => SignUpScreen(),
         );
       case RouteName.signIn:
         return MaterialPageRoute(
-          builder: (context) =>  SignInScreen(),
+          builder: (_) => SignInScreen(),
         );
-
       default:
         return MaterialPageRoute(
           builder: (context) => const Scaffold(

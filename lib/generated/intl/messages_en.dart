@@ -22,18 +22,36 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "alreadyHaveAccount":
+            MessageLookupByLibrary.simpleMessage("Already have an account?"),
+        "confirmPassword":
+            MessageLookupByLibrary.simpleMessage("Confirm Password"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "googleSignUp":
+            MessageLookupByLibrary.simpleMessage("Sign Up with Google"),
         "introBody1": MessageLookupByLibrary.simpleMessage(
             "Become your own money manager and make every cent count"),
         "introBody2": MessageLookupByLibrary.simpleMessage(
             "Track your transaction easily, with categories and financial report"),
         "introBody3": MessageLookupByLibrary.simpleMessage(
-            "Setup your budget for each categoryso you in control"),
+            "Setup your budget for each category so you are in control"),
         "introTitle1": MessageLookupByLibrary.simpleMessage(
             "Gain total control of your money"),
         "introTitle2":
             MessageLookupByLibrary.simpleMessage("Know where your money goes"),
         "introTitle3": MessageLookupByLibrary.simpleMessage("Planning ahead"),
+        "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
+        "invalidPassword": MessageLookupByLibrary.simpleMessage(
+            "At least 8 characters, 1 number, and 1 uppercase letter"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "nameCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("Name cannot be empty"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordMismatch":
+            MessageLookupByLibrary.simpleMessage("Passwords do not match"),
+        "policy": MessageLookupByLibrary.simpleMessage(
+            "I agree to the terms and conditions."),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up")
       };
 }
