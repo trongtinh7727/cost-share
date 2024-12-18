@@ -22,6 +22,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "alreadyHaveAccount":
+            MessageLookupByLibrary.simpleMessage("Đã có tài khoản?"),
+        "confirmPassword":
+            MessageLookupByLibrary.simpleMessage("Xác nhận mật khẩu"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "googleSignUp":
+            MessageLookupByLibrary.simpleMessage("Đăng ký với Google"),
         "introBody1": MessageLookupByLibrary.simpleMessage(
             "Trở thành người quản lý tiền bạc của chính mình và trân trọng từng đồng chi tiêu"),
         "introBody2": MessageLookupByLibrary.simpleMessage(
@@ -34,7 +41,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Hiểu rõ dòng tiền của bạn"),
         "introTitle3":
             MessageLookupByLibrary.simpleMessage("Lên kế hoạch trước"),
+        "invalidEmail":
+            MessageLookupByLibrary.simpleMessage("Email không hợp lệ"),
+        "invalidPassword": MessageLookupByLibrary.simpleMessage(
+            "Ít nhất 8 ký tự, 1 số và 1 chữ in hoa"),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
+        "name": MessageLookupByLibrary.simpleMessage("Tên"),
+        "nameCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("Tên không được để trống"),
+        "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
+        "passwordMismatch":
+            MessageLookupByLibrary.simpleMessage("Mật khẩu không khớp"),
+        "policy": MessageLookupByLibrary.simpleMessage(
+            "Tôi đồng ý với các điều khoản và điều kiện."),
         "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký")
       };
 }

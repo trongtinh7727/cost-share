@@ -120,11 +120,121 @@ class AppLocalizations {
     );
   }
 
-  /// `Setup your budget for each categoryso you in control`
+  /// `Setup your budget for each category so you are in control`
   String get introBody3 {
     return Intl.message(
-      'Setup your budget for each categoryso you in control',
+      'Setup your budget for each category so you are in control',
       name: 'introBody3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get confirmPassword {
+    return Intl.message(
+      'Confirm Password',
+      name: 'confirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I agree to the terms and conditions.`
+  String get policy {
+    return Intl.message(
+      'I agree to the terms and conditions.',
+      name: 'policy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up with Google`
+  String get googleSignUp {
+    return Intl.message(
+      'Sign Up with Google',
+      name: 'googleSignUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account?`
+  String get alreadyHaveAccount {
+    return Intl.message(
+      'Already have an account?',
+      name: 'alreadyHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid email`
+  String get invalidEmail {
+    return Intl.message(
+      'Invalid email',
+      name: 'invalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `At least 8 characters, 1 number, and 1 uppercase letter`
+  String get invalidPassword {
+    return Intl.message(
+      'At least 8 characters, 1 number, and 1 uppercase letter',
+      name: 'invalidPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name cannot be empty`
+  String get nameCannotBeEmpty {
+    return Intl.message(
+      'Name cannot be empty',
+      name: 'nameCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords do not match`
+  String get passwordMismatch {
+    return Intl.message(
+      'Passwords do not match',
+      name: 'passwordMismatch',
       desc: '',
       args: [],
     );
