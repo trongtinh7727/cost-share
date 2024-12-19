@@ -29,12 +29,82 @@ class $AssetsImageGen {
 class $AssetsIconSvgGen {
   const $AssetsIconSvgGen();
 
+  /// File path: assets/icon/svg/icon_add.svg
+  SvgGenImage get iconAdd => const SvgGenImage('assets/icon/svg/icon_add.svg');
+
+  /// File path: assets/icon/svg/icon_arrow_down.svg
+  SvgGenImage get iconArrowDown =>
+      const SvgGenImage('assets/icon/svg/icon_arrow_down.svg');
+
+  /// File path: assets/icon/svg/icon_car.svg
+  SvgGenImage get iconCar => const SvgGenImage('assets/icon/svg/icon_car.svg');
+
   /// File path: assets/icon/svg/icon_google.svg
   SvgGenImage get iconGoogle =>
       const SvgGenImage('assets/icon/svg/icon_google.svg');
 
+  /// File path: assets/icon/svg/icon_home.svg
+  SvgGenImage get iconHome =>
+      const SvgGenImage('assets/icon/svg/icon_home.svg');
+
+  /// File path: assets/icon/svg/icon_logout.svg
+  SvgGenImage get iconLogout =>
+      const SvgGenImage('assets/icon/svg/icon_logout.svg');
+
+  /// File path: assets/icon/svg/icon_notifiaction.svg
+  SvgGenImage get iconNotifiaction =>
+      const SvgGenImage('assets/icon/svg/icon_notifiaction.svg');
+
+  /// File path: assets/icon/svg/icon_pie_chart.svg
+  SvgGenImage get iconPieChart =>
+      const SvgGenImage('assets/icon/svg/icon_pie_chart.svg');
+
+  /// File path: assets/icon/svg/icon_recurring_bill.svg
+  SvgGenImage get iconRecurringBill =>
+      const SvgGenImage('assets/icon/svg/icon_recurring_bill.svg');
+
+  /// File path: assets/icon/svg/icon_restaurant.svg
+  SvgGenImage get iconRestaurant =>
+      const SvgGenImage('assets/icon/svg/icon_restaurant.svg');
+
+  /// File path: assets/icon/svg/icon_salary.svg
+  SvgGenImage get iconSalary =>
+      const SvgGenImage('assets/icon/svg/icon_salary.svg');
+
+  /// File path: assets/icon/svg/icon_settings.svg
+  SvgGenImage get iconSettings =>
+      const SvgGenImage('assets/icon/svg/icon_settings.svg');
+
+  /// File path: assets/icon/svg/icon_shopping_bag.svg
+  SvgGenImage get iconShoppingBag =>
+      const SvgGenImage('assets/icon/svg/icon_shopping_bag.svg');
+
+  /// File path: assets/icon/svg/icon_transaction.svg
+  SvgGenImage get iconTransaction =>
+      const SvgGenImage('assets/icon/svg/icon_transaction.svg');
+
+  /// File path: assets/icon/svg/icon_user.svg
+  SvgGenImage get iconUser =>
+      const SvgGenImage('assets/icon/svg/icon_user.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [iconGoogle];
+  List<SvgGenImage> get values => [
+        iconAdd,
+        iconArrowDown,
+        iconCar,
+        iconGoogle,
+        iconHome,
+        iconLogout,
+        iconNotifiaction,
+        iconPieChart,
+        iconRecurringBill,
+        iconRestaurant,
+        iconSalary,
+        iconSettings,
+        iconShoppingBag,
+        iconTransaction,
+        iconUser
+      ];
 }
 
 class $AssetsImageSvgGen {

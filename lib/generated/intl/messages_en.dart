@@ -24,11 +24,19 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "alreadyHaveAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
+        "april": MessageLookupByLibrary.simpleMessage("April"),
+        "august": MessageLookupByLibrary.simpleMessage("August"),
+        "budget": MessageLookupByLibrary.simpleMessage("Budget"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
+        "december": MessageLookupByLibrary.simpleMessage("December"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "february": MessageLookupByLibrary.simpleMessage("February"),
         "googleSignUp":
             MessageLookupByLibrary.simpleMessage("Sign Up with Google"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "introBody1": MessageLookupByLibrary.simpleMessage(
             "Become your own money manager and make every cent count"),
         "introBody2": MessageLookupByLibrary.simpleMessage(
@@ -41,17 +49,28 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Know where your money goes"),
         "introTitle3": MessageLookupByLibrary.simpleMessage("Planning ahead"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
+        "invalidMonth": MessageLookupByLibrary.simpleMessage("Invalid month"),
         "invalidPassword": MessageLookupByLibrary.simpleMessage(
             "At least 8 characters, 1 number, and 1 uppercase letter"),
+        "january": MessageLookupByLibrary.simpleMessage("January"),
+        "july": MessageLookupByLibrary.simpleMessage("July"),
+        "june": MessageLookupByLibrary.simpleMessage("June"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "march": MessageLookupByLibrary.simpleMessage("March"),
+        "may": MessageLookupByLibrary.simpleMessage("May"),
+        "member": MessageLookupByLibrary.simpleMessage("Member"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "nameCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage("Name cannot be empty"),
+        "november": MessageLookupByLibrary.simpleMessage("November"),
+        "october": MessageLookupByLibrary.simpleMessage("October"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "policy": MessageLookupByLibrary.simpleMessage(
             "I agree to the terms and conditions."),
-        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up")
+        "september": MessageLookupByLibrary.simpleMessage("September"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "transaction": MessageLookupByLibrary.simpleMessage("Transaction")
       };
 }

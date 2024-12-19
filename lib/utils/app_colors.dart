@@ -8,6 +8,7 @@ class AppColors {
   static const colorDark100 = Color(0xFF0D0E0F);
   
   // Light
+  static const colorLight10 = Color(0xFFC6C6C6);
   static const colorLight20 = Color(0xFFE3E5E5);
   static const colorLight40 = Color(0xFFF2F4F5);
   static const colorLight60 = Color(0xFFF7F9FA);
@@ -36,6 +37,7 @@ class AppColors {
   static const colorGreen100 = Color(0xFF00A86B);
 
   // Yellow
+  static const colorYellow10 = Color(0xFFFFF6E5);
   static const colorYellow20 = Color(0xFFFCEED4);
   static const colorYellow40 = Color(0xFFFCDDA1);
   static const colorYellow60 = Color(0xFFFCCC6F);

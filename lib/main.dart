@@ -1,6 +1,7 @@
 import 'package:cost_share/firebase_options.dart';
 import 'package:cost_share/generated/l10n.dart';
 import 'package:cost_share/locator.dart';
+import 'package:cost_share/manager/bottom_navigation_manager.dart';
 import 'package:cost_share/manager/user_manager.dart';
 import 'package:cost_share/presentation/authentication/bloc/authenticate_bloc.dart';
 import 'package:cost_share/repository/user_repository.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => BottomNavigationManager()),
         Provider<UserManager>(
           create: (context) => UserManager(locator<UserRepository>()),
           dispose: (context, userManager) => userManager.dispose,
