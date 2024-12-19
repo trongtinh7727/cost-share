@@ -24,11 +24,19 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "alreadyHaveAccount":
             MessageLookupByLibrary.simpleMessage("Đã có tài khoản?"),
+        "april": MessageLookupByLibrary.simpleMessage("Tháng 4"),
+        "august": MessageLookupByLibrary.simpleMessage("Tháng 8"),
+        "budget": MessageLookupByLibrary.simpleMessage("Ngân sách"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Xác nhậnnhận"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Xác nhận mật khẩu"),
+        "december": MessageLookupByLibrary.simpleMessage("Tháng 12"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "february": MessageLookupByLibrary.simpleMessage("Tháng 2"),
         "googleSignUp":
             MessageLookupByLibrary.simpleMessage("Đăng ký với Google"),
+        "home": MessageLookupByLibrary.simpleMessage("Trang chủ"),
         "introBody1": MessageLookupByLibrary.simpleMessage(
             "Trở thành người quản lý tiền bạc của chính mình và trân trọng từng đồng chi tiêu"),
         "introBody2": MessageLookupByLibrary.simpleMessage(
@@ -43,17 +51,29 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Lên kế hoạch trước"),
         "invalidEmail":
             MessageLookupByLibrary.simpleMessage("Email không hợp lệ"),
+        "invalidMonth":
+            MessageLookupByLibrary.simpleMessage("Tháng không hợp lệ"),
         "invalidPassword": MessageLookupByLibrary.simpleMessage(
             "Ít nhất 8 ký tự, 1 số và 1 chữ in hoa"),
+        "january": MessageLookupByLibrary.simpleMessage("Tháng 1"),
+        "july": MessageLookupByLibrary.simpleMessage("Tháng 7"),
+        "june": MessageLookupByLibrary.simpleMessage("Tháng 6"),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
+        "march": MessageLookupByLibrary.simpleMessage("Tháng 3"),
+        "may": MessageLookupByLibrary.simpleMessage("Tháng 5"),
+        "member": MessageLookupByLibrary.simpleMessage("Thành viên"),
         "name": MessageLookupByLibrary.simpleMessage("Tên"),
         "nameCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage("Tên không được để trống"),
+        "november": MessageLookupByLibrary.simpleMessage("Tháng 11"),
+        "october": MessageLookupByLibrary.simpleMessage("Tháng 10"),
         "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Mật khẩu không khớp"),
         "policy": MessageLookupByLibrary.simpleMessage(
             "Tôi đồng ý với các điều khoản và điều kiện."),
-        "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký")
+        "september": MessageLookupByLibrary.simpleMessage("Tháng 9"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+        "transaction": MessageLookupByLibrary.simpleMessage("Giao dịch")
       };
 }

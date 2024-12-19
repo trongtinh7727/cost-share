@@ -1,6 +1,6 @@
 import 'package:cost_share/presentation/authentication/signin_screen.dart';
 import 'package:cost_share/presentation/authentication/signup_screen.dart';
-import 'package:cost_share/presentation/home/MainSreen.dart';
+import 'package:cost_share/presentation/main/main_screen.dart';
 import 'package:cost_share/presentation/intro/intro_screen.dart';
 import 'package:cost_share/splash_creen.dart';
 import 'package:cost_share/utils/route/route_name.dart';
@@ -15,7 +15,7 @@ extension GenerateRoute on RouteSettings {
         );
       case RouteName.main:
         return MaterialPageRoute(
-          builder: (context) => const MainScreen(),
+          builder: (context) => MainScreen(),
         );
       case RouteName.intro:
         return MaterialPageRoute(
