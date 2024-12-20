@@ -32,7 +32,7 @@ class _IntroScreenState extends State<IntroScreen> {
     await _checkUser();
     Future.delayed(const Duration(seconds: 1), () {
       if (_user != null) {
-        Navigator.pushReplacementNamed(context, RouteName.intro);
+        Navigator.pushReplacementNamed(context, RouteName.wellCome);
       }
     });
   }

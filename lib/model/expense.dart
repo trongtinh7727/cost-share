@@ -23,5 +23,22 @@ class Expense {
 
   factory Expense.fromJson(Map<String, dynamic> json) => _$ExpenseFromJson(json);
   Map<String, dynamic> toJson() => _$ExpenseToJson(this);
-}
 
+  Expense copyWith({
+    String? id,
+    String? paidBy,
+    double? amount,
+    String? description,
+    DateTime? date,
+    List<Split>? split,
+  }) {
+    return Expense(
+      id: id ?? this.id,
+      paidBy: paidBy ?? this.paidBy,
+      amount: amount ?? this.amount,
+      description: description ?? this.description,
+      date: date ?? this.date,
+      split: split ?? this.split,
+    );
+  }
+}

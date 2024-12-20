@@ -61,6 +61,10 @@ class Avatar extends StatelessWidget {
               child: Assets.icon.svg.iconAdd.svg(
                 width: size * 0.4,
                 height: size * 0.4,
+                colorFilter: ColorFilter.mode(
+                  AppColors.colorDark25,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
         ],

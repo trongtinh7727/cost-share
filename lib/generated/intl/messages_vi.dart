@@ -28,6 +28,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "august": MessageLookupByLibrary.simpleMessage("Tháng 8"),
         "budget": MessageLookupByLibrary.simpleMessage("Ngân sách"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
+        "chooseGroup":
+            MessageLookupByLibrary.simpleMessage("Chọn nhóm của bạn"),
         "confirm": MessageLookupByLibrary.simpleMessage("Xác nhậnnhận"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Xác nhận mật khẩu"),
@@ -36,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "february": MessageLookupByLibrary.simpleMessage("Tháng 2"),
         "googleSignUp":
             MessageLookupByLibrary.simpleMessage("Đăng ký với Google"),
+        "groupDescription": MessageLookupByLibrary.simpleMessage("Mô tả nhóm"),
+        "groupName": MessageLookupByLibrary.simpleMessage("Tên nhóm"),
         "home": MessageLookupByLibrary.simpleMessage("Trang chủ"),
         "introBody1": MessageLookupByLibrary.simpleMessage(
             "Trở thành người quản lý tiền bạc của chính mình và trân trọng từng đồng chi tiêu"),
@@ -59,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "july": MessageLookupByLibrary.simpleMessage("Tháng 7"),
         "june": MessageLookupByLibrary.simpleMessage("Tháng 6"),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
+        "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
         "march": MessageLookupByLibrary.simpleMessage("Tháng 3"),
         "may": MessageLookupByLibrary.simpleMessage("Tháng 5"),
         "member": MessageLookupByLibrary.simpleMessage("Thành viên"),
@@ -74,6 +79,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Tôi đồng ý với các điều khoản và điều kiện."),
         "september": MessageLookupByLibrary.simpleMessage("Tháng 9"),
         "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
-        "transaction": MessageLookupByLibrary.simpleMessage("Giao dịch")
+        "textContinue": MessageLookupByLibrary.simpleMessage("Tiếp tục"),
+        "transaction": MessageLookupByLibrary.simpleMessage("Giao dịch"),
+        "wellcome":
+            MessageLookupByLibrary.simpleMessage("Chào mừng đến với Cost Share")
       };
 }

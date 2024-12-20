@@ -6,6 +6,7 @@ import 'package:cost_share/presentation/common/group_card.dart';
 import 'package:cost_share/presentation/home/home_screen.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
+import 'package:cost_share/utils/constant.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -96,9 +97,13 @@ class _MainScreenState extends State<MainScreen> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 4, horizontal: 8),
                         child: GroupCard(
-                            member: 5,
-                            authorName: 'authorName',
-                            cardState: CardState.active),
+                          member: 5,
+                          authorName: 'authorName',
+                          cardState: CardState.active,
+                          authorPhoto: AppConstant.avatarUrl,
+                          groupName: 'Group $index',
+                          groupPhoto: AppConstant.avatarUrl,
+                        ),
                       );
                     },
                   ),

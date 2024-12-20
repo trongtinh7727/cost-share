@@ -19,27 +19,31 @@ class MyAppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-        onPressed: onPressed,
-        style:
-            ButtonStyle(backgroundColor: WidgetStateProperty.resolveWith<Color>(
-          (Set<WidgetState> states) {
-            if (states.contains(WidgetState.disabled)) {
-              return AppColors.colorViolet20;
-            }
-            return isPrimary
-                ? AppColors.colorViolet100
-                : AppColors.colorViolet20;
-          },
-        )),
-        child: isLoading == true
-            ? CircularProgressIndicator()
-            : Text(
-                message,
-                style: AppTextStyles.title3.copyWith(
-                    color: isPrimary
-                        ? AppColors.colorLight100
-                        : AppColors.colorViolet100),
-              ));
+    return SizedBox(
+      height: 58,
+      width: double.infinity,
+      child: ElevatedButton(
+          onPressed: onPressed,
+          style:
+              ButtonStyle(backgroundColor: WidgetStateProperty.resolveWith<Color>(
+            (Set<WidgetState> states) {
+              if (states.contains(WidgetState.disabled)) {
+                return AppColors.colorViolet20;
+              }
+              return isPrimary
+                  ? AppColors.colorViolet100
+                  : AppColors.colorViolet20;
+            },
+          )),
+          child: isLoading == true
+              ? CircularProgressIndicator()
+              : Text(
+                  message,
+                  style: AppTextStyles.title3.copyWith(
+                      color: isPrimary
+                          ? AppColors.colorLight100
+                          : AppColors.colorViolet100),
+                )),
+    );
   }
 }

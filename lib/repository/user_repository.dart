@@ -38,6 +38,7 @@ class UserRepositoryImpl extends UserRepository {
         name: name,
         email: email,
         groups: [], // Empty list initially
+        photoUrl: null,
       );
 
       await _firestore
