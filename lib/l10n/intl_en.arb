@@ -37,5 +37,11 @@
   "october": "October",
   "november": "November",
   "december": "December",
-  "invalidMonth": "Invalid month"
+  "invalidMonth": "Invalid month",
+  "wellcome":"Wellcome Cost Share",
+  "logout":"Logout",
+  "chooseGroup":"Choose your group",
+  "textContinue":"Continue",
+  "groupName":"Group Name",
+  "groupDescription":"Group Description"
 }

@@ -39,6 +39,10 @@ class UserManager {
     }
   }
 
+  void signOut() {
+    _userStream.add(null);
+  }
+
   // Clear streams when disposing
   void dispose() {
     _localeStream.close();

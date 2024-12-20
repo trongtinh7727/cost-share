@@ -50,6 +50,8 @@ class _AppTextInputFieldState extends State<AppTextInputField> {
           },
           decoration: InputDecoration(
             hintText: widget.hintText,
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
             hintStyle:
                 AppTextStyles.body1.copyWith(color: AppColors.colorDark25),
             suffixIcon: widget.isPasswordField

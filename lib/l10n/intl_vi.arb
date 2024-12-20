@@ -19,8 +19,8 @@
   "invalidPassword": "Ít nhất 8 ký tự, 1 số và 1 chữ in hoa",
   "nameCannotBeEmpty": "Tên không được để trống",
   "passwordMismatch": "Mật khẩu không khớp",
-  "confirm":"Xác nhậnnhận",
-  "cancel":"Hủy",
+  "confirm": "Xác nhậnnhận",
+  "cancel": "Hủy",
   "home": "Trang chủ",
   "transaction": "Giao dịch",
   "budget": "Ngân sách",
@@ -37,5 +37,11 @@
   "october": "Tháng 10",
   "november": "Tháng 11",
   "december": "Tháng 12",
-  "invalidMonth": "Tháng không hợp lệ"
+  "invalidMonth": "Tháng không hợp lệ",
+  "wellcome": "Chào mừng đến với Cost Share",
+  "logout": "Đăng xuất",
+  "chooseGroup": "Chọn nhóm của bạn",
+  "textContinue": "Tiếp tục",
+  "groupName": "Tên nhóm",
+  "groupDescription": "Mô tả nhóm"
 }

@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:cost_share/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
+import 'package:cost_share/gen/assets.gen.dart';
 import 'package:cost_share/presentation/common/avatar.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
@@ -11,14 +11,22 @@ enum CardState { active, addNew, inactive }
 class GroupCard extends StatelessWidget {
   const GroupCard({
     Key? key,
-    required this.member,
-    required this.authorName,
+    this.member = 0,
+    this.authorName = '',
+    this.authorPhoto = '',
+    this.groupName = '',
+    this.groupPhoto = '',
+    this.onTap,
     required this.cardState,
   }) : super(key: key);
 
   final int member;
   final String authorName;
+  final String authorPhoto;
+  final String groupName;
+  final String groupPhoto;
   final CardState cardState;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -59,57 +67,66 @@ class GroupCard extends StatelessWidget {
         break;
     }
 
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (cardState != CardState.addNew)
-            Expanded(
-              child: Row(
-                children: [
-                  const Avatar(size: 50, border: 0), // Custom avatar
-                  const SizedBox(width: 12),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Group 1',
-                        style: AppTextStyles.body1.copyWith(
-                          color: AppColors.colorDark100,
-                        ),
-                      ),
-                      Text(
-                        '$member Member',
-                        style: AppTextStyles.small.copyWith(
-                          color: AppColors.colorBlue100,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          const Avatar(size: 16, border: 0), // Smaller avatar
-                          const SizedBox(width: 4),
-                          Text(
-                            authorName,
-                            style: AppTextStyles.small.copyWith(
-                              color: AppColors.colorDark50,
-                            ),
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16), // Ensure ripple effect respects border radius
+      child: Container(
+        height: 90,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (cardState != CardState.addNew)
+              Expanded(
+                child: Row(
+                  children: [
+                    Avatar(
+                        url: groupPhoto, size: 50, border: 0), // Custom avatar
+                    const SizedBox(width: 12),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          groupName,
+                          style: AppTextStyles.body1.copyWith(
+                            color: AppColors.colorDark100,
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                        ),
+                        Text(
+                          '$member Member',
+                          style: AppTextStyles.small.copyWith(
+                            color: AppColors.colorBlue100,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Row(
+                          children: [
+                            Avatar(
+                                url: authorPhoto,
+                                size: 16,
+                                border: 0), // Smaller avatar
+                            const SizedBox(width: 4),
+                            Text(
+                              authorName,
+                              style: AppTextStyles.small.copyWith(
+                                color: AppColors.colorDark50,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          trailingWidget,
-        ],
+            trailingWidget,
+          ],
+        ),
       ),
     );
   }

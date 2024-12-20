@@ -1,7 +1,9 @@
 import 'package:cost_share/presentation/authentication/signin_screen.dart';
 import 'package:cost_share/presentation/authentication/signup_screen.dart';
+import 'package:cost_share/presentation/group/add_group.dart';
 import 'package:cost_share/presentation/main/main_screen.dart';
 import 'package:cost_share/presentation/intro/intro_screen.dart';
+import 'package:cost_share/presentation/main/wellcome_screen.dart';
 import 'package:cost_share/splash_creen.dart';
 import 'package:cost_share/utils/route/route_name.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +30,12 @@ extension GenerateRoute on RouteSettings {
       case RouteName.signIn:
         return MaterialPageRoute(
           builder: (_) => SignInScreen(),
+        );
+      case RouteName.wellCome:
+        return MaterialPageRoute(builder: (context) => WellcomeScreen());
+      case RouteName.addGreoup:
+        return MaterialPageRoute(
+          builder: (context) => const AddGroupScreen(),
         );
       default:
         return MaterialPageRoute(

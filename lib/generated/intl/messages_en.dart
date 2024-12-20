@@ -28,6 +28,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "august": MessageLookupByLibrary.simpleMessage("August"),
         "budget": MessageLookupByLibrary.simpleMessage("Budget"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "chooseGroup":
+            MessageLookupByLibrary.simpleMessage("Choose your group"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
@@ -36,6 +38,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "february": MessageLookupByLibrary.simpleMessage("February"),
         "googleSignUp":
             MessageLookupByLibrary.simpleMessage("Sign Up with Google"),
+        "groupDescription":
+            MessageLookupByLibrary.simpleMessage("Group Description"),
+        "groupName": MessageLookupByLibrary.simpleMessage("Group Name"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "introBody1": MessageLookupByLibrary.simpleMessage(
             "Become your own money manager and make every cent count"),
@@ -56,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "july": MessageLookupByLibrary.simpleMessage("July"),
         "june": MessageLookupByLibrary.simpleMessage("June"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "march": MessageLookupByLibrary.simpleMessage("March"),
         "may": MessageLookupByLibrary.simpleMessage("May"),
         "member": MessageLookupByLibrary.simpleMessage("Member"),
@@ -71,6 +77,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "I agree to the terms and conditions."),
         "september": MessageLookupByLibrary.simpleMessage("September"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
-        "transaction": MessageLookupByLibrary.simpleMessage("Transaction")
+        "textContinue": MessageLookupByLibrary.simpleMessage("Continue"),
+        "transaction": MessageLookupByLibrary.simpleMessage("Transaction"),
+        "wellcome": MessageLookupByLibrary.simpleMessage("Wellcome Cost Share")
       };
 }

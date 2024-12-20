@@ -429,6 +429,66 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Wellcome Cost Share`
+  String get wellcome {
+    return Intl.message(
+      'Wellcome Cost Share',
+      name: 'wellcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose your group`
+  String get chooseGroup {
+    return Intl.message(
+      'Choose your group',
+      name: 'chooseGroup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get textContinue {
+    return Intl.message(
+      'Continue',
+      name: 'textContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Group Name`
+  String get groupName {
+    return Intl.message(
+      'Group Name',
+      name: 'groupName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Group Description`
+  String get groupDescription {
+    return Intl.message(
+      'Group Description',
+      name: 'groupDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

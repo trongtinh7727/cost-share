@@ -18,4 +18,18 @@ class Budget {
 
   factory Budget.fromJson(Map<String, dynamic> json) => _$BudgetFromJson(json);
   Map<String, dynamic> toJson() => _$BudgetToJson(this);
+
+  Budget copyWith({
+    String? id,
+    String? category,
+    double? totalAmount,
+    Map<String, double>? contributions,
+  }) {
+    return Budget(
+      id: id ?? this.id,
+      category: category ?? this.category,
+      totalAmount: totalAmount ?? this.totalAmount,
+      contributions: contributions ?? this.contributions,
+    );
+  }
 }

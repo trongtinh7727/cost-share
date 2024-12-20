@@ -75,6 +75,10 @@ class AuthenticateBloc extends BaseBloC {
     }
   }
 
+  Future<void> signOut() async {
+    await _userRepository.signOut();
+  }
+
   @override
   void dispose() {
     passwordController.close();

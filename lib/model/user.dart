@@ -8,12 +8,14 @@ class User {
   final String name;
   final String email;
   final List<String> groups;
+  final String? photoUrl;
 
   User({
     required this.id,
     required this.name,
     required this.email,
     required this.groups,
+    required this.photoUrl,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
