@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cost_share/model/budget.dart';
 
 abstract class BudgetRepository {
-  Future<Budget> addBudget(Budget budget);
+  Future<Budget> addOrUpdateBudget(Budget budget);
   Future<void> deleteBudget(String budgetId);
   Future<List<Budget>> getGroupBudgets(String groupId);
 }
@@ -11,13 +11,23 @@ class BudgetRepositoryImpl extends BudgetRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
-  Future<Budget> addBudget(Budget budget) async {
+  Future<Budget> addOrUpdateBudget(Budget budget) async {
     try {
-      DocumentReference budgetRef =
-          await _firestore.collection('budgets').add(budget.toJson());
-      return budget.copyWith(id: budgetRef.id);
+      if (budget.id != null && budget.id!.isNotEmpty) {
+        // Update the existing document
+        await _firestore
+            .collection('budgets')
+            .doc(budget.id)
+            .update(budget.toJson());
+      } else {
+        // Add a new document
+        DocumentReference budgetRef =
+            await _firestore.collection('budgets').add(budget.toJson());
+        budget = budget.copyWith(id: budgetRef.id);
+      }
+      return budget;
     } catch (e) {
-      throw Exception('Failed to add budget: $e');
+      throw Exception('Failed to add or update budget: $e');
     }
   }
 

@@ -1,4 +1,5 @@
 import 'package:cost_share/gen/assets.gen.dart';
+import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/manager/user_manager.dart';
 import 'package:cost_share/model/user.dart';
 import 'package:cost_share/utils/route/route_name.dart';
@@ -27,6 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (_user == null) {
         Navigator.pushReplacementNamed(context, RouteName.intro);
       } else {
+        context.read<GroupManager>().loadUserGroups(_user!.id);
         Navigator.pushReplacementNamed(context, RouteName.wellCome);
       }
     });
@@ -34,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _checkUser() async {
     final userManager = context.read<UserManager>();
-    await userManager.loadUser(); // Load user từ UserManager
+    await userManager.loadUser();
     setState(() {
       _user = userManager.currentUser;
     });

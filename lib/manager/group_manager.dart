@@ -1,21 +1,36 @@
-import 'package:cost_share/model/group.dart';
+import 'package:cost_share/model/group_detail.dart';
 import 'package:cost_share/repository/group_repository.dart';
-import 'package:flutter/material.dart';
+import 'package:cost_share/utils/BaseBloC.dart';
 import 'package:rxdart/rxdart.dart';
 
-class GroupManager {
+class GroupManager extends BaseBloC {
   final GroupRepository groupRepository;
-  final BehaviorSubject<Group?> _groupStream = BehaviorSubject<Group?>();
-
   GroupManager(this.groupRepository);
 
-  Stream<Group?> get currentGroup => _groupStream.stream;
+  String currentGroupId = "";
+  GroupDetail? get currentGroup => _userGroupsSubject.value
+      .firstWhere((element) => element.groupId == currentGroupId);
 
-  Future<void> loadGroup(String groupId) async {
+  final _userGroupsSubject = BehaviorSubject<List<GroupDetail>>();
+  Stream<List<GroupDetail>> get userGroupsStream => _userGroupsSubject.stream;
+
+  Future<void> loadUserGroups(String userId) async {
     try {
-      _groupStream.addStream(groupRepository.getGroupById(groupId));
+      _userGroupsSubject.addStream(groupRepository.getUserGroups(userId));
     } catch (e) {
-      debugPrint("Error: ${e.toString()}");
+      print('Error loading user groups: $e');
     }
   }
+
+  void setCurrentGroup(String groupId) {
+    currentGroupId = groupId;
+  }
+
+  @override
+  void dispose() {
+    _userGroupsSubject.close();
+  }
+
+  @override
+  void init() {}
 }

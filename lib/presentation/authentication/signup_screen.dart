@@ -1,4 +1,5 @@
 import 'package:cost_share/gen/assets.gen.dart';
+import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/manager/user_manager.dart';
 import 'package:cost_share/presentation/common/error_message.dart';
 import 'package:cost_share/presentation/common/my_app_button.dart';
@@ -141,6 +142,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               final user =
                                   context.read<UserManager>().currentUser;
                               if (user != null) {
+                                await context
+                                    .read<GroupManager>()
+                                    .loadUserGroups(user.id);
                                 Navigator.pushReplacementNamed(
                                     context, RouteName.intro);
                               }

@@ -5,12 +5,14 @@ import 'package:json_annotation/json_annotation.dart';
 @JsonSerializable()
 class Split {
   final String userId;
+  final String  expenseId;
   final double ratio;
   final double amount;
   final bool isPaid;
 
   Split({
     required this.userId,
+    required this.expenseId,
     required this.ratio,
     required this.amount,
     required this.isPaid,

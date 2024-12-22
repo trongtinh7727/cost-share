@@ -6,5 +6,6 @@ class RouteName {
   static const main = "/main";
   static const wellCome = "/well_come";
   static const addGreoup = "/group/add";
+  static const addExpense = "/expense/add";
 
 }

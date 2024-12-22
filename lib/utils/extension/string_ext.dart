@@ -7,6 +7,14 @@ extension StringExt on String {
     }
   }
 
+  double thousandsToDouble() {
+    try {
+      return double.parse(this.replaceAll(',', ''));
+    } catch (e) {
+      return 0;
+    }
+  }
+
   bool isValidEmail() {
     // Regular expression pattern for a valid email
     RegExp regex = RegExp(

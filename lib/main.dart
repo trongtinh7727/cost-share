@@ -2,8 +2,10 @@ import 'package:cost_share/firebase_options.dart';
 import 'package:cost_share/generated/l10n.dart';
 import 'package:cost_share/locator.dart';
 import 'package:cost_share/manager/bottom_navigation_manager.dart';
+import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/manager/user_manager.dart';
 import 'package:cost_share/presentation/authentication/bloc/authenticate_bloc.dart';
+import 'package:cost_share/repository/group_repository.dart';
 import 'package:cost_share/repository/user_repository.dart';
 import 'package:cost_share/service/shared_pref_services.dart';
 import 'package:cost_share/splash_creen.dart';
@@ -42,6 +44,10 @@ class MyApp extends StatelessWidget {
           create: (_) =>
               AuthenticateBloc(userRepository: locator.get<UserRepository>()),
           dispose: (_, value) => value.dispose(),
+        ),
+        Provider<GroupManager>(
+          create: (_) => GroupManager(locator<GroupRepository>()),
+          dispose: (context, value) => value.dispose(),
         )
       ],
       builder: (context, child) {

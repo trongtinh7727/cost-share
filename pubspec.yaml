@@ -52,7 +52,8 @@ dependencies:
   carousel_slider: ^5.0.0
   flutter_image_slideshow: ^0.1.6
   flutter_custom_month_picker: ^0.1.3
-
+  floating_bottom_bar: ^0.0.3
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -71,7 +72,6 @@ flutter:
   assets:
       - assets/icon/svg/
       - assets/image/svg/
-
 
 flutter_intl:
   enabled: true

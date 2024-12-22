@@ -43,5 +43,8 @@
   "chooseGroup": "Chọn nhóm của bạn",
   "textContinue": "Tiếp tục",
   "groupName": "Tên nhóm",
-  "groupDescription": "Mô tả nhóm"
+  "groupDescription": "Mô tả nhóm",
+  "howMuch": "Số tiền?",
+  "category": "Danh mục",
+  "description": "Mô tả"
 }

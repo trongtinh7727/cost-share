@@ -28,12 +28,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "august": MessageLookupByLibrary.simpleMessage("August"),
         "budget": MessageLookupByLibrary.simpleMessage("Budget"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "category": MessageLookupByLibrary.simpleMessage("Category"),
         "chooseGroup":
             MessageLookupByLibrary.simpleMessage("Choose your group"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "december": MessageLookupByLibrary.simpleMessage("December"),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "february": MessageLookupByLibrary.simpleMessage("February"),
         "googleSignUp":
@@ -42,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Group Description"),
         "groupName": MessageLookupByLibrary.simpleMessage("Group Name"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "howMuch": MessageLookupByLibrary.simpleMessage("How much?"),
         "introBody1": MessageLookupByLibrary.simpleMessage(
             "Become your own money manager and make every cent count"),
         "introBody2": MessageLookupByLibrary.simpleMessage(
