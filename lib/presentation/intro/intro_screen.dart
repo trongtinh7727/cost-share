@@ -1,4 +1,5 @@
 import 'package:cost_share/gen/assets.gen.dart';
+import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/manager/user_manager.dart';
 import 'package:cost_share/model/user.dart';
 import 'package:cost_share/presentation/authentication/bloc/authenticate_bloc.dart';
@@ -32,6 +33,7 @@ class _IntroScreenState extends State<IntroScreen> {
     await _checkUser();
     Future.delayed(const Duration(seconds: 1), () {
       if (_user != null) {
+        context.read<GroupManager>().loadUserGroups(_user!.id);
         Navigator.pushReplacementNamed(context, RouteName.wellCome);
       }
     });

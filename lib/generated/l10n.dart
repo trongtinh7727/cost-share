@@ -489,6 +489,36 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `How much?`
+  String get howMuch {
+    return Intl.message(
+      'How much?',
+      name: 'howMuch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message(
+      'Category',
+      name: 'category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:cost_share/presentation/common/app_drop_down_button.dart';
+import 'package:cost_share/manager/group_manager.dart';
+import 'package:cost_share/model/group_detail.dart';
+import 'package:cost_share/presentation/common/app_date_picker_button.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
 import 'package:cost_share/utils/extension/int_ext.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,7 @@ import 'package:cost_share/gen/assets.gen.dart';
 import 'package:cost_share/presentation/common/avatar.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({
@@ -28,7 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    // Set the initial month and year to the current date values
     final currentDate = DateTime.now();
     month = currentDate.month;
     year = currentDate.year;
@@ -36,6 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    GroupDetail currentGroup = context.read<GroupManager>().currentGroup!;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.colorYellow10,
@@ -44,11 +48,12 @@ class _HomeScreenState extends State<HomeScreen> {
             widget.mainScaffoldKey.currentState?.openDrawer();
           },
           child: Avatar(
+            url: currentGroup.groupPhoto,
             border: 1,
           ),
         ),
         centerTitle: true,
-        title: AppDropdownButton(
+        title: AppDatePickerButton(
           label: month.toMonth(context),
           onTap: () => showMonthPicker(context, onSelected: (m, y) {
             setState(() {
@@ -78,22 +83,23 @@ class _HomeScreenState extends State<HomeScreen> {
                           AppColors.colorViolet100, BlendMode.srcIn))),
               if (5 != null)
                 Positioned(
-                    height: 16,
-                    width: 16,
-                    right: 4,
-                    top: 8,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: AppColors.colorRed100, shape: BoxShape.circle),
-                      child: Center(
-                        child: Text(
-                          '${5}', // Replace this with dynamic notification count if needed
-                          textAlign: TextAlign.center,
-                          style: AppTextStyles.tiny
-                              .copyWith(color: AppColors.colorLight100),
-                        ),
+                  height: 16,
+                  width: 16,
+                  right: 4,
+                  top: 8,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: AppColors.colorRed100, shape: BoxShape.circle),
+                    child: Center(
+                      child: Text(
+                        '${5}', // Replace this with dynamic notification count if needed
+                        textAlign: TextAlign.center,
+                        style: AppTextStyles.tiny
+                            .copyWith(color: AppColors.colorLight100),
                       ),
-                    )),
+                    ),
+                  ),
+                ),
             ],
           )
         ],

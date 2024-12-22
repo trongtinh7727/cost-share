@@ -28,12 +28,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "august": MessageLookupByLibrary.simpleMessage("Tháng 8"),
         "budget": MessageLookupByLibrary.simpleMessage("Ngân sách"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
+        "category": MessageLookupByLibrary.simpleMessage("Danh mục"),
         "chooseGroup":
             MessageLookupByLibrary.simpleMessage("Chọn nhóm của bạn"),
         "confirm": MessageLookupByLibrary.simpleMessage("Xác nhậnnhận"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Xác nhận mật khẩu"),
         "december": MessageLookupByLibrary.simpleMessage("Tháng 12"),
+        "description": MessageLookupByLibrary.simpleMessage("Mô tả"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "february": MessageLookupByLibrary.simpleMessage("Tháng 2"),
         "googleSignUp":
@@ -41,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "groupDescription": MessageLookupByLibrary.simpleMessage("Mô tả nhóm"),
         "groupName": MessageLookupByLibrary.simpleMessage("Tên nhóm"),
         "home": MessageLookupByLibrary.simpleMessage("Trang chủ"),
+        "howMuch": MessageLookupByLibrary.simpleMessage("Số tiền?"),
         "introBody1": MessageLookupByLibrary.simpleMessage(
             "Trở thành người quản lý tiền bạc của chính mình và trân trọng từng đồng chi tiêu"),
         "introBody2": MessageLookupByLibrary.simpleMessage(

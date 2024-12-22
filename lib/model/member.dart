@@ -1,4 +1,3 @@
-import 'package:cost_share/utils/enum/user_role.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'member.g.dart';

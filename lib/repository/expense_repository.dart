@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cost_share/model/expense.dart';
+import 'package:cost_share/model/split.dart';
 
 abstract class ExpenseRepository {
   Future<Expense> addExpense(Expense expense);
+  Future<void> addSplits(List<Split> splits);
+
   Future<void> deleteExpense(String expenseId);
   Future<List<Expense>> getGroupExpenses(String groupId);
 }
@@ -18,6 +21,20 @@ class ExpenseRepositoryImpl extends ExpenseRepository {
       return expense.copyWith(id: expenseRef.id);
     } catch (e) {
       throw Exception('Failed to add expense: $e');
+    }
+  }
+
+  @override
+  Future<void> addSplits(List<Split> splits) async {
+    try {
+      WriteBatch batch = _firestore.batch();
+      for (Split split in splits) {
+        DocumentReference splitRef = _firestore.collection('splits').doc();
+        batch.set(splitRef, split.toJson());
+      }
+      await batch.commit();
+    } catch (e) {
+      throw Exception('Failed to add splits: $e');
     }
   }
 

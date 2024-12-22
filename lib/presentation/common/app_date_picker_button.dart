@@ -3,8 +3,8 @@ import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:flutter/material.dart';
 
-class AppDropdownButton extends StatelessWidget {
-  const AppDropdownButton({super.key, required this.label, required this.onTap});
+class AppDatePickerButton extends StatelessWidget {
+  const AppDatePickerButton({super.key, required this.label, required this.onTap});
 
   final String label;
   final void Function() onTap;

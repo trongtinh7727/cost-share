@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cost_share/model/group_detail.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cost_share/gen/assets.gen.dart';
@@ -11,20 +12,12 @@ enum CardState { active, addNew, inactive }
 class GroupCard extends StatelessWidget {
   const GroupCard({
     Key? key,
-    this.member = 0,
-    this.authorName = '',
-    this.authorPhoto = '',
-    this.groupName = '',
-    this.groupPhoto = '',
+    this.groupDetail,
     this.onTap,
     required this.cardState,
   }) : super(key: key);
 
-  final int member;
-  final String authorName;
-  final String authorPhoto;
-  final String groupName;
-  final String groupPhoto;
+  final GroupDetail? groupDetail;
   final CardState cardState;
   final void Function()? onTap;
 
@@ -69,7 +62,8 @@ class GroupCard extends StatelessWidget {
 
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(16), // Ensure ripple effect respects border radius
+      borderRadius: BorderRadius.circular(
+          16), // Ensure ripple effect respects border radius
       child: Container(
         height: 90,
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -86,19 +80,21 @@ class GroupCard extends StatelessWidget {
                 child: Row(
                   children: [
                     Avatar(
-                        url: groupPhoto, size: 50, border: 0), // Custom avatar
+                        url: groupDetail!.groupPhoto,
+                        size: 50,
+                        border: 0), // Custom avatar
                     const SizedBox(width: 12),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          groupName,
+                          groupDetail!.groupName,
                           style: AppTextStyles.body1.copyWith(
                             color: AppColors.colorDark100,
                           ),
                         ),
                         Text(
-                          '$member Member',
+                          '${groupDetail!.memberCount} Member',
                           style: AppTextStyles.small.copyWith(
                             color: AppColors.colorBlue100,
                           ),
@@ -107,12 +103,12 @@ class GroupCard extends StatelessWidget {
                         Row(
                           children: [
                             Avatar(
-                                url: authorPhoto,
+                                url: groupDetail!.authorPhoto,
                                 size: 16,
                                 border: 0), // Smaller avatar
                             const SizedBox(width: 4),
                             Text(
-                              authorName,
+                              groupDetail!.authorName,
                               style: AppTextStyles.small.copyWith(
                                 color: AppColors.colorDark50,
                               ),

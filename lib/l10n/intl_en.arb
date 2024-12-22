@@ -43,5 +43,8 @@
   "chooseGroup":"Choose your group",
   "textContinue":"Continue",
   "groupName":"Group Name",
-  "groupDescription":"Group Description"
+  "groupDescription":"Group Description",
+  "howMuch":"How much?",
+  "category":"Category",
+  "description":"Description"
 }

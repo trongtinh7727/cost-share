@@ -53,7 +53,7 @@ class _AppTextInputFieldState extends State<AppTextInputField> {
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
             hintStyle:
-                AppTextStyles.body1.copyWith(color: AppColors.colorDark25),
+                AppTextStyles.body1.copyWith(color: AppColors.colorLight10),
             suffixIcon: widget.isPasswordField
                 ? IconButton(
                     icon: Icon(
@@ -71,6 +71,10 @@ class _AppTextInputFieldState extends State<AppTextInputField> {
             errorText: errorText,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                color: AppColors.colorLight10,
+                width: 1,
+              ),
             ),
           ),
         );
