@@ -8,6 +8,7 @@ import 'package:cost_share/presentation/common/avatar.dart';
 import 'package:cost_share/presentation/common/background_icon.dart';
 import 'package:cost_share/presentation/common/group_card.dart';
 import 'package:cost_share/presentation/home/home_screen.dart';
+import 'package:cost_share/presentation/transaction/transaction_screen.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
@@ -32,7 +33,7 @@ class _MainScreenState extends State<MainScreen> {
       HomeScreen(
         mainScaffoldKey: scaffoldKey,
       ),
-      Center(child: Text("Transaction Screen")),
+      TransactionScreen(),
       Center(child: Text("Add Screen")),
       Center(child: Text("Budget Screen")),
       Center(child: Text("Member Screen")),

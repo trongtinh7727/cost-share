@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
-import 'package:cost_share/model/member.dart';
-import 'package:cost_share/model/setting.dart';
+import 'member.dart';
 
 part 'group.g.dart';
 
@@ -10,18 +8,20 @@ class Group {
   final String id;
   final String name;
   final String createdBy;
-  // final Setting settings;
   @JsonKey(fromJson: _membersFromJson, toJson: _membersToJson)
   final List<Member> members;
   final String groupPhoto;
+  final double totalExpense;
+  final double totalBudget;
 
   Group({
     required this.id,
     required this.name,
     required this.createdBy,
-    // required this.settings,
     required this.members,
     required this.groupPhoto,
+    required this.totalExpense,
+    required this.totalBudget,
   });
 
   factory Group.fromJson(Map<String, dynamic> json) => _$GroupFromJson(json);
@@ -32,22 +32,24 @@ class Group {
 
   static List<Map<String, dynamic>> _membersToJson(List<Member> members) =>
       members.map((e) => e.toJson()).toList();
-      
+
   Group copyWith({
     String? id,
     String? name,
     String? createdBy,
-    Setting? settings,
-    String? groupPhoto,
     List<Member>? members,
+    String? groupPhoto,
+    double? totalExpense,
+    double? totalBudget,
   }) {
     return Group(
       id: id ?? this.id,
       name: name ?? this.name,
       createdBy: createdBy ?? this.createdBy,
-      // settings: settings ?? this.settings,
       members: members ?? this.members,
       groupPhoto: groupPhoto ?? this.groupPhoto,
+      totalExpense: totalExpense ?? this.totalExpense,
+      totalBudget: totalBudget ?? this.totalBudget,
     );
   }
 }

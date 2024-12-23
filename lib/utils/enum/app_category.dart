@@ -25,6 +25,23 @@ extension AppCategoryExtension on AppCategory {
     }
   }
 
+  Color get color {
+    switch (this) {
+      case AppCategory.SHOPPING:
+        return AppColors.colorYellow20;
+      case AppCategory.FOOD:
+        return AppColors.colorRed20;
+      case AppCategory.TRANSPORTATION:
+        return AppColors.colorBlue20;
+      case AppCategory.SUBSCRIPTION:
+        return AppColors.colorViolet20;
+      case AppCategory.ADD:
+        return AppColors.colorDark100;
+      default:
+        return AppColors.colorDark100;
+    }
+  }
+
   Widget get icon {
     switch (this) {
       case AppCategory.SHOPPING:
@@ -66,8 +83,7 @@ extension AppCategoryExtension on AppCategory {
                 AppTextStyles.body2.copyWith(color: AppColors.colorViolet100));
       case AppCategory.ADD:
         return Text('Add',
-            style:
-                AppTextStyles.body2.copyWith(color: AppColors.colorDark100));
+            style: AppTextStyles.body2.copyWith(color: AppColors.colorDark100));
       default:
         return Text('none');
     }

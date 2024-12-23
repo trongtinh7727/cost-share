@@ -25,6 +25,23 @@ class BudgetRepositoryImpl extends BudgetRepository {
             await _firestore.collection('budgets').add(budget.toJson());
         budget = budget.copyWith(id: budgetRef.id);
       }
+
+      // Update the totalBudget of the group
+      await _firestore.runTransaction((transaction) async {
+        DocumentReference groupRef =
+            _firestore.collection('groups').doc(budget.groupId);
+        DocumentSnapshot groupSnapshot = await transaction.get(groupRef);
+
+        if (!groupSnapshot.exists) {
+          throw Exception('Group does not exist');
+        }
+
+        double currentTotalBudget = groupSnapshot.get('totalBudget') ?? 0.0;
+        double newTotalBudget = currentTotalBudget + budget.totalAmount;
+
+        transaction.update(groupRef, {'totalBudget': newTotalBudget});
+      });
+
       return budget;
     } catch (e) {
       throw Exception('Failed to add or update budget: $e');
@@ -34,7 +51,34 @@ class BudgetRepositoryImpl extends BudgetRepository {
   @override
   Future<void> deleteBudget(String budgetId) async {
     try {
-      await _firestore.collection('budgets').doc(budgetId).delete();
+      DocumentReference budgetRef =
+          _firestore.collection('budgets').doc(budgetId);
+      DocumentSnapshot budgetSnapshot = await budgetRef.get();
+
+      if (!budgetSnapshot.exists) {
+        throw Exception('Budget does not exist');
+      }
+
+      Budget budget = Budget.fromJson(budgetSnapshot.data() as Map<String, dynamic>);
+
+      // Delete the budget
+      await budgetRef.delete();
+
+      // Update the totalBudget of the group
+      await _firestore.runTransaction((transaction) async {
+        DocumentReference groupRef =
+            _firestore.collection('groups').doc(budget.groupId);
+        DocumentSnapshot groupSnapshot = await transaction.get(groupRef);
+
+        if (!groupSnapshot.exists) {
+          throw Exception('Group does not exist');
+        }
+
+        double currentTotalBudget = groupSnapshot.get('totalBudget') ?? 0.0;
+        double newTotalBudget = currentTotalBudget - budget.totalAmount;
+
+        transaction.update(groupRef, {'totalBudget': newTotalBudget});
+      });
     } catch (e) {
       throw Exception('Failed to delete budget: $e');
     }

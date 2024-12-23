@@ -88,6 +88,7 @@ class TransactionBloc extends BaseBloC {
       paidBy: wallet.name,
       amount: amount,
       description: description,
+      category: category.name,
       date: DateTime.now(),
     );
     await _expenseRepository.addExpense(expense).then(

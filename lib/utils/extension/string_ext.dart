@@ -1,3 +1,6 @@
+import 'package:cost_share/utils/extension/date_ext.dart';
+import 'package:intl/intl.dart';
+
 extension StringExt on String {
   String getFileExtension() {
     try {
@@ -32,7 +35,44 @@ extension StringExt on String {
   }
 
   bool isValidPassword() {
-    return this.length >= 8 && this.contains(RegExp(r'[A-Z]')) && this.contains(RegExp(r'[0-9]'));
+    return this.length >= 8 &&
+        this.contains(RegExp(r'[A-Z]')) &&
+        this.contains(RegExp(r'[0-9]'));
   }
 
+  String toCustomDateString() {
+    try {
+      // Parse the string to a DateTime object
+      DateTime date =
+          DateFormat('yyyy-MM-dd').parse(this); // Adjust format if necessary
+
+      final now = DateTime.now();
+      final today = DateTime(now.year, now.month, now.day);
+      final yesterday = today.subtract(const Duration(days: 1));
+
+      if (date.isSameDate(today)) {
+        return 'Today';
+      } else if (date.isSameDate(yesterday)) {
+        return 'Yesterday';
+      } else {
+        return DateFormat('MMMM dd, yyyy').format(date);
+      }
+    } catch (e) {
+      return 'Invalid date'; // Handle invalid date strings
+    }
+  }
+
+  String toCustomTimeFormat() {
+    try {
+      // Parse the string to a DateTime object
+      DateTime time =
+          DateFormat('hh:mm a').parse(this); // Adjust format if necessary
+
+      // Return formatted time
+      return DateFormat('hh:mm a')
+          .format(time); // You can customize the output format here
+    } catch (e) {
+      return 'Invalid time'; // Handle invalid time strings
+    }
+  }
 }

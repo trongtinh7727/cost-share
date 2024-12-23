@@ -22,6 +22,8 @@ class GroupBloc extends BaseBloC {
       id: '',
       name: _groupName,
       createdBy: userId,
+      totalBudget: 0,
+      totalExpense: 0,
       members: [Member(userId: userId, role: UserRole.OWNER.value)],
       groupPhoto:
           'https://cdn3.vectorstock.com/i/1000x1000/24/27/people-group-avatar-character-vector-12392427.jpg',
