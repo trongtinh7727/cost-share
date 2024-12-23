@@ -61,7 +61,7 @@ class _WellcomeScreenState extends State<WellcomeScreen> {
                             horizontal: 16, vertical: 8),
                         child: GroupCard(
                             onTap: () {
-                              Navigator.pushNamed(context, RouteName.addGreoup);
+                              Navigator.pushNamed(context, RouteName.addGroup);
                             },
                             cardState: CardState.addNew),
                       );

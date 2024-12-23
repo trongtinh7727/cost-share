@@ -30,7 +30,8 @@ class ExpenseRepositoryImpl extends ExpenseRepository {
           throw Exception('Group does not exist');
         }
 
-        double currentTotalExpense = groupSnapshot.get('totalExpense')*1.0 ?? 0.0;
+        double currentTotalExpense =
+            groupSnapshot.get('totalExpense') * 1.0 ?? 0.0;
         double newTotalExpense = currentTotalExpense + expense.amount;
 
         transaction.update(groupRef, {'totalExpense': newTotalExpense});
@@ -83,7 +84,8 @@ class ExpenseRepositoryImpl extends ExpenseRepository {
           throw Exception('Group does not exist');
         }
 
-        double currentTotalExpense = groupSnapshot.get('totalExpense') ?? 0.0;
+        double currentTotalExpense =
+            groupSnapshot.get('totalExpense') * 1.0 ?? 0.0;
         double newTotalExpense = currentTotalExpense - expense.amount;
 
         transaction.update(groupRef, {'totalExpense': newTotalExpense});

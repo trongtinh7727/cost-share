@@ -14,19 +14,21 @@ class AppNumberInputField extends StatelessWidget {
   final String? suffixText;
   final double? minValue;
   final double? maxValue;
+  final TextAlign textAlign;
 
-  AppNumberInputField({
-    Key? key,
-    this.textEditingController,
-    this.onChanged,
-    this.style,
-    this.hintStyle,
-    this.hintText,
-    this.border,
-    this.suffixText,
-    this.minValue,
-    this.maxValue,
-  }) : super(key: key);
+  AppNumberInputField(
+      {Key? key,
+      this.textEditingController,
+      this.onChanged,
+      this.style,
+      this.hintStyle,
+      this.hintText,
+      this.border,
+      this.suffixText,
+      this.minValue,
+      this.maxValue,
+      this.textAlign = TextAlign.center})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class AppNumberInputField extends StatelessWidget {
       controller: textEditingController,
       keyboardType: TextInputType.number,
       onChanged: onChanged,
-      textAlign: TextAlign.center,
+      textAlign: textAlign,
       maxLines: 1,
       style: style,
       decoration: InputDecoration(

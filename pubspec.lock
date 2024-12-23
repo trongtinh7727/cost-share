@@ -350,14 +350,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-  floating_bottom_bar:
-    dependency: "direct main"
-    description:
-      name: floating_bottom_bar
-      sha256: "4ab9b54d06d2d8502338e989adad3c75f5812fe9ecc0af00879ebfac11e9e0de"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.3"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -911,6 +903,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      sha256: f6d1e8c08361aed6fb7f7b6f327cbd190464e1c717c6152d59866b2f0bb90ffd
+      url: "https://pub.dev"
+    source: hosted
+    version: "28.1.35"
+  syncfusion_flutter_sliders:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_sliders
+      sha256: "1851f23464d6e76ef3320a6c005ce40d2684aff8d93fa0bf77d722e9af2c1f8e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "28.1.35"
   term_glyph:
     dependency: transitive
     description:

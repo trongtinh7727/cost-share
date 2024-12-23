@@ -1,25 +1,38 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+
 import 'package:cost_share/gen/assets.gen.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
-import 'package:flutter/material.dart';
 
 class AppDatePickerButton extends StatelessWidget {
-  const AppDatePickerButton({super.key, required this.label, required this.onTap});
+  const AppDatePickerButton({
+    Key? key,
+    required this.label,
+    required this.onTap,
+    this.width,
+    this.borderColor = AppColors.colorLight60,
+    this.height = 40,
+  }) : super(key: key);
 
   final String label;
   final void Function() onTap;
+
+  final Color borderColor;
+  final double? width;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        // width: 107,
-        height: 40,
+        width: width,
+        height: height,
         padding: const EdgeInsets.only(top: 8, left: 8, right: 16, bottom: 8),
         decoration: ShapeDecoration(
           shape: RoundedRectangleBorder(
-            side: BorderSide(width: 1, color: AppColors.colorLight60),
+            side: BorderSide(width: 1, color: borderColor),
             borderRadius: BorderRadius.circular(40),
           ),
         ),

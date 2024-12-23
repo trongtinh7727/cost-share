@@ -13,18 +13,10 @@ class BudgetRepositoryImpl extends BudgetRepository {
   @override
   Future<Budget> addOrUpdateBudget(Budget budget) async {
     try {
-      if (budget.id != null && budget.id!.isNotEmpty) {
-        // Update the existing document
-        await _firestore
-            .collection('budgets')
-            .doc(budget.id)
-            .update(budget.toJson());
-      } else {
-        // Add a new document
-        DocumentReference budgetRef =
-            await _firestore.collection('budgets').add(budget.toJson());
-        budget = budget.copyWith(id: budgetRef.id);
-      }
+      await _firestore
+          .collection('budgets')
+          .doc(budget.id)
+          .set(budget.toJson());
 
       // Update the totalBudget of the group
       await _firestore.runTransaction((transaction) async {
@@ -36,7 +28,8 @@ class BudgetRepositoryImpl extends BudgetRepository {
           throw Exception('Group does not exist');
         }
 
-        double currentTotalBudget = groupSnapshot.get('totalBudget') ?? 0.0;
+        double currentTotalBudget =
+            groupSnapshot.get('totalBudget') * 1.0 ?? 0.0;
         double newTotalBudget = currentTotalBudget + budget.totalAmount;
 
         transaction.update(groupRef, {'totalBudget': newTotalBudget});
@@ -59,7 +52,8 @@ class BudgetRepositoryImpl extends BudgetRepository {
         throw Exception('Budget does not exist');
       }
 
-      Budget budget = Budget.fromJson(budgetSnapshot.data() as Map<String, dynamic>);
+      Budget budget =
+          Budget.fromJson(budgetSnapshot.data() as Map<String, dynamic>);
 
       // Delete the budget
       await budgetRef.delete();
@@ -74,7 +68,7 @@ class BudgetRepositoryImpl extends BudgetRepository {
           throw Exception('Group does not exist');
         }
 
-        double currentTotalBudget = groupSnapshot.get('totalBudget') ?? 0.0;
+        double currentTotalBudget = groupSnapshot.get('totalBudget')*1.0 ?? 0.0;
         double newTotalBudget = currentTotalBudget - budget.totalAmount;
 
         transaction.update(groupRef, {'totalBudget': newTotalBudget});

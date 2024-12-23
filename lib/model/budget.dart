@@ -10,6 +10,8 @@ class Budget {
   final double totalAmount;
   final double remainingAmount;
   final Map<String, double> contributions;
+  final bool isEnableAlert;
+  final double alertPoint;
 
   Budget({
     this.id,
@@ -18,6 +20,8 @@ class Budget {
     required this.remainingAmount,
     required this.contributions,
     required this.groupId,
+    this.isEnableAlert = false,
+    this.alertPoint = 0.0,
   });
 
   factory Budget.fromJson(Map<String, dynamic> json) => _$BudgetFromJson(json);
@@ -30,6 +34,8 @@ class Budget {
     double? remainingAmount,
     Map<String, double>? contributions,
     String? groupId,
+    bool? isEnableAlert,
+    double? alertPoint,
   }) {
     return Budget(
       id: id ?? this.id,
@@ -38,6 +44,8 @@ class Budget {
       remainingAmount: remainingAmount ?? this.remainingAmount,
       contributions: contributions ?? this.contributions,
       groupId: groupId ?? this.groupId,
+      isEnableAlert: isEnableAlert ?? this.isEnableAlert,
+      alertPoint: alertPoint ?? this.alertPoint,
     );
   }
 }

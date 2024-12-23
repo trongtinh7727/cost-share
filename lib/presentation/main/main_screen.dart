@@ -4,6 +4,7 @@ import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/manager/user_manager.dart';
 import 'package:cost_share/model/group_detail.dart';
 import 'package:cost_share/model/user.dart';
+import 'package:cost_share/presentation/budget/budget_screen.dart';
 import 'package:cost_share/presentation/common/avatar.dart';
 import 'package:cost_share/presentation/common/background_icon.dart';
 import 'package:cost_share/presentation/common/group_card.dart';
@@ -34,7 +35,7 @@ class _MainScreenState extends State<MainScreen> {
         mainScaffoldKey: scaffoldKey,
       ),
       TransactionScreen(),
-      Center(child: Text("Add Screen")),
+      BudgetScreen(),
       Center(child: Text("Budget Screen")),
       Center(child: Text("Member Screen")),
     ];
@@ -118,7 +119,7 @@ class _MainScreenState extends State<MainScreen> {
                             child: GroupCard(
                                 onTap: () {
                                   Navigator.pushNamed(
-                                      context, RouteName.addGreoup);
+                                      context, RouteName.addGroup);
                                 },
                                 cardState: CardState.addNew),
                           );

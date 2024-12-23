@@ -1,5 +1,6 @@
 import 'package:cost_share/presentation/authentication/signin_screen.dart';
 import 'package:cost_share/presentation/authentication/signup_screen.dart';
+import 'package:cost_share/presentation/budget/add_budget_screen.dart';
 import 'package:cost_share/presentation/group/add_group_screen.dart';
 import 'package:cost_share/presentation/main/main_screen.dart';
 import 'package:cost_share/presentation/intro/intro_screen.dart';
@@ -34,13 +35,17 @@ extension GenerateRoute on RouteSettings {
         );
       case RouteName.wellCome:
         return MaterialPageRoute(builder: (context) => WellcomeScreen());
-      case RouteName.addGreoup:
+      case RouteName.addGroup:
         return MaterialPageRoute(
           builder: (context) => const AddGroupScreen(),
         );
       case RouteName.addExpense:
         return MaterialPageRoute(
           builder: (context) => const AddExpenseScreen(),
+        );
+      case RouteName.addBudget:
+        return MaterialPageRoute(
+          builder: (context) => AddBudgetScreen(),
         );
       default:
         return MaterialPageRoute(
