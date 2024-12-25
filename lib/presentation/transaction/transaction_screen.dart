@@ -1,5 +1,6 @@
 import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/model/expense.dart';
+import 'package:cost_share/presentation/common/app_date_picker_button.dart';
 import 'package:cost_share/presentation/common/section_by_date.dart';
 import 'package:cost_share/utils/helper.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +18,12 @@ class _TransactionScreenState extends State<TransactionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Transaction'),
+        title: AppDatePickerButton(label: 'Month', onTap: (){}),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text('Transaction Pro'),
               StreamBuilder<List<Expense>>(
                 stream: context.read<GroupManager>().groupExpensesStream,
                 builder: (context, snapshot) {

@@ -1,9 +1,13 @@
 import 'package:cost_share/gen/assets.gen.dart';
+import 'package:cost_share/manager/group_manager.dart';
+import 'package:cost_share/model/budget.dart';
+import 'package:cost_share/presentation/common/budget_card.dart';
 import 'package:cost_share/presentation/common/my_app_button.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/route/route_name.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BudgetScreen extends StatelessWidget {
   @override
@@ -38,7 +42,7 @@ class BudgetScreen extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
-                    color: AppColors.colorLight100,
+                    color: AppColors.colorLight60,
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(32.0),
                       topRight: Radius.circular(32.0),
@@ -48,16 +52,29 @@ class BudgetScreen extends StatelessWidget {
                     children: [
                       // ListView inside an Expanded for proper layout
                       Expanded(
-                        child: ListView.builder(
-                          itemCount: 100,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text('Tinh'),
+                          child: StreamBuilder<List<Budget>>(
+                        stream: context.read<GroupManager>().groupBudgetStream,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(child: CircularProgressIndicator());
+                          } else if (snapshot.hasError) {
+                            return Center(
+                                child: Text('Error: ${snapshot.error}'));
+                          } else if (!snapshot.hasData ||
+                              snapshot.data!.isEmpty) {
+                            return Center(child: Text('No expenses available'));
+                          } else {
+                            List<Budget> budgets = snapshot.data!;
+                            return ListView.builder(
+                              itemCount: budgets.length,
+                              itemBuilder: (context, index) {
+                                return BudgetCard(budget: budgets[index]);
+                              },
                             );
-                          },
-                        ),
-                      ),
+                          }
+                        },
+                      )),
                       // Padding for the button
                       Padding(
                         padding: const EdgeInsets.only(top: 16.0, bottom: 24),

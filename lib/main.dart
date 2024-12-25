@@ -5,6 +5,7 @@ import 'package:cost_share/manager/bottom_navigation_manager.dart';
 import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/manager/user_manager.dart';
 import 'package:cost_share/presentation/authentication/bloc/authenticate_bloc.dart';
+import 'package:cost_share/repository/budget_repository.dart';
 import 'package:cost_share/repository/expense_repository.dart';
 import 'package:cost_share/repository/group_repository.dart';
 import 'package:cost_share/repository/user_repository.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
         ),
         Provider<GroupManager>(
           create: (_) => GroupManager(
-              locator<GroupRepository>(), locator<ExpenseRepository>()),
+              locator<GroupRepository>(), locator<ExpenseRepository>(), locator<BudgetRepository>()),
           dispose: (context, value) => value.dispose(),
         )
       ],

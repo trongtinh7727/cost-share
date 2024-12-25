@@ -10,6 +10,8 @@ class GroupDetail {
   final int memberCount;
   final String authorName;
   final String authorPhoto;
+  final double totalExpense;
+  final double totalBudget;
 
   GroupDetail({
     required this.groupId,
@@ -18,6 +20,9 @@ class GroupDetail {
     required this.memberCount,
     required this.authorName,
     required this.authorPhoto,
+    required this.totalExpense,
+    required this.totalBudget,
+    
   });
 
   factory GroupDetail.fromJson(Map<String, dynamic> json) => _$GroupDetailFromJson(json);

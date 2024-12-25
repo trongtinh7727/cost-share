@@ -42,6 +42,24 @@ extension AppCategoryExtension on AppCategory {
     }
   }
 
+  
+  Color get colorPrimary {
+    switch (this) {
+      case AppCategory.SHOPPING:
+        return AppColors.colorYellow100;
+      case AppCategory.FOOD:
+        return AppColors.colorRed100;
+      case AppCategory.TRANSPORTATION:
+        return AppColors.colorBlue100;
+      case AppCategory.SUBSCRIPTION:
+        return AppColors.colorViolet100;
+      case AppCategory.ADD:
+        return AppColors.colorDark100;
+      default:
+        return AppColors.colorDark100;
+    }
+  }
+
   Widget get icon {
     switch (this) {
       case AppCategory.SHOPPING:

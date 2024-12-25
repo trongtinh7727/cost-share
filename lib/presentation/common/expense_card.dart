@@ -69,7 +69,7 @@ class ExpenseCard extends StatelessWidget {
           Column(
             children: [
               Text(
-                '- ${expense.amount.toVND()}',
+                '- ${expense.amount.toCommaSeparated()}',
                 style:
                     AppTextStyles.body2.copyWith(color: AppColors.colorRed100),
               ),

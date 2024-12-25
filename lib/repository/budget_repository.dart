@@ -5,6 +5,8 @@ abstract class BudgetRepository {
   Future<Budget> addOrUpdateBudget(Budget budget);
   Future<void> deleteBudget(String budgetId);
   Future<List<Budget>> getGroupBudgets(String groupId);
+  Stream<List<Budget>> loadMonthlyBudget(
+      String groupId, String month, String year);
 }
 
 class BudgetRepositoryImpl extends BudgetRepository {
@@ -68,7 +70,8 @@ class BudgetRepositoryImpl extends BudgetRepository {
           throw Exception('Group does not exist');
         }
 
-        double currentTotalBudget = groupSnapshot.get('totalBudget')*1.0 ?? 0.0;
+        double currentTotalBudget =
+            groupSnapshot.get('totalBudget') * 1.0 ?? 0.0;
         double newTotalBudget = currentTotalBudget - budget.totalAmount;
 
         transaction.update(groupRef, {'totalBudget': newTotalBudget});
@@ -92,5 +95,23 @@ class BudgetRepositoryImpl extends BudgetRepository {
     } catch (e) {
       throw Exception('Failed to fetch budgets: $e');
     }
+  }
+
+  @override
+  Stream<List<Budget>> loadMonthlyBudget(
+      String groupId, String month, String year) {
+    return _firestore
+        .collection('budgets')
+        .where('groupId', isEqualTo: groupId)
+        .snapshots()
+        .map((snapshot) {
+      // Extract budgets that match the specified month and year
+      return snapshot.docs
+          .map((doc) => Budget.fromJson(doc.data()))
+          .where((budget) {
+        // Assuming budget.id contains month and year
+        return budget.id!.contains('$month$year'); // Ensure id format matches
+      }).toList();
+    });
   }
 }
