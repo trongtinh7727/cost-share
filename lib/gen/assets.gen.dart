@@ -51,6 +51,10 @@ class $AssetsIconSvgGen {
   SvgGenImage get iconExpense =>
       const SvgGenImage('assets/icon/svg/icon_expense.svg');
 
+  /// File path: assets/icon/svg/icon_fillter.svg
+  SvgGenImage get iconFillter =>
+      const SvgGenImage('assets/icon/svg/icon_fillter.svg');
+
   /// File path: assets/icon/svg/icon_google.svg
   SvgGenImage get iconGoogle =>
       const SvgGenImage('assets/icon/svg/icon_google.svg');
@@ -58,6 +62,10 @@ class $AssetsIconSvgGen {
   /// File path: assets/icon/svg/icon_home.svg
   SvgGenImage get iconHome =>
       const SvgGenImage('assets/icon/svg/icon_home.svg');
+
+  /// File path: assets/icon/svg/icon_income.svg
+  SvgGenImage get iconIncome =>
+      const SvgGenImage('assets/icon/svg/icon_income.svg');
 
   /// File path: assets/icon/svg/icon_logout.svg
   SvgGenImage get iconLogout =>
@@ -111,8 +119,10 @@ class $AssetsIconSvgGen {
         iconArrowRight,
         iconCar,
         iconExpense,
+        iconFillter,
         iconGoogle,
         iconHome,
+        iconIncome,
         iconLogout,
         iconMicrophone,
         iconNotifiaction,

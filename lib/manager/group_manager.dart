@@ -6,6 +6,7 @@ import 'package:cost_share/repository/expense_repository.dart';
 import 'package:cost_share/repository/group_repository.dart';
 import 'package:cost_share/utils/BaseBloC.dart';
 import 'package:rxdart/rxdart.dart';
+import 'dart:async';
 
 class GroupManager extends BaseBloC {
   final GroupRepository _groupRepository;
@@ -16,38 +17,122 @@ class GroupManager extends BaseBloC {
       this._groupRepository, this._expenseRepository, this._budgetRepository);
 
   String currentGroupId = "";
+  String currentUserId = "";
   GroupDetail? get currentGroup => _userGroupsSubject.value
       .firstWhere((element) => element.groupId == currentGroupId);
 
   final _userGroupsSubject = BehaviorSubject<List<GroupDetail>>();
   final _groupExpensesSubject = BehaviorSubject<List<Expense>>();
   final _groupBudgetSubject = BehaviorSubject<List<Budget>>();
+  final _filteredExpensesSubject = BehaviorSubject<List<Expense>>();
 
-  Stream<List<Expense>> get groupExpensesStream => _groupExpensesSubject.stream;
+  StreamSubscription<List<Expense>>? _groupExpensesSubscription;
+  StreamSubscription<List<Budget>>? _groupBudgetSubscription;
+
+  Stream<List<Expense>> get groupExpensesStream => _filteredExpensesSubject.stream;
   Stream<List<GroupDetail>> get userGroupsStream => _userGroupsSubject.stream;
   Stream<List<Budget>> get groupBudgetStream => _groupBudgetSubject.stream;
 
+  /// Calculate the total expense of the current group
+  double get totalExpense => _groupExpensesSubject.hasValue
+      ? _groupExpensesSubject.value
+          .fold(0, (sum, expense) => sum + expense.amount)
+      : 0;
+
+  /// Calculate the total budget of the current group
+  double get totalBudget => _groupBudgetSubject.hasValue
+      ? _groupBudgetSubject.value
+          .fold(0, (sum, budget) => sum + budget.totalAmount)
+      : 0;
+
+  /// Calculate the total remaining budget of the current group
+  double get totalBudgetRemaining => _groupBudgetSubject.hasValue
+      ? _groupBudgetSubject.value
+          .fold(0, (sum, budget) => sum + budget.remainingAmount)
+      : 0;
+
+  /// Load user groups
   Future<void> loadUserGroups(String userId) async {
+    currentUserId = userId;
     try {
-      _userGroupsSubject.addStream(_groupRepository.getUserGroups(userId));
+      final userGroupsStream = _groupRepository.getUserGroups(userId);
+      _userGroupsSubject.addStream(userGroupsStream);
     } catch (e) {
       print('Error loading user groups: $e');
     }
   }
 
+  /// Set current group and load its data
   void setCurrentGroup(String groupId) {
     currentGroupId = groupId;
     loadGroupExpenses(groupId);
 
-    // Get the current date
-    DateTime now = DateTime.now();
-
-    // Extract the current month and year
-    String month = now.month.toString().padLeft(2, '0'); // Format month as MM
-    String year = now.year.toString(); // Get the year as YYYY
-
-    // Load group budget with the current month and year
+    final now = DateTime.now();
+    String month = now.month.toString();
+    String year = now.year.toString();
     loadGroupBudget(groupId, month, year);
+  }
+
+  /// Load group expenses
+  Future<void> loadGroupExpenses(String groupId) async {
+    try {
+      _groupExpensesSubscription?.cancel();
+      final expensesStream = _expenseRepository.getExpensesStream(groupId);
+      _groupExpensesSubscription = expensesStream.listen((expenses) {
+        _groupExpensesSubject.add(expenses);
+        _filteredExpensesSubject.add(expenses); // Initialize filtered expenses
+      });
+    } catch (e) {
+      print('Error loading group expenses: $e');
+    }
+  }
+
+  /// Load group budget
+  Future<void> loadGroupBudget(
+      String groupId, String month, String year) async {
+    try {
+      _groupBudgetSubscription?.cancel();
+      final budgetStream =
+          _budgetRepository.loadMonthlyBudget(groupId, month, year);
+      _groupBudgetSubscription = budgetStream.listen((budgets) {
+        _groupBudgetSubject.add(budgets);
+      });
+    } catch (e) {
+      print('Error loading group budget: $e');
+    }
+  }
+
+  /// Filter and sort expenses
+  void filterAndSortExpenses({
+    List<String>? categories,
+    String? sortBy,
+  }) {
+    List<Expense> expenses = _groupExpensesSubject.value;
+
+    // Filter by categories
+    if (categories != null && categories.isNotEmpty) {
+      expenses = expenses.where((expense) => categories.contains(expense.category)).toList();
+    }
+
+    // Sort expenses
+    if (sortBy != null) {
+      switch (sortBy) {
+        case 'high':
+          expenses.sort((a, b) => b.amount.compareTo(a.amount));
+          break;
+        case 'low':
+          expenses.sort((a, b) => a.amount.compareTo(b.amount));
+          break;
+        case 'new':
+          expenses.sort((a, b) => b.date.compareTo(a.date));
+          break;
+        case 'old':
+          expenses.sort((a, b) => a.date.compareTo(b.date));
+          break;
+      }
+    }
+
+    _filteredExpensesSubject.add(expenses);
   }
 
   @override
@@ -55,18 +140,11 @@ class GroupManager extends BaseBloC {
     _userGroupsSubject.close();
     _groupBudgetSubject.close();
     _groupExpensesSubject.close();
+    _filteredExpensesSubject.close();
+    _groupExpensesSubscription?.cancel();
+    _groupBudgetSubscription?.cancel();
   }
 
   @override
   void init() {}
-
-  void loadGroupExpenses(String groupId) {
-    _groupExpensesSubject
-        .addStream(_expenseRepository.getExpensesStream(groupId));
-  }
-
-  void loadGroupBudget(String groupId, String month, String year) {
-    _groupBudgetSubject
-        .addStream(_budgetRepository.loadMonthlyBudget(groupId, month, year));
-  }
 }

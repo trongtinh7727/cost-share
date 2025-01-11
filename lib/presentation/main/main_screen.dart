@@ -31,14 +31,24 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     _screens = [
-      HomeScreen(
-        mainScaffoldKey: scaffoldKey,
-      ),
-      TransactionScreen(),
+      HomeScreen(mainScaffoldKey: scaffoldKey),
+      TransactionScreen(onFilterPressed: _showFilterBottomSheet,),
       BudgetScreen(),
       Center(child: Text("Budget Screen")),
       Center(child: Text("Member Screen")),
     ];
+  }
+
+  void _showFilterBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          height: 200,
+          color: Colors.black,
+        );
+      },
+    );
   }
 
   @override
@@ -66,12 +76,12 @@ class _MainScreenState extends State<MainScreen> {
                     height: 8,
                   ),
                   Text(
-                    'Username',
+                    currentUser.name,
                     style: AppTextStyles.title2
                         .copyWith(color: AppColors.colorDark75),
                   ),
                   Text(
-                    'Username@gmail.com',
+                    currentUser.email,
                     style: AppTextStyles.body3
                         .copyWith(color: AppColors.colorLight20),
                   )

@@ -22,9 +22,9 @@ class ExpenseCard extends StatelessWidget {
     AppCategory appCategory = AppCategoryExtension.fromString(expense.category);
     return Container(
       padding: EdgeInsets.all(12),
-      margin: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       decoration: BoxDecoration(
-          color: AppColors.colorLight60,
+          color: AppColors.colorLight40,
           borderRadius: BorderRadius.circular(24)),
       child: Row(
         children: [

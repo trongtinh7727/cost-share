@@ -5,7 +5,7 @@ extension DoubleExtension on double {
     return '\$${this.toStringAsFixed(2)}';
   }
 
-  String toVND({String currency = '₫'}) {
+  String toVND({String currency = ''}) {
     if (this >= 1e6) {
       return '${(this / 1e6).toStringAsFixed(1)}M $currency'; // Convert to millions
     } else if (this >= 1e3) {

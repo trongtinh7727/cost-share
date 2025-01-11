@@ -1,13 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:cost_share/gen/assets.gen.dart';
 import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/model/expense.dart';
 import 'package:cost_share/presentation/common/app_date_picker_button.dart';
 import 'package:cost_share/presentation/common/section_by_date.dart';
 import 'package:cost_share/utils/helper.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class TransactionScreen extends StatefulWidget {
-  const TransactionScreen({super.key});
+  const TransactionScreen({
+    Key? key,
+    required this.onFilterPressed,
+  }) : super(key: key);
+  final VoidCallback onFilterPressed;
 
   @override
   State<TransactionScreen> createState() => _TransactionScreenState();
@@ -18,7 +25,13 @@ class _TransactionScreenState extends State<TransactionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: AppDatePickerButton(label: 'Month', onTap: (){}),
+        title: AppDatePickerButton(label: 'Month', onTap: () {}),
+        actions: [
+          IconButton(
+            icon: Assets.icon.svg.iconFillter.svg(),
+            onPressed: widget.onFilterPressed,
+          ),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
