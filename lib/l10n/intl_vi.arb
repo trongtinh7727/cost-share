@@ -46,5 +46,11 @@
   "groupDescription": "Mô tả nhóm",
   "howMuch": "Số tiền?",
   "category": "Danh mục",
-  "description": "Mô tả"
+  "description": "Mô tả",
+  "budgetDetail": "Chi tiết ngân sách",
+  "exceedLimit": "Bạn đã vượt quá giới hạn",
+  "contributions": "Đóng góp",
+  "contributied": "Đã đóng góp: ",
+  "expenseSpliting": "Chia sẻ chi phí",
+  "expenseDetail": "Chi tiết chi phí"
 }

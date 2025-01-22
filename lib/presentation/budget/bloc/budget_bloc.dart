@@ -108,6 +108,20 @@ class BudgetBloc extends BaseBloC {
     }
   }
 
+  void addContribution(Budget budget, String userId) async {
+    try {
+      // Update the contribution amount
+      budget.contributions[userId] = _amount;
+      // Update the budget using the repository
+      await _budgetRepository.addOrUpdateBudget(budget);
+      // Optional: Log or handle success feedback
+      print("Contribution added successfully.");
+    } catch (error) {
+      // Handle any errors during the contribution process
+      print("Error adding contribution: $error");
+    }
+  }
+
   @override
   void dispose() {
     _groupMembersSubscription?.cancel(); // Ensure the subscription is canceled

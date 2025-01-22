@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "april": MessageLookupByLibrary.simpleMessage("April"),
         "august": MessageLookupByLibrary.simpleMessage("August"),
         "budget": MessageLookupByLibrary.simpleMessage("Budget"),
+        "budgetDetail": MessageLookupByLibrary.simpleMessage("Budget Detail"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
         "chooseGroup":
@@ -34,9 +35,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
+        "contributied": MessageLookupByLibrary.simpleMessage("Contribuied: "),
+        "contributions": MessageLookupByLibrary.simpleMessage("Contributions"),
         "december": MessageLookupByLibrary.simpleMessage("December"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "exceedLimit":
+            MessageLookupByLibrary.simpleMessage("You’ve exceed the limit"),
+        "expenseDetail": MessageLookupByLibrary.simpleMessage("Expense Detail"),
+        "expenseSpliting":
+            MessageLookupByLibrary.simpleMessage("Expense Spliting"),
         "february": MessageLookupByLibrary.simpleMessage("February"),
         "googleSignUp":
             MessageLookupByLibrary.simpleMessage("Sign Up with Google"),

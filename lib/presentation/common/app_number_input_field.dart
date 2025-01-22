@@ -82,6 +82,7 @@ class ThousandsSeparatorInputFormatter extends TextInputFormatter {
 class _ValueRangeInputFormatter extends TextInputFormatter {
   final double? minValue;
   final double? maxValue;
+  final NumberFormat formatter = NumberFormat("#,###");
 
   _ValueRangeInputFormatter({this.minValue, this.maxValue});
 
@@ -92,13 +93,22 @@ class _ValueRangeInputFormatter extends TextInputFormatter {
       return newValue;
     }
 
-    final double? value = double.tryParse(newValue.text);
+    final String sanitizedText = newValue.text.replaceAll(',', '');
+    final double? value = double.tryParse(sanitizedText);
     if (value != null) {
       if (minValue != null && value < minValue!) {
-        return oldValue;
+        final String formattedText = formatter.format(minValue);
+        return TextEditingValue(
+          text: formattedText,
+          selection: TextSelection.collapsed(offset: formattedText.length),
+        );
       }
       if (maxValue != null && value > maxValue!) {
-        return oldValue;
+        final String formattedText = formatter.format(maxValue);
+        return TextEditingValue(
+          text: formattedText,
+          selection: TextSelection.collapsed(offset: formattedText.length),
+        );
       }
     }
 

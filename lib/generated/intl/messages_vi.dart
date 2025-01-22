@@ -27,6 +27,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "april": MessageLookupByLibrary.simpleMessage("Tháng 4"),
         "august": MessageLookupByLibrary.simpleMessage("Tháng 8"),
         "budget": MessageLookupByLibrary.simpleMessage("Ngân sách"),
+        "budgetDetail":
+            MessageLookupByLibrary.simpleMessage("Chi tiết ngân sách"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
         "category": MessageLookupByLibrary.simpleMessage("Danh mục"),
         "chooseGroup":
@@ -34,9 +36,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("Xác nhậnnhận"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Xác nhận mật khẩu"),
+        "contributied": MessageLookupByLibrary.simpleMessage("Đã đóng góp: "),
+        "contributions": MessageLookupByLibrary.simpleMessage("Đóng góp"),
         "december": MessageLookupByLibrary.simpleMessage("Tháng 12"),
         "description": MessageLookupByLibrary.simpleMessage("Mô tả"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "exceedLimit":
+            MessageLookupByLibrary.simpleMessage("Bạn đã vượt quá giới hạn"),
+        "expenseDetail":
+            MessageLookupByLibrary.simpleMessage("Chi tiết chi phí"),
+        "expenseSpliting":
+            MessageLookupByLibrary.simpleMessage("Chia sẻ chi phí"),
         "february": MessageLookupByLibrary.simpleMessage("Tháng 2"),
         "googleSignUp":
             MessageLookupByLibrary.simpleMessage("Đăng ký với Google"),

@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cost_share/manager/bottom_navigation_manager.dart';
 import 'package:cost_share/manager/group_manager.dart';
-import 'package:cost_share/model/budget.dart';
 import 'package:cost_share/model/expense.dart';
 import 'package:cost_share/model/group_detail.dart';
 import 'package:cost_share/presentation/common/app_date_picker_button.dart';
@@ -61,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         centerTitle: true,
         title: AppDatePickerButton(
-          label: month.toMonth(context),
+          label: '${month.toMonth(context)}, $year',
           onTap: () => showMonthPicker(context, onSelected: (m, y) {
             setState(() {
               month = m;

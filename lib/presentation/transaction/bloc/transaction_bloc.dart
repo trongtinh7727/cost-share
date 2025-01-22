@@ -1,17 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
+import 'package:rxdart/rxdart.dart';
+
 import 'package:cost_share/model/expense.dart';
 import 'package:cost_share/model/split.dart';
 import 'package:cost_share/model/user_split.dart';
-import 'package:cost_share/repository/expense_repository.dart';
-import 'package:cost_share/utils/extension/string_ext.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:cost_share/repository/budget_repository.dart';
+import 'package:cost_share/repository/expense_repository.dart';
 import 'package:cost_share/repository/group_repository.dart';
 import 'package:cost_share/utils/BaseBloC.dart';
 import 'package:cost_share/utils/enum/app_category.dart';
 import 'package:cost_share/utils/enum/app_wallet.dart';
+import 'package:cost_share/utils/extension/string_ext.dart';
 
 class TransactionBloc extends BaseBloC {
   final BudgetRepository _budgetRepository;
@@ -19,14 +20,11 @@ class TransactionBloc extends BaseBloC {
   final ExpenseRepository _expenseRepository;
   final String groupId;
   final String userId;
+  final String? expenseId;
 
-  TransactionBloc(
-    this._budgetRepository,
-    this._groupRepository,
-    this._expenseRepository,
-    this.groupId,
-    this.userId,
-  );
+  TransactionBloc(this._budgetRepository, this._groupRepository,
+      this._expenseRepository, this.groupId, this.userId,
+      {this.expenseId});
 
   final _category = BehaviorSubject<AppCategory>();
   final _wallet = BehaviorSubject<AppWallet>();
@@ -101,6 +99,10 @@ class TransactionBloc extends BaseBloC {
     );
   }
 
+  Future<List<Split>> getSplits(String expenseId) async {
+    return _expenseRepository.getExpenseSplits(expenseId);
+  }
+
   @override
   void dispose() {
     _groupMembersSubscription?.cancel(); // Ensure the subscription is canceled
@@ -110,7 +112,7 @@ class TransactionBloc extends BaseBloC {
   }
 
   @override
-  void init() {
+  void init() async {
     _category.add(AppCategory.SHOPPING);
     _wallet.add(AppWallet.PERSONAL);
     getWalletRemaining(groupId);

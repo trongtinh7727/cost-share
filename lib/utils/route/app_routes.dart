@@ -1,11 +1,17 @@
+import 'package:cost_share/model/budget.dart';
+import 'package:cost_share/model/expense.dart';
+import 'package:cost_share/model/user_split.dart';
 import 'package:cost_share/presentation/authentication/signin_screen.dart';
 import 'package:cost_share/presentation/authentication/signup_screen.dart';
 import 'package:cost_share/presentation/budget/add_budget_screen.dart';
+import 'package:cost_share/presentation/budget/add_contribution_screen.dart';
+import 'package:cost_share/presentation/budget/budget_detail_screen.dart';
 import 'package:cost_share/presentation/group/add_group_screen.dart';
 import 'package:cost_share/presentation/main/main_screen.dart';
 import 'package:cost_share/presentation/intro/intro_screen.dart';
 import 'package:cost_share/presentation/main/wellcome_screen.dart';
 import 'package:cost_share/presentation/transaction/add_expense_screen.dart';
+import 'package:cost_share/presentation/transaction/expense_detail_screen.dart';
 import 'package:cost_share/splash_creen.dart';
 import 'package:cost_share/utils/route/route_name.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +52,26 @@ extension GenerateRoute on RouteSettings {
       case RouteName.addBudget:
         return MaterialPageRoute(
           builder: (context) => AddBudgetScreen(),
+        );
+      case RouteName.budgetDetai:
+        Budget budget = arguments as Budget;
+        return MaterialPageRoute(
+          builder: (context) => BudgetDetailScreen(budget: budget),
+        );
+      case RouteName.addContribute:
+        Map<String, dynamic> args = arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (context) => AddContributionScreen(
+            budget: args['budget'] as Budget,
+            userSplit: args['userSplit'] as UserSplit,
+          ),
+        );
+      case RouteName.expenseDetail:
+        Expense expense = arguments as Expense;
+        return MaterialPageRoute(
+          builder: (context) => ExpenseDetailScreen(
+            expense: expense,
+          ),
         );
       default:
         return MaterialPageRoute(

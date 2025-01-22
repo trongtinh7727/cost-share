@@ -519,6 +519,66 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Budget Detail`
+  String get budgetDetail {
+    return Intl.message(
+      'Budget Detail',
+      name: 'budgetDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You’ve exceed the limit`
+  String get exceedLimit {
+    return Intl.message(
+      'You’ve exceed the limit',
+      name: 'exceedLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contributions`
+  String get contributions {
+    return Intl.message(
+      'Contributions',
+      name: 'contributions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contribuied: `
+  String get contributied {
+    return Intl.message(
+      'Contribuied: ',
+      name: 'contributied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expense Spliting`
+  String get expenseSpliting {
+    return Intl.message(
+      'Expense Spliting',
+      name: 'expenseSpliting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expense Detail`
+  String get expenseDetail {
+    return Intl.message(
+      'Expense Detail',
+      name: 'expenseDetail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

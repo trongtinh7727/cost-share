@@ -9,6 +9,7 @@ abstract class ExpenseRepository {
   Future<void> deleteExpense(String expenseId);
   Future<List<Expense>> getGroupExpenses(String groupId);
   Stream<List<Expense>> getExpensesStream(String groupId);
+  Future<List<Split>> getExpenseSplits(String expenseId);
 }
 
 class ExpenseRepositoryImpl extends ExpenseRepository {
@@ -123,6 +124,7 @@ class ExpenseRepositoryImpl extends ExpenseRepository {
         List<Expense> expenses = [];
         for (var doc in snapshot.docs) {
           var expense = Expense.fromJson(doc.data());
+          expense = expense.copyWith(id: doc.id);
           var userSnapshot =
               await _firestore.collection('users').doc(expense.userId).get();
           if (userSnapshot.exists) {
@@ -138,6 +140,22 @@ class ExpenseRepositoryImpl extends ExpenseRepository {
       });
     } catch (e) {
       throw Exception('Failed to fetch expense stream: $e');
+    }
+  }
+
+  @override
+  Future<List<Split>> getExpenseSplits(String expenseId) async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> splitSnapshot = await _firestore
+          .collection('splits')
+          .where('expenseId', isEqualTo: expenseId)
+          .get();
+
+      return splitSnapshot.docs
+          .map((doc) => Split.fromJson(doc.data()))
+          .toList();
+    } catch (e) {
+      throw Exception('Failed to fetch splits: $e');
     }
   }
 }

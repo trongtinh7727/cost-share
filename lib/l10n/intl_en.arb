@@ -46,5 +46,11 @@
   "groupDescription":"Group Description",
   "howMuch":"How much?",
   "category":"Category",
-  "description":"Description"
+  "description":"Description",
+  "budgetDetail":"Budget Detail",
+  "exceedLimit":"You’ve exceed the limit",
+  "contributions":"Contributions",
+  "contributied":"Contribuied: ",
+  "expenseSpliting":"Expense Spliting",
+  "expenseDetail":"Expense Detail"
 }

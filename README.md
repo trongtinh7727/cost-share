@@ -14,3 +14,7 @@ fvm flutter pub get
 ```bash
 fvm flutter pub run build_runner build  --delete-conflicting-outputs
 ```
+
+```bash
+fvm flutter pub run intl_utils:generate
+```

@@ -41,4 +41,20 @@ class UserSplit {
       isPaid: false,
     );
   }
+
+  UserSplit copyWith({
+    String? userId,
+    String? userAvatar,
+    String? userName,
+    double? amount,
+    double? ratio,
+  }) {
+    return UserSplit(
+      userId: userId ?? this.userId,
+      userAvatar: userAvatar ?? this.userAvatar,
+      userName: userName ?? this.userName,
+      amount: amount ?? this.amount,
+      ratio: ratio ?? this.ratio,
+    );
+  }
 }

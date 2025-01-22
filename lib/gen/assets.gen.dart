@@ -111,6 +111,10 @@ class $AssetsIconSvgGen {
   SvgGenImage get iconUser =>
       const SvgGenImage('assets/icon/svg/icon_user.svg');
 
+  /// File path: assets/icon/svg/icon_warning.svg
+  SvgGenImage get iconWarning =>
+      const SvgGenImage('assets/icon/svg/icon_warning.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         iconAdd,
@@ -133,7 +137,8 @@ class $AssetsIconSvgGen {
         iconSettings,
         iconShoppingBag,
         iconTransaction,
-        iconUser
+        iconUser,
+        iconWarning
       ];
 }
 

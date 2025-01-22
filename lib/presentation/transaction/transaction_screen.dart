@@ -35,34 +35,37 @@ class _TransactionScreenState extends State<TransactionScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              StreamBuilder<List<Expense>>(
-                stream: context.read<GroupManager>().groupExpensesStream,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
-                    return Center(child: Text('Error: ${snapshot.error}'));
-                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return Center(child: Text('No expenses available'));
-                  } else {
-                    Map<String, List<Expense>> groupedExpenses =
-                        Helper.groupExpensesByDate(snapshot.data!);
-
-                    return Column(
-                      children: groupedExpenses.keys.map((date) {
-                        List<Expense> expenses = groupedExpenses[date]!;
-                        return SectionByDate(
-                          date: date,
-                          expenses: expenses,
-                        );
-                      }).toList(),
-                    );
-                  }
-                },
-              ),
-            ],
+          child: Container(
+            margin: EdgeInsets.symmetric( horizontal: 16),
+            child: Column(
+              children: [
+                StreamBuilder<List<Expense>>(
+                  stream: context.read<GroupManager>().groupExpensesStream,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    } else if (snapshot.hasError) {
+                      return Center(child: Text('Error: ${snapshot.error}'));
+                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return Center(child: Text('No expenses available'));
+                    } else {
+                      Map<String, List<Expense>> groupedExpenses =
+                          Helper.groupExpensesByDate(snapshot.data!);
+            
+                      return Column(
+                        children: groupedExpenses.keys.map((date) {
+                          List<Expense> expenses = groupedExpenses[date]!;
+                          return SectionByDate(
+                            date: date,
+                            expenses: expenses,
+                          );
+                        }).toList(),
+                      );
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
