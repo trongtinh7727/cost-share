@@ -10,6 +10,8 @@ abstract class ExpenseRepository {
   Future<List<Expense>> getGroupExpenses(String groupId);
   Stream<List<Expense>> getExpensesStream(String groupId);
   Future<List<Split>> getExpenseSplits(String expenseId);
+
+  Future<void> updateSplit(Split splitData);
 }
 
 class ExpenseRepositoryImpl extends ExpenseRepository {
@@ -152,10 +154,21 @@ class ExpenseRepositoryImpl extends ExpenseRepository {
           .get();
 
       return splitSnapshot.docs
-          .map((doc) => Split.fromJson(doc.data()))
+          .map((doc) => Split.fromJson(doc.data()).copyWith(id: doc.id))
           .toList();
     } catch (e) {
       throw Exception('Failed to fetch splits: $e');
+    }
+  }
+
+  @override
+  Future<void> updateSplit(Split splitData) {
+    try {
+      DocumentReference splitRef =
+          _firestore.collection('splits').doc(splitData.id);
+      return splitRef.update(splitData.toJson());
+    } catch (e) {
+      throw Exception('Failed to update split: $e');
     }
   }
 }

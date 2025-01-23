@@ -52,5 +52,9 @@
   "contributions":"Contributions",
   "contributied":"Contribuied: ",
   "expenseSpliting":"Expense Spliting",
-  "expenseDetail":"Expense Detail"
+  "expenseDetail":"Expense Detail",
+  "markAsPaid":"Mark as paid",
+  "markAsUnpaid":"Mark as unpaid",
+  "markAsPaidDescription":"Are you sure you want to mark this invoice as paid?",
+  "markAsUnpaidDescription":"Are you sure you want to mark this invoice as unpaid? This may affect the payment records."
 }

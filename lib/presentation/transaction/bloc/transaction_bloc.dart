@@ -122,4 +122,8 @@ class TransactionBloc extends BaseBloC {
   selectWallet(String wallet) {
     _wallet.add(AppWalletExtension.fromString(wallet));
   }
+
+  void updateSplit(Split splitData) {
+    _expenseRepository.updateSplit(splitData);
+  }
 }

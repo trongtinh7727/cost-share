@@ -1,28 +1,31 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+
+import 'package:cost_share/model/user_split.dart';
 import 'package:cost_share/presentation/common/avatar.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/extension/double_ext.dart';
-import 'package:flutter/material.dart';
-
-import 'package:cost_share/model/user_split.dart';
 
 class UserTransactionStatus extends StatelessWidget {
   const UserTransactionStatus({
     Key? key,
     required this.userSplit,
     required this.amountPerPerson,
-    this.label,
     this.icon,
+    this.label,
+    this.width,
   }) : super(key: key);
   final UserSplit userSplit;
   final double amountPerPerson;
   final Widget? icon;
   final String? label;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
       padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
       margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
       decoration: BoxDecoration(
@@ -30,6 +33,8 @@ class UserTransactionStatus extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Avatar(
             url: userSplit.userAvatar!,

@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cost_share/gen/assets.gen.dart';
 import 'package:cost_share/locator.dart';
 import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/manager/user_manager.dart';
@@ -7,6 +8,7 @@ import 'package:cost_share/model/split.dart' as cost_share_split;
 import 'package:cost_share/presentation/common/background_icon.dart';
 import 'package:cost_share/presentation/common/user_transaction_status.dart';
 import 'package:cost_share/presentation/transaction/bloc/transaction_bloc.dart';
+import 'package:cost_share/presentation/transaction/widgets/paid_expense_dialog.dart';
 import 'package:cost_share/repository/budget_repository.dart';
 import 'package:cost_share/repository/expense_repository.dart';
 import 'package:cost_share/repository/group_repository.dart';
@@ -127,13 +129,44 @@ class _ExpenseDetailScreenState extends State<ExpenseDetailScreen> {
                                         split.firstWhere((element) =>
                                             element.userId == e.userId);
                                     return UserTransactionStatus(
-                                        userSplit: e.copyWith(
-                                          amount: splitData.amount,
-                                        ),
-                                        label: '',
-                                        amountPerPerson: splitData.isPaid
-                                            ? 0
-                                            : double.infinity);
+                                      userSplit: e.copyWith(
+                                        amount: splitData.amount,
+                                      ),
+                                      label: '',
+                                      amountPerPerson: splitData.isPaid
+                                          ? 0
+                                          : double.infinity,
+                                      icon: InkWell(
+                                        onTap: () {
+                                          showModalBottomSheet(
+                                            context: context,
+                                            builder: (context) {
+                                              return PaidExpenseDialog(
+                                                userSplit: e.copyWith(
+                                                  amount: splitData.amount,
+                                                ),
+                                                isPaid: splitData.isPaid,
+                                                onPaid: () {
+                                                  setState(() {
+                                                    splitData =
+                                                        splitData.copyWith(
+                                                            isPaid: !splitData
+                                                                .isPaid);
+                                                    bloC.updateSplit(splitData);
+                                                  });
+                                                },
+                                              );
+                                            },
+                                          );
+                                        },
+                                        child: splitData.isPaid
+                                            ? Assets.icon.svg.iconSalary.svg()
+                                            : Assets.icon.svg.iconExpense.svg(
+                                                colorFilter: ColorFilter.mode(
+                                                    AppColors.colorViolet100,
+                                                    BlendMode.srcIn)),
+                                      ),
+                                    );
                                   }).toList(),
                                 );
                               } else {

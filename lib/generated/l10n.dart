@@ -579,6 +579,46 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Mark as paid`
+  String get markAsPaid {
+    return Intl.message(
+      'Mark as paid',
+      name: 'markAsPaid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mark as unpaid`
+  String get markAsUnpaid {
+    return Intl.message(
+      'Mark as unpaid',
+      name: 'markAsUnpaid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to mark this invoice as paid?`
+  String get markAsPaidDescription {
+    return Intl.message(
+      'Are you sure you want to mark this invoice as paid?',
+      name: 'markAsPaidDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to mark this invoice as unpaid? This may affect the payment records.`
+  String get markAsUnpaidDescription {
+    return Intl.message(
+      'Are you sure you want to mark this invoice as unpaid? This may affect the payment records.',
+      name: 'markAsUnpaidDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -9,6 +9,7 @@ class MyAppButton extends StatelessWidget {
       required this.onPressed,
       required this.message,
       required this.isPrimary,
+      this.width,
       this.isLoading})
       : super(key: key);
 
@@ -16,16 +17,17 @@ class MyAppButton extends StatelessWidget {
   final String message;
   final bool isPrimary;
   final bool? isLoading;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 58,
-      width: double.infinity,
+      width: this.width ?? double.infinity,
       child: ElevatedButton(
           onPressed: onPressed,
-          style:
-              ButtonStyle(backgroundColor: WidgetStateProperty.resolveWith<Color>(
+          style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.resolveWith<Color>(
             (Set<WidgetState> states) {
               if (states.contains(WidgetState.disabled)) {
                 return AppColors.colorViolet20;

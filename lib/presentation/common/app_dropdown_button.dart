@@ -3,7 +3,6 @@ import 'package:cost_share/gen/assets.gen.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:flutter/material.dart';
-import 'package:nb_utils/nb_utils.dart';
 
 class AppDropdownButton extends StatefulWidget {
   const AppDropdownButton({

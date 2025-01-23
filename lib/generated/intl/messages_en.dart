@@ -74,6 +74,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "march": MessageLookupByLibrary.simpleMessage("March"),
+        "markAsPaid": MessageLookupByLibrary.simpleMessage("Mark as paid"),
+        "markAsPaidDescription": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to mark this invoice as paid?"),
+        "markAsUnpaid": MessageLookupByLibrary.simpleMessage("Mark as unpaid"),
+        "markAsUnpaidDescription": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to mark this invoice as unpaid? This may affect the payment records."),
         "may": MessageLookupByLibrary.simpleMessage("May"),
         "member": MessageLookupByLibrary.simpleMessage("Member"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),

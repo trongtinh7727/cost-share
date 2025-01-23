@@ -2,7 +2,6 @@ import 'package:cost_share/model/expense.dart';
 import 'package:cost_share/presentation/common/expense_card.dart';
 import 'package:cost_share/utils/extension/string_ext.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class SectionByDate extends StatelessWidget {
   final String date;

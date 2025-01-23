@@ -78,6 +78,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
         "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
         "march": MessageLookupByLibrary.simpleMessage("Tháng 3"),
+        "markAsPaid":
+            MessageLookupByLibrary.simpleMessage("Đánh dấu đã thanh toán"),
+        "markAsPaidDescription": MessageLookupByLibrary.simpleMessage(
+            "Bạn có chắc chắn muốn đánh dấu hóa đơn này đã thanh toán không?"),
+        "markAsUnpaid":
+            MessageLookupByLibrary.simpleMessage("Đánh dấu chưa thanh toán"),
+        "markAsUnpaidDescription": MessageLookupByLibrary.simpleMessage(
+            "Bạn có chắc chắn muốn đánh dấu hóa đơn này chưa thanh toán không? Điều này có thể ảnh hưởng đến bản ghi thanh toán."),
         "may": MessageLookupByLibrary.simpleMessage("Tháng 5"),
         "member": MessageLookupByLibrary.simpleMessage("Thành viên"),
         "name": MessageLookupByLibrary.simpleMessage("Tên"),

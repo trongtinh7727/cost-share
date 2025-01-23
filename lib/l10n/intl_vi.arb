@@ -52,5 +52,9 @@
   "contributions": "Đóng góp",
   "contributied": "Đã đóng góp: ",
   "expenseSpliting": "Chia sẻ chi phí",
-  "expenseDetail": "Chi tiết chi phí"
+  "expenseDetail": "Chi tiết chi phí",
+  "markAsPaid": "Đánh dấu đã thanh toán",
+  "markAsUnpaid": "Đánh dấu chưa thanh toán",
+  "markAsPaidDescription": "Bạn có chắc chắn muốn đánh dấu hóa đơn này đã thanh toán không?",
+  "markAsUnpaidDescription": "Bạn có chắc chắn muốn đánh dấu hóa đơn này chưa thanh toán không? Điều này có thể ảnh hưởng đến bản ghi thanh toán."
 }

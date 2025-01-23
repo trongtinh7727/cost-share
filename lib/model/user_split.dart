@@ -32,13 +32,14 @@ class UserSplit {
     );
   }
 
-  Split toSplit(String expenseId,double totalAmount) {
+  Split toSplit(String expenseId, double totalAmount) {
     return Split(
       expenseId: expenseId,
       userId: userId!,
-      amount: totalAmount * ratio/100.0,
+      amount: totalAmount * ratio / 100.0,
       ratio: ratio,
       isPaid: false,
+      id: '',
     );
   }
 
