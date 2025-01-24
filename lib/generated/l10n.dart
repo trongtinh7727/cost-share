@@ -699,6 +699,46 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Scan the QR Code`
+  String get scanQRCode {
+    return Intl.message(
+      'Scan the QR Code',
+      name: 'scanQRCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Or enter the email address`
+  String get orEnterEmail {
+    return Intl.message(
+      'Or enter the email address',
+      name: 'orEnterEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan the QR Code or enter the email address to invite someone.`
+  String get inviteMemberDescription {
+    return Intl.message(
+      'Scan the QR Code or enter the email address to invite someone.',
+      name: 'inviteMemberDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User not found`
+  String get userNotFound {
+    return Intl.message(
+      'User not found',
+      name: 'userNotFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

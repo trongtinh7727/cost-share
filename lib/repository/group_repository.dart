@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cost_share/generated/l10n.dart';
 import 'package:cost_share/model/group.dart';
 import 'package:cost_share/model/group_detail.dart';
 import 'package:cost_share/model/member.dart';
 import 'package:cost_share/model/user.dart';
 import 'package:cost_share/model/user_split.dart';
+import 'package:flutter/material.dart';
 
 abstract class GroupRepository {
   Future<Group> createGroup(Group group);
@@ -12,6 +14,8 @@ abstract class GroupRepository {
   Stream<Group?> getGroupById(String groupId);
   Stream<List<GroupDetail>> getUserGroups(String userId);
   Future<void> removeMember(String groupId, String? userId);
+
+  Future<void> addMember(String groupId, String email, BuildContext context);
 }
 
 class GroupRepositoryImpl extends GroupRepository {
@@ -148,6 +152,34 @@ class GroupRepositoryImpl extends GroupRepository {
       });
     } catch (e) {
       throw Exception('Failed to remove member: $e');
+    }
+  }
+
+  @override
+  Future<void> addMember(
+      String groupId, String email, BuildContext context) async {
+    try {
+      // Fetch the user by email
+      QuerySnapshot userSnapshot = await _firestore
+          .collection('users')
+          .where('email', isEqualTo: email)
+          .get();
+
+      if (userSnapshot.docs.isEmpty) {
+        throw Exception(AppLocalizations.of(context).userNotFound);
+      }
+
+      // Get the user ID from the fetched user document
+      String userId = userSnapshot.docs.first.id;
+
+      // Add the user to the group
+      await _firestore.collection('groups').doc(groupId).update({
+        'members': FieldValue.arrayUnion([
+          {'role': 'MEMBER', 'userId': userId}
+        ])
+      });
+    } catch (e) {
+      throw Exception(e.toString().replaceAll('Exception: ', ''));
     }
   }
 }

@@ -1,22 +1,23 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cost_share/presentation/common/error_message.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cost_share/presentation/common/app_text_input_field.dart';
 import 'package:cost_share/presentation/common/my_app_button.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
 
-class RemoveDialog extends StatelessWidget {
-  const RemoveDialog({
+class AddMemberDialog extends StatelessWidget {
+  const AddMemberDialog({
     Key? key,
-    required this.title,
-    required this.description,
-    required this.confirmText,
     this.onConfirm,
+    this.onChangeEmail,
+    required this.errorStream,
   }) : super(key: key);
-  final String title;
-  final String description;
-  final String confirmText;
   final VoidCallback? onConfirm;
+  final Function(String)? onChangeEmail;
+  final Stream<String?> errorStream;
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +39,19 @@ class RemoveDialog extends StatelessWidget {
             height: 16,
           ),
           Text(
-            title,
+            context.localization.orEnterEmail,
             style: AppTextStyles.title3.copyWith(color: AppColors.colorDark100),
           ),
           SizedBox(
             height: 8,
           ),
+          AppTextInputField(
+            hintText: context.localization.email,
+            onChanged: onChangeEmail,
+          ),
+          ErrorMessage(error: errorStream),
           Text(
-            description,
+            context.localization.inviteMemberDescription,
             style: AppTextStyles.body1.copyWith(color: AppColors.colorLight10),
             textAlign: TextAlign.center,
           ),
@@ -67,11 +73,10 @@ class RemoveDialog extends StatelessWidget {
                 width: 16,
               ),
               MyAppButton(
-                message: confirmText,
+                message: context.localization.addMember,
                 width: 200,
                 onPressed: () {
                   onConfirm!();
-                  Navigator.of(context).pop();
                 },
                 isPrimary: true,
               ),

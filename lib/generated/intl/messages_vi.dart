@@ -73,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tháng không hợp lệ"),
         "invalidPassword": MessageLookupByLibrary.simpleMessage(
             "Ít nhất 8 ký tự, 1 số và 1 chữ in hoa"),
+        "inviteMemberDescription": MessageLookupByLibrary.simpleMessage(
+            "Quét mã QR hoặc nhập địa chỉ email để mời người khác."),
         "january": MessageLookupByLibrary.simpleMessage("Tháng 1"),
         "july": MessageLookupByLibrary.simpleMessage("Tháng 7"),
         "june": MessageLookupByLibrary.simpleMessage("Tháng 6"),
@@ -94,6 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tên không được để trống"),
         "november": MessageLookupByLibrary.simpleMessage("Tháng 11"),
         "october": MessageLookupByLibrary.simpleMessage("Tháng 10"),
+        "orEnterEmail": MessageLookupByLibrary.simpleMessage("Hoặc nhập email"),
         "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Mật khẩu không khớp"),
@@ -103,6 +106,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "removeExpense": MessageLookupByLibrary.simpleMessage("Xóa chi tiêu"),
         "removeExpenseDescription": MessageLookupByLibrary.simpleMessage(
             "Bạn có chắc chắn muốn xóa chi tiêu này không? Hành động này không thể hoàn tác."),
+        "scanQRCode": MessageLookupByLibrary.simpleMessage("Quét mã QR"),
         "september": MessageLookupByLibrary.simpleMessage("Tháng 9"),
         "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Tiếp tục"),
@@ -111,6 +115,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalRemainingBudget":
             MessageLookupByLibrary.simpleMessage("Tổng ngân sách còn lại"),
         "transaction": MessageLookupByLibrary.simpleMessage("Giao dịch"),
+        "userNotFound":
+            MessageLookupByLibrary.simpleMessage("Không tìm thấy người dùng"),
         "wellcome":
             MessageLookupByLibrary.simpleMessage("Chào mừng đến với Cost Share")
       };

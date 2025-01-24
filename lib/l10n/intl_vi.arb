@@ -63,5 +63,9 @@
   "totalRemainingBudget": "Tổng ngân sách còn lại",
   "totalBudget": "Tổng ngân sách",
   "totalExpense": "Tổng chi tiêu",
-  "addMember": "Thêm thành viên"
+  "addMember": "Thêm thành viên",
+  "scanQRCode": "Quét mã QR",
+  "orEnterEmail": "Hoặc nhập email",
+  "inviteMemberDescription": "Quét mã QR hoặc nhập địa chỉ email để mời người khác.",
+  "userNotFound": "Không tìm thấy người dùng"
 }

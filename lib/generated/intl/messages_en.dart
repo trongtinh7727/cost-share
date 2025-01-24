@@ -69,6 +69,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidMonth": MessageLookupByLibrary.simpleMessage("Invalid month"),
         "invalidPassword": MessageLookupByLibrary.simpleMessage(
             "At least 8 characters, 1 number, and 1 uppercase letter"),
+        "inviteMemberDescription": MessageLookupByLibrary.simpleMessage(
+            "Scan the QR Code or enter the email address to invite someone."),
         "january": MessageLookupByLibrary.simpleMessage("January"),
         "july": MessageLookupByLibrary.simpleMessage("July"),
         "june": MessageLookupByLibrary.simpleMessage("June"),
@@ -88,6 +90,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Name cannot be empty"),
         "november": MessageLookupByLibrary.simpleMessage("November"),
         "october": MessageLookupByLibrary.simpleMessage("October"),
+        "orEnterEmail":
+            MessageLookupByLibrary.simpleMessage("Or enter the email address"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
@@ -98,6 +102,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "removeExpense": MessageLookupByLibrary.simpleMessage("Remove Expense"),
         "removeExpenseDescription": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to remove this expense? This action cannot be undone."),
+        "scanQRCode": MessageLookupByLibrary.simpleMessage("Scan the QR Code"),
         "september": MessageLookupByLibrary.simpleMessage("September"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Continue"),
@@ -106,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalRemainingBudget":
             MessageLookupByLibrary.simpleMessage("Total remaining budget"),
         "transaction": MessageLookupByLibrary.simpleMessage("Transaction"),
+        "userNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
         "wellcome": MessageLookupByLibrary.simpleMessage("Wellcome Cost Share")
       };
 }

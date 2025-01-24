@@ -2,6 +2,7 @@ import 'package:cost_share/gen/assets.gen.dart';
 import 'package:cost_share/locator.dart';
 import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/model/user_split.dart';
+import 'package:cost_share/presentation/common/add_member_dialog.dart';
 import 'package:cost_share/presentation/common/avatar.dart';
 import 'package:cost_share/presentation/common/remove_dialog.dart';
 import 'package:cost_share/presentation/group/bloc/group_bloc.dart';
@@ -80,6 +81,24 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                                           border: 0,
                                           add: true,
                                           padding: 8,
+                                          onTap: () {
+                                            _groupBloc.clearError();
+                                            showModalBottomSheet(
+                                              context: context,
+                                              builder: (context) {
+                                                return AddMemberDialog(
+                                                  onConfirm: () {
+                                                    _groupBloc
+                                                        .addMember(context);
+                                                  },
+                                                  errorStream:
+                                                      _groupBloc.errorStream,
+                                                  onChangeEmail:
+                                                      _groupBloc.onChangeEmail,
+                                                );
+                                              },
+                                            );
+                                          },
                                         ),
                                         Text(
                                           context.localization.addMember,
