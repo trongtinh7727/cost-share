@@ -619,6 +619,46 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Remove Expense`
+  String get removeExpense {
+    return Intl.message(
+      'Remove Expense',
+      name: 'removeExpense',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to remove this expense? This action cannot be undone.`
+  String get removeExpenseDescription {
+    return Intl.message(
+      'Are you sure you want to remove this expense? This action cannot be undone.',
+      name: 'removeExpenseDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove`
+  String get remove {
+    return Intl.message(
+      'Remove',
+      name: 'remove',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove Budget`
+  String get removeBudget {
+    return Intl.message(
+      'Remove Budget',
+      name: 'removeBudget',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -98,6 +98,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mật khẩu không khớp"),
         "policy": MessageLookupByLibrary.simpleMessage(
             "Tôi đồng ý với các điều khoản và điều kiện."),
+        "remove": MessageLookupByLibrary.simpleMessage("Xóa"),
+        "removeExpense": MessageLookupByLibrary.simpleMessage("Xóa chi tiêu"),
+        "removeExpenseDescription": MessageLookupByLibrary.simpleMessage(
+            "Bạn có chắc chắn muốn xóa chi tiêu này không? Hành động này không thể hoàn tác."),
         "september": MessageLookupByLibrary.simpleMessage("Tháng 9"),
         "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Tiếp tục"),

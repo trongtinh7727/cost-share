@@ -126,4 +126,8 @@ class TransactionBloc extends BaseBloC {
   void updateSplit(Split splitData) {
     _expenseRepository.updateSplit(splitData);
   }
+
+  void removeExpense(String id) {
+    _expenseRepository.deleteExpense(id);
+  }
 }

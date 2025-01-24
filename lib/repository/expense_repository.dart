@@ -10,7 +10,6 @@ abstract class ExpenseRepository {
   Future<List<Expense>> getGroupExpenses(String groupId);
   Stream<List<Expense>> getExpensesStream(String groupId);
   Future<List<Split>> getExpenseSplits(String expenseId);
-
   Future<void> updateSplit(Split splitData);
 }
 

@@ -92,6 +92,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "policy": MessageLookupByLibrary.simpleMessage(
             "I agree to the terms and conditions."),
+        "remove": MessageLookupByLibrary.simpleMessage("Remove"),
+        "removeBudget": MessageLookupByLibrary.simpleMessage("Remove Budget"),
+        "removeExpense": MessageLookupByLibrary.simpleMessage("Remove Expense"),
+        "removeExpenseDescription": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to remove this expense? This action cannot be undone."),
         "september": MessageLookupByLibrary.simpleMessage("September"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Continue"),

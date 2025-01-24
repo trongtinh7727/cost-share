@@ -47,6 +47,10 @@ class $AssetsIconSvgGen {
   /// File path: assets/icon/svg/icon_car.svg
   SvgGenImage get iconCar => const SvgGenImage('assets/icon/svg/icon_car.svg');
 
+  /// File path: assets/icon/svg/icon_edit.svg
+  SvgGenImage get iconEdit =>
+      const SvgGenImage('assets/icon/svg/icon_edit.svg');
+
   /// File path: assets/icon/svg/icon_expense.svg
   SvgGenImage get iconExpense =>
       const SvgGenImage('assets/icon/svg/icon_expense.svg');
@@ -107,6 +111,10 @@ class $AssetsIconSvgGen {
   SvgGenImage get iconTransaction =>
       const SvgGenImage('assets/icon/svg/icon_transaction.svg');
 
+  /// File path: assets/icon/svg/icon_trash.svg
+  SvgGenImage get iconTrash =>
+      const SvgGenImage('assets/icon/svg/icon_trash.svg');
+
   /// File path: assets/icon/svg/icon_user.svg
   SvgGenImage get iconUser =>
       const SvgGenImage('assets/icon/svg/icon_user.svg');
@@ -122,6 +130,7 @@ class $AssetsIconSvgGen {
         iconArrowLeft,
         iconArrowRight,
         iconCar,
+        iconEdit,
         iconExpense,
         iconFillter,
         iconGoogle,
@@ -137,6 +146,7 @@ class $AssetsIconSvgGen {
         iconSettings,
         iconShoppingBag,
         iconTransaction,
+        iconTrash,
         iconUser,
         iconWarning
       ];

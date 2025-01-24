@@ -6,6 +6,7 @@ import 'package:cost_share/manager/user_manager.dart';
 import 'package:cost_share/model/user_split.dart';
 import 'package:cost_share/model/split.dart' as cost_share_split;
 import 'package:cost_share/presentation/common/background_icon.dart';
+import 'package:cost_share/presentation/common/remove_dialog.dart';
 import 'package:cost_share/presentation/common/user_transaction_status.dart';
 import 'package:cost_share/presentation/transaction/bloc/transaction_bloc.dart';
 import 'package:cost_share/presentation/transaction/widgets/paid_expense_dialog.dart';
@@ -17,8 +18,8 @@ import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/enum/app_category.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
 import 'package:cost_share/utils/extension/double_ext.dart';
+import 'package:cost_share/utils/route/route_name.dart';
 import 'package:flutter/material.dart';
-
 import 'package:cost_share/model/expense.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
@@ -58,6 +59,30 @@ class _ExpenseDetailScreenState extends State<ExpenseDetailScreen> {
             centerTitle: true,
             title: Text(context.localization.expenseDetail,
                 style: AppTextStyles.title2),
+            actions: [
+              InkWell(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return RemoveDialog(
+                          title: context.localization.removeExpense,
+                          description:
+                              context.localization.removeExpenseDescription,
+                          confirmText: context.localization.remove,
+                          onConfirm: () {
+                            bloC.removeExpense(widget.expense.id);
+                            Navigator.pop(context);
+                          },
+                        );
+                      },
+                    );
+                  },
+                  child: Assets.icon.svg.iconTrash.svg()),
+              SizedBox(width: 4),
+              // TODO: Implement edit expense
+              InkWell(onTap: () {}, child: Assets.icon.svg.iconEdit.svg()),
+            ],
           ),
           body: SingleChildScrollView(
             child: Container(
