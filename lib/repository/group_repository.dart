@@ -11,6 +11,7 @@ abstract class GroupRepository {
   Stream<List<UserSplit>> getGroupMembers(String groupId);
   Stream<Group?> getGroupById(String groupId);
   Stream<List<GroupDetail>> getUserGroups(String userId);
+  Future<void> removeMember(String groupId, String? userId);
 }
 
 class GroupRepositoryImpl extends GroupRepository {
@@ -79,15 +80,14 @@ class GroupRepositoryImpl extends GroupRepository {
 
               // Construct group detail object
               groupDetails.add(GroupDetail(
-                groupId: groupDoc.id,
-                groupName: groupData['name'],
-                groupPhoto: groupData['groupPhoto'] ?? '',
-                memberCount: (groupData['members'] as List).length,
-                authorName: creatorData?['name'] ?? 'Unknown',
-                authorPhoto: creatorData?['photoUrl'] ?? '',
-                totalBudget: groupData['totalBudget']*1.0,
-                totalExpense: groupData['totalBudget']*1.0
-              ));
+                  groupId: groupDoc.id,
+                  groupName: groupData['name'],
+                  groupPhoto: groupData['groupPhoto'] ?? '',
+                  memberCount: (groupData['members'] as List).length,
+                  authorName: creatorData?['name'] ?? 'Unknown',
+                  authorPhoto: creatorData?['photoUrl'] ?? '',
+                  totalBudget: groupData['totalBudget'] * 1.0,
+                  totalExpense: groupData['totalBudget'] * 1.0));
             }
             return groupDetails;
           });
@@ -135,6 +135,19 @@ class GroupRepositoryImpl extends GroupRepository {
       });
     } catch (e) {
       throw Exception('Failed to fetch group members: $e');
+    }
+  }
+
+  @override
+  Future<void> removeMember(String groupId, String? userId) {
+    try {
+      return _firestore.collection('groups').doc(groupId).update({
+        'members': FieldValue.arrayRemove([
+          {'role': 'MEMBER', 'userId': userId}
+        ])
+      });
+    } catch (e) {
+      throw Exception('Failed to remove member: $e');
     }
   }
 }

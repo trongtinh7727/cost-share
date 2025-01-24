@@ -8,6 +8,7 @@ import 'package:cost_share/presentation/budget/budget_screen.dart';
 import 'package:cost_share/presentation/common/avatar.dart';
 import 'package:cost_share/presentation/common/background_icon.dart';
 import 'package:cost_share/presentation/common/group_card.dart';
+import 'package:cost_share/presentation/group/group_member_screen.dart';
 import 'package:cost_share/presentation/home/home_screen.dart';
 import 'package:cost_share/presentation/transaction/transaction_screen.dart';
 import 'package:cost_share/utils/app_colors.dart';
@@ -34,7 +35,7 @@ class _MainScreenState extends State<MainScreen> {
       HomeScreen(mainScaffoldKey: scaffoldKey),
       TransactionScreen(onFilterPressed: _showFilterBottomSheet,),
       BudgetScreen(),
-      Center(child: Text("Budget Screen")),
+      GroupMemberScreen(),
       Center(child: Text("Member Screen")),
     ];
   }

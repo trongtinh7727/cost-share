@@ -659,6 +659,46 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Total remaining budget`
+  String get totalRemainingBudget {
+    return Intl.message(
+      'Total remaining budget',
+      name: 'totalRemainingBudget',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total budget`
+  String get totalBudget {
+    return Intl.message(
+      'Total budget',
+      name: 'totalBudget',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total expense`
+  String get totalExpense {
+    return Intl.message(
+      'Total expense',
+      name: 'totalExpense',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Member`
+  String get addMember {
+    return Intl.message(
+      'Add Member',
+      name: 'addMember',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

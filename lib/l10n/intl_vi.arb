@@ -59,5 +59,9 @@
   "markAsUnpaidDescription": "Bạn có chắc chắn muốn đánh dấu hóa đơn này chưa thanh toán không? Điều này có thể ảnh hưởng đến bản ghi thanh toán.",
   "removeExpense": "Xóa chi tiêu",
   "removeExpenseDescription": "Bạn có chắc chắn muốn xóa chi tiêu này không? Hành động này không thể hoàn tác.",
-  "remove": "Xóa"
+  "remove": "Xóa",
+  "totalRemainingBudget": "Tổng ngân sách còn lại",
+  "totalBudget": "Tổng ngân sách",
+  "totalExpense": "Tổng chi tiêu",
+  "addMember": "Thêm thành viên"
 }

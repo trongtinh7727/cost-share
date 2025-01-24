@@ -60,5 +60,9 @@
   "removeExpense": "Remove Expense",
   "removeExpenseDescription": "Are you sure you want to remove this expense? This action cannot be undone.",
   "remove":"Remove",
-  "removeBudget": "Remove Budget"
+  "removeBudget": "Remove Budget",
+  "totalRemainingBudget": "Total remaining budget",
+  "totalBudget": "Total budget",
+  "totalExpense": "Total expense",
+  "addMember": "Add Member"
 }

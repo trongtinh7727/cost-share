@@ -47,6 +47,10 @@ class $AssetsIconSvgGen {
   /// File path: assets/icon/svg/icon_car.svg
   SvgGenImage get iconCar => const SvgGenImage('assets/icon/svg/icon_car.svg');
 
+  /// File path: assets/icon/svg/icon_close.svg
+  SvgGenImage get iconClose =>
+      const SvgGenImage('assets/icon/svg/icon_close.svg');
+
   /// File path: assets/icon/svg/icon_edit.svg
   SvgGenImage get iconEdit =>
       const SvgGenImage('assets/icon/svg/icon_edit.svg');
@@ -130,6 +134,7 @@ class $AssetsIconSvgGen {
         iconArrowLeft,
         iconArrowRight,
         iconCar,
+        iconClose,
         iconEdit,
         iconExpense,
         iconFillter,

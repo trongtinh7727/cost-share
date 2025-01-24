@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addMember": MessageLookupByLibrary.simpleMessage("Thêm thành viên"),
         "alreadyHaveAccount":
             MessageLookupByLibrary.simpleMessage("Đã có tài khoản?"),
         "april": MessageLookupByLibrary.simpleMessage("Tháng 4"),
@@ -105,6 +106,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "september": MessageLookupByLibrary.simpleMessage("Tháng 9"),
         "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Tiếp tục"),
+        "totalBudget": MessageLookupByLibrary.simpleMessage("Tổng ngân sách"),
+        "totalExpense": MessageLookupByLibrary.simpleMessage("Tổng chi tiêu"),
+        "totalRemainingBudget":
+            MessageLookupByLibrary.simpleMessage("Tổng ngân sách còn lại"),
         "transaction": MessageLookupByLibrary.simpleMessage("Giao dịch"),
         "wellcome":
             MessageLookupByLibrary.simpleMessage("Chào mừng đến với Cost Share")

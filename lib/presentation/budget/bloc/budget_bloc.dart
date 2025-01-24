@@ -16,7 +16,7 @@ class BudgetBloc extends BaseBloC {
   final String userId;
 
   BudgetBloc(
-    this._budgetRepository,
+    this._budgetRepository, 
     this._groupRepository,
     this.groupId,
     this.userId,
