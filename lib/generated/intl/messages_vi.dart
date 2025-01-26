@@ -97,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "november": MessageLookupByLibrary.simpleMessage("Tháng 11"),
         "october": MessageLookupByLibrary.simpleMessage("Tháng 10"),
         "orEnterEmail": MessageLookupByLibrary.simpleMessage("Hoặc nhập email"),
+        "owedToYou": MessageLookupByLibrary.simpleMessage("Nợ bạn: "),
         "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Mật khẩu không khớp"),
@@ -117,7 +118,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "transaction": MessageLookupByLibrary.simpleMessage("Giao dịch"),
         "userNotFound":
             MessageLookupByLibrary.simpleMessage("Không tìm thấy người dùng"),
-        "wellcome":
-            MessageLookupByLibrary.simpleMessage("Chào mừng đến với Cost Share")
+        "wellcome": MessageLookupByLibrary.simpleMessage(
+            "Chào mừng đến với Cost Share"),
+        "youOwe": MessageLookupByLibrary.simpleMessage("Bạn nợ: ")
       };
 }

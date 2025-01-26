@@ -92,6 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "october": MessageLookupByLibrary.simpleMessage("October"),
         "orEnterEmail":
             MessageLookupByLibrary.simpleMessage("Or enter the email address"),
+        "owedToYou": MessageLookupByLibrary.simpleMessage("Owed to you: "),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
@@ -112,6 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Total remaining budget"),
         "transaction": MessageLookupByLibrary.simpleMessage("Transaction"),
         "userNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
-        "wellcome": MessageLookupByLibrary.simpleMessage("Wellcome Cost Share")
+        "wellcome": MessageLookupByLibrary.simpleMessage("Wellcome Cost Share"),
+        "youOwe": MessageLookupByLibrary.simpleMessage("You owe: ")
       };
 }

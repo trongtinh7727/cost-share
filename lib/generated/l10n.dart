@@ -739,6 +739,26 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Owed to you: `
+  String get owedToYou {
+    return Intl.message(
+      'Owed to you: ',
+      name: 'owedToYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You owe: `
+  String get youOwe {
+    return Intl.message(
+      'You owe: ',
+      name: 'youOwe',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -90,4 +90,26 @@ class GroupBloc extends BaseBloC {
       _errorSubject.add('${e.toString().replaceAll('Exception: ', '')}');
     }
   }
+
+  Future<List<UserSplit>> getTotalDebt(String userId) async {
+    try {
+      List<UserSplit> members = [];
+
+      for (var element in _groupMembers.value) {
+        if (element.userId == userId) continue;
+        double totalDebt =
+            await _groupRepository.getTotalDebt(userId, element.userId);
+        double totalCredit =
+            await _groupRepository.getTotalDebt(element.userId!, userId);
+        element.amount = totalDebt - totalCredit;
+
+        members.add(element);
+      }
+
+      return members;
+    } catch (e) {
+      _errorSubject.add('Error calculating member debts: $e');
+      return [];
+    }
+  }
 }

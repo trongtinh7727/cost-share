@@ -68,5 +68,7 @@
   "scanQRCode": "Scan the QR Code",
   "orEnterEmail": "Or enter the email address",
   "inviteMemberDescription": "Scan the QR Code or enter the email address to invite someone.",
-  "userNotFound": "User not found"
+  "userNotFound": "User not found",
+  "owedToYou": "Owed to you: ",
+  "youOwe": "You owe: "
 }

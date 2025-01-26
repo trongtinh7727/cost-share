@@ -5,6 +5,7 @@ import 'package:cost_share/model/group_detail.dart';
 import 'package:cost_share/model/member.dart';
 import 'package:cost_share/model/user.dart';
 import 'package:cost_share/model/user_split.dart';
+import 'package:cost_share/utils/enum/app_wallet.dart';
 import 'package:flutter/material.dart';
 
 abstract class GroupRepository {
@@ -16,6 +17,8 @@ abstract class GroupRepository {
   Future<void> removeMember(String groupId, String? userId);
 
   Future<void> addMember(String groupId, String email, BuildContext context);
+
+  Future<double> getTotalDebt(String userId, String? userId2);
 }
 
 class GroupRepositoryImpl extends GroupRepository {
@@ -180,6 +183,44 @@ class GroupRepositoryImpl extends GroupRepository {
       });
     } catch (e) {
       throw Exception(e.toString().replaceAll('Exception: ', ''));
+    }
+  }
+
+  @override
+  Future<double> getTotalDebt(String userId, String? userId2) async {
+    try {
+      double totalDebt = 0.0;
+      
+      // Fetch expenses paid by the user
+      QuerySnapshot expensesSnapshot = await _firestore
+          .collection('expenses')
+          .where('userId', isEqualTo: userId)
+          .where('paidBy', isEqualTo: AppWallet.PERSONAL.name)
+          .get();
+
+      // Fetch splits for each expense in parallel
+      List<Future<QuerySnapshot>> splitFutures =
+          expensesSnapshot.docs.map((expenseDoc) {
+        return _firestore
+            .collection('splits')
+            .where('userId', isEqualTo: userId2)
+            .where('expenseId', isEqualTo: expenseDoc.id)
+            .where('isPaid', isEqualTo: false)
+            .get();
+      }).toList();
+
+      List<QuerySnapshot> splitsSnapshots = await Future.wait(splitFutures);
+
+      // Calculate total debt
+      for (var splitsSnapshot in splitsSnapshots) {
+        for (var splitDoc in splitsSnapshot.docs) {
+          totalDebt += splitDoc['amount'];
+        }
+      }
+
+      return totalDebt;
+    } catch (e) {
+      throw Exception('Failed to get total debt: $e');
     }
   }
 }

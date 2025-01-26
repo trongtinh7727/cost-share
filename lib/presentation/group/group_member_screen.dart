@@ -5,6 +5,7 @@ import 'package:cost_share/model/user_split.dart';
 import 'package:cost_share/presentation/common/add_member_dialog.dart';
 import 'package:cost_share/presentation/common/avatar.dart';
 import 'package:cost_share/presentation/common/remove_dialog.dart';
+import 'package:cost_share/presentation/common/user_transaction_status.dart';
 import 'package:cost_share/presentation/group/bloc/group_bloc.dart';
 import 'package:cost_share/repository/group_repository.dart';
 import 'package:cost_share/utils/app_colors.dart';
@@ -25,6 +26,7 @@ class GroupMemberScreen extends StatefulWidget {
 class _GroupMemberScreenState extends State<GroupMemberScreen> {
   late GroupManager _groupManager;
   late GroupBloc _groupBloc;
+
   @override
   Widget build(BuildContext context) {
     return Provider<GroupBloc>(
@@ -161,6 +163,44 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                     Divider(
                       color: AppColors.colorLight20,
                       thickness: 4,
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    StreamBuilder(
+                      stream: _groupBloc.groupMembersStream,
+                      builder: (context, snapshot) {
+                        return FutureBuilder(
+                            future: _groupBloc
+                                .getTotalDebt(_groupManager.currentUserId),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Center(
+                                    child: CircularProgressIndicator());
+                              } else if (snapshot.hasError) {
+                                return Center(
+                                    child: Text('Error: ${snapshot.error}'));
+                              } else {
+                                List<UserSplit> members =
+                                    snapshot.data as List<UserSplit>;
+                                return ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: members.length,
+                                  itemBuilder: (context, index) {
+                                    UserSplit userSplit = members[index];
+                                    return UserTransactionStatus(
+                                        label: userSplit.amount > 0
+                                            ? context.localization.owedToYou
+                                            : context.localization.youOwe,
+                                        userSplit: userSplit,
+                                        amountPerPerson: 0);
+                                  },
+                                );
+                              }
+                            });
+                      },
                     ),
                   ],
                 ),
