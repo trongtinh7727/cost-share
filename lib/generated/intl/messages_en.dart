@@ -74,6 +74,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "january": MessageLookupByLibrary.simpleMessage("January"),
         "july": MessageLookupByLibrary.simpleMessage("July"),
         "june": MessageLookupByLibrary.simpleMessage("June"),
+        "leave": MessageLookupByLibrary.simpleMessage("Leave"),
+        "leaveGroup": MessageLookupByLibrary.simpleMessage("Leave Group"),
+        "leaveGroupDescription": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to leave this group? This action cannot be undone."),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "march": MessageLookupByLibrary.simpleMessage("March"),

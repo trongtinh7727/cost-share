@@ -95,8 +95,14 @@ class _SignInScreenState extends State<SignInScreen> {
                                 await context
                                     .read<GroupManager>()
                                     .loadUserGroups(user.id);
-                                Navigator.pushReplacementNamed(
-                                    context, RouteName.intro);
+                                Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  RouteName.intro,
+                                  (route) {
+                                    return route.settings.name ==
+                                        RouteName.intro;
+                                  },
+                                );
                               }
                             },
                       message: context.localization.login,

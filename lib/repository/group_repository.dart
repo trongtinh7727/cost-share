@@ -18,7 +18,8 @@ abstract class GroupRepository {
 
   Future<void> addMember(String groupId, String email, BuildContext context);
 
-  Future<double> getTotalDebt(String userId, String? userId2);
+  Future<double> getTotalDebt(String groupId, String userId, String? userId2);
+  Future<void> markAsPaid(String groupId, String userId, String userId2);
 }
 
 class GroupRepositoryImpl extends GroupRepository {
@@ -187,14 +188,16 @@ class GroupRepositoryImpl extends GroupRepository {
   }
 
   @override
-  Future<double> getTotalDebt(String userId, String? userId2) async {
+  Future<double> getTotalDebt(
+      String groupId, String userId, String? userId2) async {
     try {
       double totalDebt = 0.0;
-      
+
       // Fetch expenses paid by the user
       QuerySnapshot expensesSnapshot = await _firestore
           .collection('expenses')
           .where('userId', isEqualTo: userId)
+          .where('groupId', isEqualTo: groupId)
           .where('paidBy', isEqualTo: AppWallet.PERSONAL.name)
           .get();
 
@@ -221,6 +224,43 @@ class GroupRepositoryImpl extends GroupRepository {
       return totalDebt;
     } catch (e) {
       throw Exception('Failed to get total debt: $e');
+    }
+  }
+
+  @override
+  Future<void> markAsPaid(String groupId, String userId, String userId2) async {
+    try {
+      QuerySnapshot expensesSnapshot = await _firestore
+          .collection('expenses')
+          .where('userId', isEqualTo: userId)
+          .where('groupId', isEqualTo: groupId)
+          .where('paidBy', isEqualTo: AppWallet.PERSONAL.name)
+          .get();
+
+      for (var expenseDoc in expensesSnapshot.docs) {
+        await _markExpenseAsPaid(userId2, expenseDoc.id);
+      }
+    } catch (e) {
+      throw Exception('Failed to mark as paid: $e');
+    }
+  }
+
+  _markExpenseAsPaid(String userId, String expenseId) {
+    try {
+      return _firestore
+          .collection('splits')
+          .where('userId', isEqualTo: userId)
+          .where('expenseId', isEqualTo: expenseId)
+          .get()
+          .then((snapshot) {
+        if (snapshot.docs.isNotEmpty) {
+          snapshot.docs.forEach((doc) {
+            doc.reference.update({'isPaid': true});
+          });
+        }
+      });
+    } catch (e) {
+      throw Exception('Failed to mark expense as paid: $e');
     }
   }
 }

@@ -13,6 +13,7 @@ import 'package:cost_share/presentation/home/home_screen.dart';
 import 'package:cost_share/presentation/transaction/transaction_screen.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
+import 'package:cost_share/utils/constant.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
 import 'package:cost_share/utils/route/route_name.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,9 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     _screens = [
       HomeScreen(mainScaffoldKey: scaffoldKey),
-      TransactionScreen(onFilterPressed: _showFilterBottomSheet,),
+      TransactionScreen(
+        onFilterPressed: _showFilterBottomSheet,
+      ),
       BudgetScreen(),
       GroupMemberScreen(),
       Center(child: Text("Member Screen")),
@@ -69,7 +72,7 @@ class _MainScreenState extends State<MainScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Avatar(
-                    url: currentUser.photoUrl!,
+                    url: currentUser.photoUrl ?? AppConstant.avatarUrl,
                     size: 80,
                     border: 0,
                   ),
@@ -177,14 +180,17 @@ class _MainScreenState extends State<MainScreen> {
                 endIndent: 12,
               ),
               ListTile(
-                leading: BackgroundIcon(
-                  icon: Assets.icon.svg.iconLogout.svg(
-                      colorFilter: ColorFilter.mode(
-                          AppColors.colorRed100, BlendMode.srcIn)),
-                  backgroundColor: AppColors.colorRed20,
-                ),
-                title: Text("Logout"),
-              ),
+                  leading: BackgroundIcon(
+                    icon: Assets.icon.svg.iconLogout.svg(
+                        colorFilter: ColorFilter.mode(
+                            AppColors.colorRed100, BlendMode.srcIn)),
+                    backgroundColor: AppColors.colorRed20,
+                  ),
+                  title: Text("Logout"),
+                  onTap: () {
+                    context.read<UserManager>().signOut();
+                    Navigator.pushReplacementNamed(context, RouteName.intro);
+                  }),
               SizedBox(
                 height: 8.0,
               ),

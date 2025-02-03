@@ -69,5 +69,8 @@
   "inviteMemberDescription": "Quét mã QR hoặc nhập địa chỉ email để mời người khác.",
   "userNotFound": "Không tìm thấy người dùng",
   "owedToYou": "Nợ bạn: ",
-  "youOwe": "Bạn nợ: "
+  "youOwe": "Bạn nợ: ",
+  "leaveGroup": "Rời nhóm",
+  "leaveGroupDescription": "Bạn có chắc chắn muốn rời nhóm không? Bạn sẽ không thể truy cập vào nhóm này nữa.",
+  "leave": "Rời"
 }

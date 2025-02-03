@@ -759,6 +759,36 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Leave Group`
+  String get leaveGroup {
+    return Intl.message(
+      'Leave Group',
+      name: 'leaveGroup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to leave this group? This action cannot be undone.`
+  String get leaveGroupDescription {
+    return Intl.message(
+      'Are you sure you want to leave this group? This action cannot be undone.',
+      name: 'leaveGroupDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Leave`
+  String get leave {
+    return Intl.message(
+      'Leave',
+      name: 'leave',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

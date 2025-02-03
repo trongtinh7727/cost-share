@@ -78,6 +78,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "january": MessageLookupByLibrary.simpleMessage("Tháng 1"),
         "july": MessageLookupByLibrary.simpleMessage("Tháng 7"),
         "june": MessageLookupByLibrary.simpleMessage("Tháng 6"),
+        "leave": MessageLookupByLibrary.simpleMessage("Rời"),
+        "leaveGroup": MessageLookupByLibrary.simpleMessage("Rời nhóm"),
+        "leaveGroupDescription": MessageLookupByLibrary.simpleMessage(
+            "Bạn có chắc chắn muốn rời nhóm không? Bạn sẽ không thể truy cập vào nhóm này nữa."),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
         "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
         "march": MessageLookupByLibrary.simpleMessage("Tháng 3"),

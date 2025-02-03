@@ -92,7 +92,6 @@ class _WellcomeScreenState extends State<WellcomeScreen> {
           ),
           GestureDetector(
             onTap: () {
-              context.read<AuthenticateBloc>().signOut();
               context.read<UserManager>().signOut();
               Navigator.pushReplacementNamed(context, RouteName.intro);
             },

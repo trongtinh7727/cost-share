@@ -145,8 +145,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 await context
                                     .read<GroupManager>()
                                     .loadUserGroups(user.id);
-                                Navigator.pushReplacementNamed(
-                                    context, RouteName.intro);
+                                Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  RouteName.intro,
+                                  (route) {
+                                    return route.settings.name ==
+                                        RouteName.intro;
+                                  },
+                                );
                               }
                             },
                       message: context.localization.signUp,

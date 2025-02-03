@@ -41,6 +41,7 @@ class UserManager {
 
   void signOut() {
     _userStream.add(null);
+    _userRepository.signOut();
   }
 
   // Clear streams when disposing

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cost_share/model/user.dart';
+import 'package:cost_share/utils/constant.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
 
 abstract class UserRepository {
@@ -38,7 +39,7 @@ class UserRepositoryImpl extends UserRepository {
         name: name,
         email: email,
         groups: [], // Empty list initially
-        photoUrl: null,
+        photoUrl: AppConstant.baseUrl,
       );
 
       await _firestore

@@ -91,16 +91,16 @@ class GroupBloc extends BaseBloC {
     }
   }
 
-  Future<List<UserSplit>> getTotalDebt(String userId) async {
+  Future<List<UserSplit>> getTotalDebt(String groupId, String userId) async {
     try {
       List<UserSplit> members = [];
 
       for (var element in _groupMembers.value) {
         if (element.userId == userId) continue;
-        double totalDebt =
-            await _groupRepository.getTotalDebt(userId, element.userId);
-        double totalCredit =
-            await _groupRepository.getTotalDebt(element.userId!, userId);
+        double totalDebt = await _groupRepository.getTotalDebt(
+            groupId, userId, element.userId);
+        double totalCredit = await _groupRepository.getTotalDebt(
+            groupId, element.userId!, userId);
         element.amount = totalDebt - totalCredit;
 
         members.add(element);
@@ -111,5 +111,11 @@ class GroupBloc extends BaseBloC {
       _errorSubject.add('Error calculating member debts: $e');
       return [];
     }
+  }
+
+  Future<void> markAsPaid(
+      String groupId, String currentUserId, String userId) async {
+    await _groupRepository.markAsPaid(groupId, currentUserId, userId);
+    await _groupRepository.markAsPaid(groupId, userId, currentUserId);
   }
 }

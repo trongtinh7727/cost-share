@@ -27,9 +27,11 @@ class GroupManager extends BaseBloC {
   final _filteredExpensesSubject = BehaviorSubject<List<Expense>>();
 
   StreamSubscription<List<Expense>>? _groupExpensesSubscription;
+  StreamSubscription<List<GroupDetail>>? _userGroupsSubscription;
   StreamSubscription<List<Budget>>? _groupBudgetSubscription;
 
-  Stream<List<Expense>> get groupExpensesStream => _filteredExpensesSubject.stream;
+  Stream<List<Expense>> get groupExpensesStream =>
+      _filteredExpensesSubject.stream;
   Stream<List<GroupDetail>> get userGroupsStream => _userGroupsSubject.stream;
   Stream<List<Budget>> get groupBudgetStream => _groupBudgetSubject.stream;
 
@@ -55,8 +57,11 @@ class GroupManager extends BaseBloC {
   Future<void> loadUserGroups(String userId) async {
     currentUserId = userId;
     try {
+      _userGroupsSubscription?.cancel();
       final userGroupsStream = _groupRepository.getUserGroups(userId);
-      _userGroupsSubject.addStream(userGroupsStream);
+      _userGroupsSubscription = userGroupsStream.listen((groups) {
+        _userGroupsSubject.add(groups);
+      });
     } catch (e) {
       print('Error loading user groups: $e');
     }
@@ -111,7 +116,9 @@ class GroupManager extends BaseBloC {
 
     // Filter by categories
     if (categories != null && categories.isNotEmpty) {
-      expenses = expenses.where((expense) => categories.contains(expense.category)).toList();
+      expenses = expenses
+          .where((expense) => categories.contains(expense.category))
+          .toList();
     }
 
     // Sort expenses
@@ -133,6 +140,11 @@ class GroupManager extends BaseBloC {
     }
 
     _filteredExpensesSubject.add(expenses);
+  }
+
+  void clear() {
+    currentGroupId = "";
+    currentUserId = "";
   }
 
   @override

@@ -4,14 +4,18 @@ import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/model/user_split.dart';
 import 'package:cost_share/presentation/common/add_member_dialog.dart';
 import 'package:cost_share/presentation/common/avatar.dart';
+import 'package:cost_share/presentation/common/leave_group_dialog.dart';
 import 'package:cost_share/presentation/common/remove_dialog.dart';
 import 'package:cost_share/presentation/common/user_transaction_status.dart';
 import 'package:cost_share/presentation/group/bloc/group_bloc.dart';
+import 'package:cost_share/presentation/transaction/widgets/paid_expense_dialog.dart';
 import 'package:cost_share/repository/group_repository.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
+import 'package:cost_share/utils/constant.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
 import 'package:cost_share/utils/extension/double_ext.dart';
+import 'package:cost_share/utils/route/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
@@ -118,7 +122,7 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                                     child: Column(
                                       children: [
                                         Avatar(
-                                          url: userSplit.userAvatar!,
+                                          url: userSplit.userAvatar?? AppConstant.avatarUrl,
                                           size: 50,
                                           border: 0,
                                           remove: true,
@@ -171,8 +175,9 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                       stream: _groupBloc.groupMembersStream,
                       builder: (context, snapshot) {
                         return FutureBuilder(
-                            future: _groupBloc
-                                .getTotalDebt(_groupManager.currentUserId),
+                            future: _groupBloc.getTotalDebt(
+                                _groupManager.currentGroupId,
+                                _groupManager.currentUserId),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -191,11 +196,49 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                                   itemBuilder: (context, index) {
                                     UserSplit userSplit = members[index];
                                     return UserTransactionStatus(
-                                        label: userSplit.amount > 0
-                                            ? context.localization.owedToYou
-                                            : context.localization.youOwe,
-                                        userSplit: userSplit,
-                                        amountPerPerson: 0);
+                                      label: userSplit.amount > 0
+                                          ? context.localization.owedToYou
+                                          : context.localization.youOwe,
+                                      userSplit: userSplit,
+                                      amountPerPerson: 0,
+                                      icon: SizedBox(
+                                        height: 24,
+                                        child: InkWell(
+                                          onTap: () {
+                                            showModalBottomSheet(
+                                              context: context,
+                                              builder: (context) {
+                                                return PaidExpenseDialog(
+                                                  userSplit: userSplit,
+                                                  isPaid: userSplit.amount == 0,
+                                                  onPaid: () async {
+                                                    await _groupBloc.markAsPaid(
+                                                        _groupManager
+                                                            .currentGroupId,
+                                                        _groupManager
+                                                            .currentUserId,
+                                                        userSplit.userId!);
+                                                    setState(() {});
+                                                  },
+                                                );
+                                              },
+                                            );
+                                          },
+                                          child: userSplit.amount > 0
+                                              ? Assets.icon.svg.iconIncome.svg()
+                                              : userSplit.amount == 0
+                                                  ? SizedBox()
+                                                  : Assets.icon.svg.iconExpense
+                                                      .svg(
+                                                      colorFilter:
+                                                          ColorFilter.mode(
+                                                              AppColors
+                                                                  .colorViolet100,
+                                                              BlendMode.srcIn),
+                                                    ),
+                                        ),
+                                      ),
+                                    );
                                   },
                                 );
                               }
@@ -292,6 +335,21 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
             ],
           ),
         ),
+        InkWell(
+            onTap: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return LeaveGroupDialog(
+                    onConfirm: () {},
+                    title: context.localization.leaveGroup,
+                    description: context.localization.leaveGroupDescription,
+                    confirmText: context.localization.leave,
+                  );
+                },
+              );
+            },
+            child: Assets.icon.svg.iconLogout.svg()),
         Assets.icon.svg.iconSettings.svg()
       ],
     );

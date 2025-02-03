@@ -70,5 +70,8 @@
   "inviteMemberDescription": "Scan the QR Code or enter the email address to invite someone.",
   "userNotFound": "User not found",
   "owedToYou": "Owed to you: ",
-  "youOwe": "You owe: "
+  "youOwe": "You owe: ",
+  "leaveGroup": "Leave Group",
+  "leaveGroupDescription": "Are you sure you want to leave this group? This action cannot be undone.",
+  "leave": "Leave"
 }
