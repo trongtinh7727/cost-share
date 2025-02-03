@@ -107,6 +107,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "removeExpense": MessageLookupByLibrary.simpleMessage("Remove Expense"),
         "removeExpenseDescription": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to remove this expense? This action cannot be undone."),
+        "removeMember": MessageLookupByLibrary.simpleMessage("Remove Member"),
+        "removeMemberDescription": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to remove this member? This action cannot be undone."),
         "scanQRCode": MessageLookupByLibrary.simpleMessage("Scan the QR Code"),
         "september": MessageLookupByLibrary.simpleMessage("September"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),

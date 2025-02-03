@@ -8,6 +8,7 @@ class GroupDetail {
   final String groupName;
   final String groupPhoto;
   final int memberCount;
+  final String authorId;
   final String authorName;
   final String authorPhoto;
   final double totalExpense;
@@ -18,6 +19,7 @@ class GroupDetail {
     required this.groupName,
     required this.groupPhoto,
     required this.memberCount,
+    required this.authorId,
     required this.authorName,
     required this.authorPhoto,
     required this.totalExpense,

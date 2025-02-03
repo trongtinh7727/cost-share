@@ -15,7 +15,6 @@ import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/constant.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
 import 'package:cost_share/utils/extension/double_ext.dart';
-import 'package:cost_share/utils/route/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
@@ -75,9 +74,11 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                             height: context.width() * 0.25,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount: snapshot.data!.length + 10,
+                              itemCount: snapshot.data!.length + 1,
                               itemBuilder: (context, index) {
                                 if (index >= snapshot.data!.length) {
+                                  if (_groupManager.currentGroup?.authorId !=
+                                      _groupManager.currentUserId) return null;
                                   return SizedBox(
                                     width: 120,
                                     child: Column(
@@ -126,27 +127,32 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                                               AppConstant.avatarUrl,
                                           size: 50,
                                           border: 0,
-                                          remove: true,
+                                          remove: _groupManager
+                                                  .currentGroup?.authorId ==
+                                              _groupManager.currentUserId,
                                           padding: 8,
                                           onTap: () {
-                                            showModalBottomSheet(
-                                              context: context,
-                                              builder: (context) {
-                                                return RemoveDialog(
-                                                  title: context.localization
-                                                      .removeExpense,
-                                                  description: context
-                                                      .localization
-                                                      .removeExpenseDescription,
-                                                  confirmText: context
-                                                      .localization.remove,
-                                                  onConfirm: () {
-                                                    _groupBloc.removeMember(
-                                                        userSplit.userId);
-                                                  },
-                                                );
-                                              },
-                                            );
+                                            if (_groupManager
+                                                    .currentGroup?.authorId ==
+                                                _groupManager.currentUserId)
+                                              showModalBottomSheet(
+                                                context: context,
+                                                builder: (context) {
+                                                  return RemoveDialog(
+                                                    title: context.localization
+                                                        .removeExpense,
+                                                    description: context
+                                                        .localization
+                                                        .removeExpenseDescription,
+                                                    confirmText: context
+                                                        .localization.remove,
+                                                    onConfirm: () {
+                                                      _groupBloc.removeMember(
+                                                          userSplit.userId);
+                                                    },
+                                                  );
+                                                },
+                                              );
                                           },
                                         ),
                                         Text(
@@ -336,24 +342,26 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
             ],
           ),
         ),
-        InkWell(
-            onTap: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (context) {
-                  return LeaveGroupDialog(
-                    onConfirm: () {
-                      _groupBloc.removeMember(_groupManager.currentUserId);
+        _groupManager.currentGroup!.authorId != _groupManager.currentUserId
+            ? InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return LeaveGroupDialog(
+                        onConfirm: () {
+                          _groupBloc.removeMember(_groupManager.currentUserId);
+                        },
+                        title: context.localization.leaveGroup,
+                        description: context.localization.leaveGroupDescription,
+                        confirmText: context.localization.leave,
+                      );
                     },
-                    title: context.localization.leaveGroup,
-                    description: context.localization.leaveGroupDescription,
-                    confirmText: context.localization.leave,
                   );
                 },
-              );
-            },
-            child: Assets.icon.svg.iconLogout.svg()),
-        Assets.icon.svg.iconSettings.svg()
+                child: Assets.icon.svg.iconLogout.svg(),
+              )
+            : Assets.icon.svg.iconSettings.svg()
       ],
     );
   }

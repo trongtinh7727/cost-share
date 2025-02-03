@@ -18,8 +18,9 @@ class GroupManager extends BaseBloC {
 
   String currentGroupId = "";
   String currentUserId = "";
-  GroupDetail? get currentGroup => _userGroupsSubject.value
-      .firstWhere((element) => element.groupId == currentGroupId);
+  GroupDetail? get currentGroup => _userGroupsSubject.value.firstWhereOrNul(
+        (element) => element.groupId == currentGroupId,
+      );
 
   final _userGroupsSubject = BehaviorSubject<List<GroupDetail>>();
   final _groupExpensesSubject = BehaviorSubject<List<Expense>>();
@@ -159,4 +160,14 @@ class GroupManager extends BaseBloC {
 
   @override
   void init() {}
+}
+
+extension on List<GroupDetail> {
+  firstWhereOrNul(bool Function(dynamic element) param0) {
+    if (this.isEmpty) {
+      return null;
+    } else {
+      return this.firstWhere(param0);
+    }
+  }
 }

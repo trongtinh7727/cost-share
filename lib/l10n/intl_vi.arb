@@ -72,5 +72,7 @@
   "youOwe": "Bạn nợ: ",
   "leaveGroup": "Rời nhóm",
   "leaveGroupDescription": "Bạn có chắc chắn muốn rời nhóm không? Bạn sẽ không thể truy cập vào nhóm này nữa.",
-  "leave": "Rời"
+  "leave": "Rời",
+  "removeMember": "Xóa thành viên",
+  "removeMemberDescription": "Bạn có chắc chắn muốn xóa thành viên này không? Hành động này không thể hoàn tác."
 }

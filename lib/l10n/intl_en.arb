@@ -73,5 +73,7 @@
   "youOwe": "You owe: ",
   "leaveGroup": "Leave Group",
   "leaveGroupDescription": "Are you sure you want to leave this group? This action cannot be undone.",
-  "leave": "Leave"
+  "leave": "Leave",
+  "removeMember": "Remove Member",
+  "removeMemberDescription": "Are you sure you want to remove this member? This action cannot be undone."
 }

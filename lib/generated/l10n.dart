@@ -789,6 +789,26 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Remove Member`
+  String get removeMember {
+    return Intl.message(
+      'Remove Member',
+      name: 'removeMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to remove this member? This action cannot be undone.`
+  String get removeMemberDescription {
+    return Intl.message(
+      'Are you sure you want to remove this member? This action cannot be undone.',
+      name: 'removeMemberDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

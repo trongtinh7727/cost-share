@@ -92,6 +92,7 @@ class GroupRepositoryImpl extends GroupRepository {
                   groupName: groupData['name'],
                   groupPhoto: groupData['groupPhoto'] ?? '',
                   memberCount: (groupData['members'] as List).length,
+                  authorId: creatorData?['id'] ?? 'Unknown',
                   authorName: creatorData?['name'] ?? 'Unknown',
                   authorPhoto: creatorData?['photoUrl'] ?? '',
                   totalBudget: groupData['totalBudget'] * 1.0,

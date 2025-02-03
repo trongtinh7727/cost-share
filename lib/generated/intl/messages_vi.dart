@@ -111,6 +111,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "removeExpense": MessageLookupByLibrary.simpleMessage("Xóa chi tiêu"),
         "removeExpenseDescription": MessageLookupByLibrary.simpleMessage(
             "Bạn có chắc chắn muốn xóa chi tiêu này không? Hành động này không thể hoàn tác."),
+        "removeMember": MessageLookupByLibrary.simpleMessage("Xóa thành viên"),
+        "removeMemberDescription": MessageLookupByLibrary.simpleMessage(
+            "Bạn có chắc chắn muốn xóa thành viên này không? Hành động này không thể hoàn tác."),
         "scanQRCode": MessageLookupByLibrary.simpleMessage("Quét mã QR"),
         "september": MessageLookupByLibrary.simpleMessage("Tháng 9"),
         "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
