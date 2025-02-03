@@ -72,6 +72,7 @@ class _ExpenseDetailScreenState extends State<ExpenseDetailScreen> {
                           onConfirm: () {
                             bloC.removeExpense(widget.expense.id);
                             Navigator.pop(context);
+                            Navigator.pop(context);
                           },
                         );
                       },

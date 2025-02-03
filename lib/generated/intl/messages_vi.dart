@@ -40,6 +40,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "contributied": MessageLookupByLibrary.simpleMessage("Đã đóng góp: "),
         "contributions": MessageLookupByLibrary.simpleMessage("Đóng góp"),
         "december": MessageLookupByLibrary.simpleMessage("Tháng 12"),
+        "deleteGroup": MessageLookupByLibrary.simpleMessage("Xóa nhóm"),
+        "deleteGroupDescription": MessageLookupByLibrary.simpleMessage(
+            "Bạn có chắc chắn muốn xóa nhóm không? Hành động này không thể hoàn tác."),
         "description": MessageLookupByLibrary.simpleMessage("Mô tả"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "exceedLimit":

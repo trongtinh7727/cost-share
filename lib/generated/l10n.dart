@@ -809,6 +809,36 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Group Setting`
+  String get groupSetting {
+    return Intl.message(
+      'Group Setting',
+      name: 'groupSetting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Group`
+  String get deleteGroup {
+    return Intl.message(
+      'Delete Group',
+      name: 'deleteGroup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete this group? This action cannot be undone.`
+  String get deleteGroupDescription {
+    return Intl.message(
+      'Are you sure you want to delete this group? This action cannot be undone.',
+      name: 'deleteGroupDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

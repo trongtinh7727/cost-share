@@ -8,16 +8,24 @@ import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
 
-class AddMemberDialog extends StatelessWidget {
-  const AddMemberDialog({
+class TextInputBottomSheet extends StatelessWidget {
+  const TextInputBottomSheet({
     Key? key,
     this.onConfirm,
     this.onChangeEmail,
     required this.errorStream,
+    required this.title,
+    this.description,
+    required this.confirmText,
+    this.hintText,
   }) : super(key: key);
   final VoidCallback? onConfirm;
   final Function(String)? onChangeEmail;
   final Stream<String?> errorStream;
+  final String title;
+  final String? description;
+  final String confirmText;
+  final String? hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -39,22 +47,25 @@ class AddMemberDialog extends StatelessWidget {
             height: 16,
           ),
           Text(
-            context.localization.orEnterEmail,
+            title,
             style: AppTextStyles.title3.copyWith(color: AppColors.colorDark100),
           ),
           SizedBox(
             height: 8,
           ),
           AppTextInputField(
-            hintText: context.localization.email,
+            hintText: hintText,
             onChanged: onChangeEmail,
           ),
           ErrorMessage(error: errorStream),
-          Text(
-            context.localization.inviteMemberDescription,
-            style: AppTextStyles.body1.copyWith(color: AppColors.colorLight10),
-            textAlign: TextAlign.center,
-          ),
+          if (description != null) ...[
+            Text(
+              description!,
+              style:
+                  AppTextStyles.body1.copyWith(color: AppColors.colorLight10),
+              textAlign: TextAlign.center,
+            ),
+          ],
           SizedBox(
             height: 16,
           ),
@@ -73,7 +84,7 @@ class AddMemberDialog extends StatelessWidget {
                 width: 16,
               ),
               MyAppButton(
-                message: context.localization.addMember,
+                message: confirmText,
                 width: 200,
                 onPressed: () {
                   onConfirm!();

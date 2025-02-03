@@ -20,6 +20,8 @@ abstract class GroupRepository {
 
   Future<double> getTotalDebt(String groupId, String userId, String? userId2);
   Future<void> markAsPaid(String groupId, String userId, String userId2);
+
+  Future<void> updateGroupName(String groupId, String groupName);
 }
 
 class GroupRepositoryImpl extends GroupRepository {
@@ -41,6 +43,22 @@ class GroupRepositoryImpl extends GroupRepository {
   Future<void> deleteGroup(String groupId) async {
     try {
       await _firestore.collection('groups').doc(groupId).delete();
+      QuerySnapshot expensesSnapshot = await _firestore
+          .collection('expenses')
+          .where('groupId', isEqualTo: groupId)
+          .get();
+
+      expensesSnapshot.docs.forEach((expenseDoc) async {
+        await _firestore.collection('expenses').doc(expenseDoc.id).delete();
+        QuerySnapshot splitsSnapshot = await _firestore
+            .collection('splits')
+            .where('expenseId', isEqualTo: expenseDoc.id)
+            .get();
+
+        splitsSnapshot.docs.forEach((splitDoc) {
+          splitDoc.reference.delete();
+        });
+      });
     } catch (e) {
       throw Exception('Failed to delete group: $e');
     }
@@ -262,6 +280,17 @@ class GroupRepositoryImpl extends GroupRepository {
       });
     } catch (e) {
       throw Exception('Failed to mark expense as paid: $e');
+    }
+  }
+
+  @override
+  Future<void> updateGroupName(String groupId, String groupName) {
+    try {
+      return _firestore.collection('groups').doc(groupId).update({
+        'name': groupName,
+      });
+    } catch (e) {
+      throw Exception('Failed to update group name: $e');
     }
   }
 }

@@ -11,5 +11,6 @@ class RouteName {
   static const addBudget = "/budget/add";
   static const budgetDetai = "/budget/detail";
   static const addContribute = "/budget/add_contribute";
+  static const groupSetting = "/group/setting";
 
 }

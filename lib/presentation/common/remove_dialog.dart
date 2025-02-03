@@ -71,7 +71,6 @@ class RemoveDialog extends StatelessWidget {
                 width: 200,
                 onPressed: () {
                   onConfirm!();
-                  Navigator.of(context).pop();
                 },
                 isPrimary: true,
               ),

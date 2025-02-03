@@ -86,6 +86,21 @@ class GroupBloc extends BaseBloC {
     try {
       await _groupRepository.addMember(groupId!, _email, context);
       context.pop();
+    } catch (e) {}
+  }
+
+  void updateGroupName(BuildContext context) async {
+    try {
+      await _groupRepository.updateGroupName(groupId!, _groupName);
+      context.pop();
+    } catch (e) {
+      _errorSubject.add('${e.toString().replaceAll('Exception: ', '')}');
+    }
+  }
+
+  Future<void> deleteGroup() async {
+    try {
+      await _groupRepository.deleteGroup(groupId!);
     } catch (e) {
       _errorSubject.add('${e.toString().replaceAll('Exception: ', '')}');
     }

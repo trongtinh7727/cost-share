@@ -7,6 +7,7 @@ import 'package:cost_share/presentation/budget/add_budget_screen.dart';
 import 'package:cost_share/presentation/budget/add_contribution_screen.dart';
 import 'package:cost_share/presentation/budget/budget_detail_screen.dart';
 import 'package:cost_share/presentation/group/add_group_screen.dart';
+import 'package:cost_share/presentation/group/group_setting_screen.dart';
 import 'package:cost_share/presentation/main/main_screen.dart';
 import 'package:cost_share/presentation/intro/intro_screen.dart';
 import 'package:cost_share/presentation/main/wellcome_screen.dart';
@@ -73,6 +74,8 @@ extension GenerateRoute on RouteSettings {
             expense: expense,
           ),
         );
+      case RouteName.groupSetting:
+        return MaterialPageRoute(builder: (context) => GroupSettingScreen());
       default:
         return MaterialPageRoute(
           builder: (context) => const Scaffold(

@@ -75,5 +75,8 @@
   "leaveGroupDescription": "Are you sure you want to leave this group? This action cannot be undone.",
   "leave": "Leave",
   "removeMember": "Remove Member",
-  "removeMemberDescription": "Are you sure you want to remove this member? This action cannot be undone."
+  "removeMemberDescription": "Are you sure you want to remove this member? This action cannot be undone.",
+  "groupSetting": "Group Setting",
+  "deleteGroup": "Delete Group",
+  "deleteGroupDescription": "Are you sure you want to delete this group? This action cannot be undone."
 }

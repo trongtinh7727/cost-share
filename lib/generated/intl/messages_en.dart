@@ -39,6 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "contributied": MessageLookupByLibrary.simpleMessage("Contribuied: "),
         "contributions": MessageLookupByLibrary.simpleMessage("Contributions"),
         "december": MessageLookupByLibrary.simpleMessage("December"),
+        "deleteGroup": MessageLookupByLibrary.simpleMessage("Delete Group"),
+        "deleteGroupDescription": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete this group? This action cannot be undone."),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "exceedLimit":
@@ -52,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "groupDescription":
             MessageLookupByLibrary.simpleMessage("Group Description"),
         "groupName": MessageLookupByLibrary.simpleMessage("Group Name"),
+        "groupSetting": MessageLookupByLibrary.simpleMessage("Group Setting"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "howMuch": MessageLookupByLibrary.simpleMessage("How much?"),
         "introBody1": MessageLookupByLibrary.simpleMessage(

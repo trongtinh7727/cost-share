@@ -2,7 +2,7 @@ import 'package:cost_share/gen/assets.gen.dart';
 import 'package:cost_share/locator.dart';
 import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/model/user_split.dart';
-import 'package:cost_share/presentation/common/add_member_dialog.dart';
+import 'package:cost_share/presentation/common/text_input_bottom_sheet.dart';
 import 'package:cost_share/presentation/common/avatar.dart';
 import 'package:cost_share/presentation/common/leave_group_dialog.dart';
 import 'package:cost_share/presentation/common/remove_dialog.dart';
@@ -15,6 +15,7 @@ import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/constant.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
 import 'package:cost_share/utils/extension/double_ext.dart';
+import 'package:cost_share/utils/route/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
@@ -93,7 +94,16 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                                             showModalBottomSheet(
                                               context: context,
                                               builder: (context) {
-                                                return AddMemberDialog(
+                                                return TextInputBottomSheet(
+                                                  title: context.localization
+                                                      .orEnterEmail,
+                                                  description: context
+                                                      .localization
+                                                      .inviteMemberDescription,
+                                                  hintText: context
+                                                      .localization.email,
+                                                  confirmText: context
+                                                      .localization.addMember,
                                                   onConfirm: () {
                                                     _groupBloc
                                                         .addMember(context);
@@ -149,6 +159,7 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                                                     onConfirm: () {
                                                       _groupBloc.removeMember(
                                                           userSplit.userId);
+                                                          context.pop();
                                                     },
                                                   );
                                                 },
@@ -334,10 +345,16 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                 style: AppTextStyles.small.copyWith(
                     fontWeight: FontWeight.w500, color: AppColors.colorLight20),
               ),
-              Text(
-                _groupManager.currentGroup!.groupName,
-                style: AppTextStyles.title2.copyWith(
-                    fontWeight: FontWeight.w500, color: AppColors.colorDark100),
+              StreamBuilder(
+                stream: _groupManager.userGroupsStream,
+                builder: (context, snapshot) {
+                  return Text(
+                    _groupManager.currentGroup?.groupName ?? '',
+                    style: AppTextStyles.title2.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.colorDark100),
+                  );
+                },
               )
             ],
           ),
@@ -361,7 +378,12 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                 },
                 child: Assets.icon.svg.iconLogout.svg(),
               )
-            : Assets.icon.svg.iconSettings.svg()
+            : InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, RouteName.groupSetting);
+                },
+                child: Assets.icon.svg.iconSettings.svg(),
+              )
       ],
     );
   }

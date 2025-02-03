@@ -164,10 +164,10 @@ class GroupManager extends BaseBloC {
 
 extension on List<GroupDetail> {
   firstWhereOrNul(bool Function(dynamic element) param0) {
-    if (this.isEmpty) {
-      return null;
-    } else {
+    try {
       return this.firstWhere(param0);
+    } catch (e) {
+      return null;
     }
   }
 }
