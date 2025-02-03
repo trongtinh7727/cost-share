@@ -78,8 +78,8 @@ class GroupBloc extends BaseBloC {
     }
   }
 
-  void removeMember(UserSplit userSplit) {
-    _groupRepository.removeMember(groupId!, userSplit.userId);
+  void removeMember(String? userId) {
+    _groupRepository.removeMember(groupId!, userId);
   }
 
   void addMember(BuildContext context) async {

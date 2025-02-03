@@ -2,7 +2,6 @@ import 'package:cost_share/gen/assets.gen.dart';
 import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/manager/user_manager.dart';
 import 'package:cost_share/model/group_detail.dart';
-import 'package:cost_share/presentation/authentication/bloc/authenticate_bloc.dart';
 import 'package:cost_share/presentation/common/background_icon.dart';
 import 'package:cost_share/presentation/common/group_card.dart';
 import 'package:cost_share/utils/app_colors.dart';

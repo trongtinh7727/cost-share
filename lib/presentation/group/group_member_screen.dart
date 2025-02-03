@@ -122,7 +122,8 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                                     child: Column(
                                       children: [
                                         Avatar(
-                                          url: userSplit.userAvatar?? AppConstant.avatarUrl,
+                                          url: userSplit.userAvatar ??
+                                              AppConstant.avatarUrl,
                                           size: 50,
                                           border: 0,
                                           remove: true,
@@ -141,7 +142,7 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                                                       .localization.remove,
                                                   onConfirm: () {
                                                     _groupBloc.removeMember(
-                                                        userSplit);
+                                                        userSplit.userId);
                                                   },
                                                 );
                                               },
@@ -341,7 +342,9 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                 context: context,
                 builder: (context) {
                   return LeaveGroupDialog(
-                    onConfirm: () {},
+                    onConfirm: () {
+                      _groupBloc.removeMember(_groupManager.currentUserId);
+                    },
                     title: context.localization.leaveGroup,
                     description: context.localization.leaveGroupDescription,
                     confirmText: context.localization.leave,
