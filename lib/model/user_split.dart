@@ -7,6 +7,9 @@ class UserSplit {
   String? userName;
   double amount;
   double ratio;
+  bool isPaid;
+  String? splitId;
+  String? expenseId;
 
   void setratio(double value) {
     if (value < 0) {
@@ -22,6 +25,9 @@ class UserSplit {
     this.userName,
     this.amount = 0,
     this.ratio = 0,
+    this.isPaid = false,
+    this.splitId,
+    this.expenseId,
   });
 
   factory UserSplit.formUser(User user) {
@@ -38,8 +44,19 @@ class UserSplit {
       userId: userId!,
       amount: totalAmount * ratio / 100.0,
       ratio: ratio,
-      isPaid: false,
-      id: '',
+      isPaid: isPaid,
+      id: splitId,
+    );
+  }
+
+  Split toSplitWithoutAmount() {
+    return Split(
+      expenseId: expenseId!,
+      userId: userId!,
+      amount: amount,
+      ratio: ratio,
+      isPaid: isPaid,
+      id: splitId,
     );
   }
 
@@ -49,6 +66,9 @@ class UserSplit {
     String? userName,
     double? amount,
     double? ratio,
+    bool? isPaid,
+    String? splitId,
+    String? expenseId,
   }) {
     return UserSplit(
       userId: userId ?? this.userId,
@@ -56,6 +76,9 @@ class UserSplit {
       userName: userName ?? this.userName,
       amount: amount ?? this.amount,
       ratio: ratio ?? this.ratio,
+      isPaid: isPaid ?? this.isPaid,
+      splitId: splitId ?? this.splitId,
+      expenseId: expenseId ?? this.expenseId,
     );
   }
 }

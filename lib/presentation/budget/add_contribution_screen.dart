@@ -75,113 +75,109 @@ class _AddContributionScreenState extends State<AddContributionScreen> {
                     .copyWith(color: AppColors.colorLight100),
               ),
             ),
-            body: Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.colorViolet100,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(context.localization.howMuch,
-                        style: AppTextStyles.title3
-                            .copyWith(color: AppColors.colorLight80)),
-                    AppNumberInputField(
-                      onChanged: bloC.setAmount,
-                      style: AppTextStyles.titleX
-                          .copyWith(color: AppColors.colorLight100),
-                      hintStyle: AppTextStyles.titleX
-                          .copyWith(color: AppColors.colorLight100),
-                      hintText: '0',
-                      border: InputBorder.none,
-                      maxValue: (widget.budget.totalAmount /
-                              widget.budget.contributions.length),
+            body: Container(
+              decoration: BoxDecoration(
+                color: AppColors.colorViolet100,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(context.localization.howMuch,
+                      style: AppTextStyles.title3
+                          .copyWith(color: AppColors.colorLight80)),
+                  AppNumberInputField(
+                    onChanged: bloC.setAmount,
+                    style: AppTextStyles.titleX
+                        .copyWith(color: AppColors.colorLight100),
+                    hintStyle: AppTextStyles.titleX
+                        .copyWith(color: AppColors.colorLight100),
+                    hintText: '0',
+                    border: InputBorder.none,
+                    maxValue: (widget.budget.totalAmount /
+                        widget.budget.contributions.length),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      color: AppColors.colorLight100,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(32.0),
+                        topRight: Radius.circular(32.0),
+                      ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(16.0),
-                      decoration: BoxDecoration(
-                        color: AppColors.colorLight100,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(32.0),
-                          topRight: Radius.circular(32.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Avatar(
+                              url: widget.userSplit.userAvatar!,
+                              size: 48,
+                              border: 0,
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text(widget.userSplit.userName!,
+                                style: AppTextStyles.title3
+                                    .copyWith(color: AppColors.colorDark100)),
+                          ],
                         ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Avatar(
-                                url: widget.userSplit.userAvatar!,
-                                size: 48,
-                                border: 0,
-                              ),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(widget.userSplit.userName!,
-                                  style: AppTextStyles.title3
-                                      .copyWith(color: AppColors.colorDark100)),
-                            ],
+                        SizedBox(
+                          height: 8,
+                        ),
+                        AppDropdownButton(
+                          label: '${month.toMonth(context)}, $year',
+                          selectedLabel: Text(
+                            '${month.toMonth(context)}, $year',
+                            style: AppTextStyles.body2
+                                .copyWith(color: AppColors.colorDark100),
                           ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          AppDropdownButton(
-                            label: '${month.toMonth(context)}, $year',
-                            selectedLabel: Text(
-                              '${month.toMonth(context)}, $year',
-                              style: AppTextStyles.body2
-                                  .copyWith(color: AppColors.colorDark100),
-                            ),
-                            onTap: () {},
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          StreamBuilder(
-                            stream: bloC.categoryStream,
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Center(
-                                    child: CircularProgressIndicator());
-                              } else if (snapshot.hasError) {
-                                return Center(
-                                    child: Text('Error: ${snapshot.error}'));
-                              } else {
-                                AppCategory? category = snapshot.data;
-                                return AppDropdownButton(
-                                  label: context.localization.category,
-                                  onTap: () {},
-                                  selectedLabel: category?.label,
-                                  prefixIcon: category?.icon,
-                                );
-                              }
-                            },
-                          ),
+                          onTap: () {},
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        StreamBuilder(
+                          stream: bloC.categoryStream,
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Center(child: CircularProgressIndicator());
+                            } else if (snapshot.hasError) {
+                              return Center(
+                                  child: Text('Error: ${snapshot.error}'));
+                            } else {
+                              AppCategory? category = snapshot.data;
+                              return AppDropdownButton(
+                                label: context.localization.category,
+                                onTap: () {},
+                                selectedLabel: category?.label,
+                                prefixIcon: category?.icon,
+                              );
+                            }
+                          },
+                        ),
 
-                          // Padding for the button
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 16.0, bottom: 24),
-                            child: MyAppButton(
-                              onPressed: () {
-                                bloC.addContribution(
-                                    widget.budget, widget.userSplit.userId!);
-                                Navigator.pop(context);
-                              },
-                              message: context.localization.textContinue,
-                              isPrimary: true,
-                            ),
+                        // Padding for the button
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16.0, bottom: 24),
+                          child: MyAppButton(
+                            onPressed: () {
+                              bloC.addContribution(
+                                  widget.budget, widget.userSplit.userId!);
+                              Navigator.pop(context);
+                            },
+                            message: context.localization.textContinue,
+                            isPrimary: true,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );

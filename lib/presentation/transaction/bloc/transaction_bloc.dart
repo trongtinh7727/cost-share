@@ -103,6 +103,10 @@ class TransactionBloc extends BaseBloC {
     return _expenseRepository.getExpenseSplits(expenseId);
   }
 
+  Future<List<UserSplit>> getUserSplits(String expenseId) async {
+    return _expenseRepository.getExpenseUserSplits(expenseId);
+  }
+
   @override
   void dispose() {
     _groupMembersSubscription?.cancel(); // Ensure the subscription is canceled

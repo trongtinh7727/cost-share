@@ -4,7 +4,6 @@ import 'package:cost_share/locator.dart';
 import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/manager/user_manager.dart';
 import 'package:cost_share/model/user_split.dart';
-import 'package:cost_share/model/split.dart' as cost_share_split;
 import 'package:cost_share/presentation/common/background_icon.dart';
 import 'package:cost_share/presentation/common/remove_dialog.dart';
 import 'package:cost_share/presentation/common/user_transaction_status.dart';
@@ -141,56 +140,56 @@ class _ExpenseDetailScreenState extends State<ExpenseDetailScreen> {
                     stream: bloC.groupMembersStream,
                     builder: (context, userSplitSnap) {
                       if (userSplitSnap.hasData) {
-                        List<UserSplit> userSplits = userSplitSnap.data!;
                         return FutureBuilder(
-                            future: bloC.getSplits(widget.expense.id),
-                            builder: (context, splitSnap) {
-                              if (splitSnap.hasData) {
-                                List<cost_share_split.Split> split = splitSnap
-                                    .data as List<cost_share_split.Split>;
+                            future: bloC.getUserSplits(widget.expense.id),
+                            builder: (context, userSplitSnap) {
+                              if (userSplitSnap.hasData) {
+                                List<UserSplit> userSplits =
+                                    userSplitSnap.data as List<UserSplit>;
                                 return Column(
-                                  children: userSplits.map((e) {
-                                    cost_share_split.Split splitData =
-                                        split.firstWhere((element) =>
-                                            element.userId == e.userId);
+                                  children: userSplits.map((userSplit) {
                                     return UserTransactionStatus(
-                                      userSplit: e.copyWith(
-                                        amount: splitData.amount,
-                                      ),
+                                      userSplit: userSplit,
                                       label: '',
-                                      amountPerPerson: splitData.isPaid
+                                      amountPerPerson: (userSplit.isPaid ||
+                                              userSplit.amount == 0)
                                           ? 0
                                           : double.infinity,
-                                      icon: InkWell(
-                                        onTap: () {
-                                          showModalBottomSheet(
-                                            context: context,
-                                            builder: (context) {
-                                              return PaidExpenseDialog(
-                                                userSplit: e.copyWith(
-                                                  amount: splitData.amount,
-                                                ),
-                                                isPaid: splitData.isPaid,
-                                                onPaid: () {
-                                                  setState(() {
-                                                    splitData =
-                                                        splitData.copyWith(
-                                                            isPaid: !splitData
-                                                                .isPaid);
-                                                    bloC.updateSplit(splitData);
-                                                  });
-                                                },
-                                              );
-                                            },
-                                          );
-                                        },
-                                        child: splitData.isPaid
-                                            ? Assets.icon.svg.iconSalary.svg()
-                                            : Assets.icon.svg.iconExpense.svg(
-                                                colorFilter: ColorFilter.mode(
-                                                    AppColors.colorViolet100,
-                                                    BlendMode.srcIn)),
-                                      ),
+                                      icon: userSplit.amount > 0
+                                          ? InkWell(
+                                              onTap: () {
+                                                showModalBottomSheet(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return PaidExpenseDialog(
+                                                      userSplit: userSplit,
+                                                      isPaid: userSplit.isPaid,
+                                                      onPaid: () {
+                                                        setState(() {
+                                                          userSplit = userSplit
+                                                              .copyWith(
+                                                                  isPaid:
+                                                                      !userSplit
+                                                                          .isPaid);
+                                                          bloC.updateSplit(userSplit
+                                                              .toSplitWithoutAmount());
+                                                        });
+                                                      },
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                              child: userSplit.isPaid
+                                                  ? Assets.icon.svg.iconSalary
+                                                      .svg()
+                                                  : Assets.icon.svg.iconExpense.svg(
+                                                      colorFilter:
+                                                          ColorFilter.mode(
+                                                              AppColors
+                                                                  .colorViolet100,
+                                                              BlendMode.srcIn)),
+                                            )
+                                          : null,
                                     );
                                   }).toList(),
                                 );

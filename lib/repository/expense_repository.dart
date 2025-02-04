@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cost_share/model/expense.dart';
 import 'package:cost_share/model/split.dart';
+import 'package:cost_share/model/user.dart';
+import 'package:cost_share/model/user_split.dart';
 
 abstract class ExpenseRepository {
   Future<Expense> addExpense(Expense expense);
@@ -10,6 +12,7 @@ abstract class ExpenseRepository {
   Future<List<Expense>> getGroupExpenses(String groupId);
   Stream<List<Expense>> getExpensesStream(String groupId);
   Future<List<Split>> getExpenseSplits(String expenseId);
+  Future<List<UserSplit>> getExpenseUserSplits(String expenseId);
   Future<void> updateSplit(Split splitData);
 }
 
@@ -168,6 +171,47 @@ class ExpenseRepositoryImpl extends ExpenseRepository {
       return splitRef.update(splitData.toJson());
     } catch (e) {
       throw Exception('Failed to update split: $e');
+    }
+  }
+
+  @override
+  Future<List<UserSplit>> getExpenseUserSplits(String expenseId) async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> splitSnapshot = await _firestore
+          .collection('splits')
+          .where('expenseId', isEqualTo: expenseId)
+          .get();
+
+      List<Split> splits = splitSnapshot.docs
+          .map((doc) => Split.fromJson(doc.data()).copyWith(id: doc.id))
+          .toList();
+
+      List<Future<UserSplit>> userSplitFutures = splits.map((split) async {
+        DocumentSnapshot<Map<String, dynamic>> userSnapshot =
+            await _firestore.collection('users').doc(split.userId).get();
+
+        if (!userSnapshot.exists) {
+          throw Exception('User not found for userId: ${split.userId}');
+        }
+
+        final userData = userSnapshot.data();
+
+        return UserSplit.formUser(User.fromJson(userData!).copyWith(
+          id: split.userId,
+        )).copyWith(
+          amount: split.amount,
+          ratio: split.ratio,
+          isPaid: split.isPaid,
+          splitId: split.id,
+          expenseId: split.expenseId,
+        );
+      }).toList();
+
+      List<UserSplit> userSplits = await Future.wait(userSplitFutures);
+
+      return userSplits;
+    } catch (e) {
+      throw Exception('Failed to fetch splits: $e');
     }
   }
 }
