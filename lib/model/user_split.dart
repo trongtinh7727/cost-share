@@ -7,6 +7,7 @@ class UserSplit {
   String? userName;
   double amount;
   double ratio;
+  double weight;
   bool isPaid;
   String? splitId;
   String? expenseId;
@@ -19,6 +20,14 @@ class UserSplit {
     print('Ratio set to $ratio');
   }
 
+  void setWeight(double value) {
+    if (value < 0) {
+      throw Exception('Weight cannot be negative');
+    }
+    weight = value;
+    print('Weight set to $weight');
+  }
+
   UserSplit({
     this.userId,
     this.userAvatar,
@@ -28,6 +37,7 @@ class UserSplit {
     this.isPaid = false,
     this.splitId,
     this.expenseId,
+    this.weight = 0,
   });
 
   factory UserSplit.formUser(User user) {
@@ -42,7 +52,7 @@ class UserSplit {
     return Split(
       expenseId: expenseId,
       userId: userId!,
-      amount: totalAmount * ratio / 100.0,
+      amount: totalAmount * ratio,
       ratio: ratio,
       isPaid: isPaid,
       id: splitId,

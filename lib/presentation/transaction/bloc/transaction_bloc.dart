@@ -78,7 +78,7 @@ class TransactionBloc extends BaseBloC {
     });
   }
 
-  void addExpense() async {
+  void addExpense(DateTime date) async {
     final expense = Expense(
       id: '',
       userId: userId,
@@ -87,7 +87,7 @@ class TransactionBloc extends BaseBloC {
       amount: amount,
       description: description,
       category: category.name,
-      date: DateTime.now(),
+      date: date,
     );
     await _expenseRepository.addExpense(expense).then(
       (value) async {

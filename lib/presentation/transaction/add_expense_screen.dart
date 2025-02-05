@@ -18,6 +18,7 @@ import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/enum/app_category.dart';
 import 'package:cost_share/utils/enum/app_wallet.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
+import 'package:cost_share/utils/extension/date_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +32,8 @@ class AddExpenseScreen extends StatefulWidget {
 
 class _AddExpenseScreenState extends State<AddExpenseScreen> {
   late TransactionBloc bloC;
+  DateTime selectedDate = DateTime.now();
+  double totalPart = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -138,6 +141,31 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                           SizedBox(
                             height: 18,
                           ),
+                          AppDropdownButton(
+                            label: context.localization.category,
+                            onTap: () {
+                              showDatePicker(
+                                      context: context,
+                                      firstDate: DateTime(2000),
+                                      lastDate: DateTime(2100),
+                                      initialDate: selectedDate)
+                                  .then((value) {
+                                if (value != null) {
+                                  setState(() {
+                                    selectedDate = value;
+                                  });
+                                }
+                              });
+                            },
+                            selectedLabel: Text(
+                              selectedDate.toCustomTimeFormat(
+                                  format: 'dd-MM-yyyy'),
+                              style: AppTextStyles.body1,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 18,
+                          ),
                           StreamBuilder(
                             stream: bloC.walletStream,
                             builder: (context, snapshot) {
@@ -170,26 +198,24 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                             },
                           ),
                           SizedBox(height: 8),
-                          SizedBox(
-                            height: 300,
-                            child: StreamBuilder(
-                              stream: bloC.groupMembersStream,
-                              builder: (context, snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return Center(
-                                      child: CircularProgressIndicator());
-                                } else if (snapshot.hasError) {
-                                  return Center(
-                                      child: Text('Error: ${snapshot.error}'));
-                                } else {
-                                  List<UserSplit> members = snapshot.data!;
-                                  return ListView.builder(
-                                    itemCount: members.length,
-                                    itemBuilder: (context, index) {
-                                      UserSplit member = members[index];
+                          StreamBuilder(
+                            stream: bloC.groupMembersStream,
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Center(
+                                    child: CircularProgressIndicator());
+                              } else if (snapshot.hasError) {
+                                return Center(
+                                    child: Text('Error: ${snapshot.error}'));
+                              } else {
+                                List<UserSplit> members = snapshot.data!;
+                                return Column(
+                                  children: members.map(
+                                    (member) {
                                       return Padding(
-                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 8.0),
                                         child: Row(
                                           children: [
                                             Avatar(
@@ -206,8 +232,26 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                                               child: AppNumberInputField(
                                                 maxValue: 100,
                                                 onChanged: (value) {
-                                                  member
-                                                      .setratio(value.toDouble());
+                                                  member.setWeight(
+                                                      value.toDouble());
+                                                  setState(() {
+                                                    totalPart = members.fold(
+                                                        0,
+                                                        (previousValue,
+                                                                element) =>
+                                                            previousValue +
+                                                            element.weight);
+                                                    members.forEach((element) {
+                                                      if (totalPart == 0) {
+                                                        element.setratio(
+                                                            1 / members.length);
+                                                        return;
+                                                      }
+                                                      element.setratio(
+                                                          element.weight /
+                                                              totalPart);
+                                                    });
+                                                  });
                                                 },
                                                 style: AppTextStyles.body1
                                                     .copyWith(
@@ -218,12 +262,12 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                                                         color: AppColors
                                                             .colorGreen100),
                                                 hintText: '0',
-                                                suffixText: '%',
                                                 border: OutlineInputBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(16),
                                                   borderSide: BorderSide(
-                                                    color: AppColors.colorLight10,
+                                                    color:
+                                                        AppColors.colorLight10,
                                                     width: 1,
                                                   ),
                                                 ),
@@ -233,14 +277,17 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                                         ),
                                       );
                                     },
-                                  );
-                                }
-                              },
-                            ),
+                                  ).toList(),
+                                );
+                              }
+                            },
                           ),
+                          Text(totalPart.toString(),
+                              style: AppTextStyles.body1
+                                  .copyWith(color: AppColors.colorGreen100)),
                           MyAppButton(
                             onPressed: () => {
-                              bloC.addExpense(),
+                              bloC.addExpense(selectedDate),
                               Navigator.pop(context),
                             },
                             message: context.localization.textContinue,
