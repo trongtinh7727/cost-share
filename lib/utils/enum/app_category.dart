@@ -37,12 +37,13 @@ extension AppCategoryExtension on AppCategory {
         return AppColors.colorViolet20;
       case AppCategory.ADD:
         return AppColors.colorDark100;
+      case AppCategory.OTHER:
+        return AppColors.colorGreen20;
       default:
         return AppColors.colorDark100;
     }
   }
 
-  
   Color get colorPrimary {
     switch (this) {
       case AppCategory.SHOPPING:
@@ -53,6 +54,8 @@ extension AppCategoryExtension on AppCategory {
         return AppColors.colorBlue100;
       case AppCategory.SUBSCRIPTION:
         return AppColors.colorViolet100;
+      case AppCategory.OTHER:
+        return AppColors.colorGreen100;
       case AppCategory.ADD:
         return AppColors.colorDark100;
       default:

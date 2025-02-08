@@ -13,6 +13,7 @@ import 'package:cost_share/presentation/intro/intro_screen.dart';
 import 'package:cost_share/presentation/main/wellcome_screen.dart';
 import 'package:cost_share/presentation/transaction/add_expense_screen.dart';
 import 'package:cost_share/presentation/transaction/expense_detail_screen.dart';
+import 'package:cost_share/presentation/transaction/update_expense_screen.dart';
 import 'package:cost_share/splash_creen.dart';
 import 'package:cost_share/utils/route/route_name.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +72,13 @@ extension GenerateRoute on RouteSettings {
         Expense expense = arguments as Expense;
         return MaterialPageRoute(
           builder: (context) => ExpenseDetailScreen(
+            expense: expense,
+          ),
+        );
+      case RouteName.updateExpense:
+        Expense expense = arguments as Expense;
+        return MaterialPageRoute(
+          builder: (context) => UpdateExpenseScreen(
             expense: expense,
           ),
         );

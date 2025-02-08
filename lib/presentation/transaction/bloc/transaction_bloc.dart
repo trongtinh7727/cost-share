@@ -61,6 +61,10 @@ class TransactionBloc extends BaseBloC {
     _category.add(AppCategoryExtension.fromIndex(index));
   }
 
+  void selectCategoryByName(String name) {
+    _category.add(AppCategoryExtension.fromString(name));
+  }
+
   void getWalletRemaining(String groupId) {
     _budgetRepository.getGroupBudgets(groupId).then((budgets) {
       budgets.forEach((budget) {
@@ -78,7 +82,7 @@ class TransactionBloc extends BaseBloC {
     });
   }
 
-  void addExpense(DateTime date) async {
+  Future<Expense> addExpense(DateTime date) async {
     final expense = Expense(
       id: '',
       userId: userId,
@@ -89,14 +93,12 @@ class TransactionBloc extends BaseBloC {
       category: category.name,
       date: date,
     );
-    await _expenseRepository.addExpense(expense).then(
-      (value) async {
-        List<Split> splits = _groupMembers.value.map((userSplit) {
-          return userSplit.toSplit(value.id, amount);
-        }).toList();
-        await _expenseRepository.addSplits(splits);
-      },
-    );
+    final addedExpense = await _expenseRepository.addExpense(expense);
+    List<Split> splits = _groupMembers.value.map((userSplit) {
+      return userSplit.toSplit(addedExpense.id, amount);
+    }).toList();
+    await _expenseRepository.addSplits(splits);
+    return addedExpense;
   }
 
   Future<List<Split>> getSplits(String expenseId) async {

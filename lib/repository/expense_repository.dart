@@ -14,6 +14,7 @@ abstract class ExpenseRepository {
   Future<List<Split>> getExpenseSplits(String expenseId);
   Future<List<UserSplit>> getExpenseUserSplits(String expenseId);
   Future<void> updateSplit(Split splitData);
+  Future<void> updateExpense(Expense expense, double oldAmount);
 }
 
 class ExpenseRepositoryImpl extends ExpenseRepository {
@@ -78,6 +79,15 @@ class ExpenseRepositoryImpl extends ExpenseRepository {
 
       // Delete the expense
       await expenseRef.delete();
+
+      QuerySnapshot splitsSnapshot = await _firestore
+          .collection('splits')
+          .where('expenseId', isEqualTo: expenseId)
+          .get();
+
+      splitsSnapshot.docs.forEach((splitDoc) {
+        splitDoc.reference.delete();
+      });
 
       // Update the totalExpense of the group
       await _firestore.runTransaction((transaction) async {
@@ -212,6 +222,36 @@ class ExpenseRepositoryImpl extends ExpenseRepository {
       return userSplits;
     } catch (e) {
       throw Exception('Failed to fetch splits: $e');
+    }
+  }
+
+  @override
+  Future<void> updateExpense(Expense expense, double oldAmount) async {
+    try {
+      DocumentReference expenseRef =
+          _firestore.collection('expenses').doc(expense.id);
+
+      // Update the totalExpense of the group
+      await _firestore.runTransaction((transaction) async {
+        DocumentReference groupRef =
+            _firestore.collection('groups').doc(expense.groupId);
+        DocumentSnapshot groupSnapshot = await transaction.get(groupRef);
+
+        if (!groupSnapshot.exists) {
+          throw Exception('Group does not exist');
+        }
+
+        double currentTotalExpense =
+            groupSnapshot.get('totalExpense') * 1.0 ?? 0.0;
+        double newTotalExpense =
+            currentTotalExpense + expense.amount - oldAmount;
+
+        transaction.update(groupRef, {'totalExpense': newTotalExpense});
+      });
+
+      return expenseRef.update(expense.toJson());
+    } catch (e) {
+      throw Exception('Failed to update expense: $e');
     }
   }
 }

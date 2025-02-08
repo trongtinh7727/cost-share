@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cost_share/gen/assets.gen.dart';
 import 'package:cost_share/locator.dart';
 import 'package:cost_share/manager/group_manager.dart';
@@ -16,7 +15,9 @@ import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/enum/app_category.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
+import 'package:cost_share/utils/extension/date_ext.dart';
 import 'package:cost_share/utils/extension/double_ext.dart';
+import 'package:cost_share/utils/route/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:cost_share/model/expense.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -80,7 +81,13 @@ class _ExpenseDetailScreenState extends State<ExpenseDetailScreen> {
                   child: Assets.icon.svg.iconTrash.svg()),
               SizedBox(width: 4),
               // TODO: Implement edit expense
-              InkWell(onTap: () {}, child: Assets.icon.svg.iconEdit.svg()),
+              InkWell(
+                  onTap: () {
+                    Navigator.pushReplacementNamed(
+                        context, RouteName.updateExpense,
+                        arguments: widget.expense);
+                  },
+                  child: Assets.icon.svg.iconEdit.svg()),
             ],
           ),
           body: SingleChildScrollView(
@@ -118,6 +125,12 @@ class _ExpenseDetailScreenState extends State<ExpenseDetailScreen> {
                     '- ${widget.expense.amount.toCommaSeparated()}',
                     style: AppTextStyles.title1
                         .copyWith(color: AppColors.colorRed100),
+                  ),
+                  Text(
+                    widget.expense.date
+                        .toCustomTimeFormat(format: 'dd MMM, yyyy'),
+                    style: AppTextStyles.body3
+                        .copyWith(color: AppColors.colorDark25),
                   ),
                   SizedBox(height: 8),
                   Text(
