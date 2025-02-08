@@ -10,10 +10,14 @@ class AppDropdownButton extends StatefulWidget {
     required this.label,
     required this.onTap,
     this.prefixIcon,
+    this.suffixIcon,
     this.selectedLabel,
+    this.borderColor,
   }) : super(key: key);
   final Widget? prefixIcon;
+  final Widget? suffixIcon;
   final Widget? selectedLabel;
+  final Color? borderColor;
   final String label;
   final void Function() onTap;
   @override
@@ -31,7 +35,8 @@ class _AppDropdownButtonState extends State<AppDropdownButton> {
         padding: const EdgeInsets.only(top: 8, left: 8, right: 16, bottom: 8),
         decoration: ShapeDecoration(
           shape: RoundedRectangleBorder(
-            side: BorderSide(width: 1, color: AppColors.colorDark25),
+            side: BorderSide(
+                width: 1, color: widget.borderColor ?? AppColors.colorDark25),
             borderRadius: BorderRadius.circular(16),
           ),
         ),
@@ -47,7 +52,7 @@ class _AppDropdownButtonState extends State<AppDropdownButton> {
                 Text(
                   widget.label,
                   textAlign: TextAlign.start,
-                  style: AppTextStyles.small
+                  style: AppTextStyles.body1
                       .copyWith(color: AppColors.colorLight10),
                 ),
             Expanded(
@@ -55,9 +60,10 @@ class _AppDropdownButtonState extends State<AppDropdownButton> {
                 width: 8,
               ),
             ),
-            Assets.icon.svg.iconArrowDown.svg(
-                colorFilter:
-                    ColorFilter.mode(AppColors.colorDark25, BlendMode.srcIn)),
+            widget.suffixIcon ??
+                Assets.icon.svg.iconArrowDown.svg(
+                    colorFilter: ColorFilter.mode(
+                        AppColors.colorDark25, BlendMode.srcIn)),
           ],
         ),
       ),

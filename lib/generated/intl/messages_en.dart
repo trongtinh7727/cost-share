@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "budgetDetail": MessageLookupByLibrary.simpleMessage("Budget Detail"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
+        "chooseCategory":
+            MessageLookupByLibrary.simpleMessage("Choose Category"),
         "chooseGroup":
             MessageLookupByLibrary.simpleMessage("Choose your group"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -50,12 +52,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "expenseSpliting":
             MessageLookupByLibrary.simpleMessage("Expense Spliting"),
         "february": MessageLookupByLibrary.simpleMessage("February"),
+        "filterTransaction":
+            MessageLookupByLibrary.simpleMessage("Filter Transaction"),
         "googleSignUp":
             MessageLookupByLibrary.simpleMessage("Sign Up with Google"),
         "groupDescription":
             MessageLookupByLibrary.simpleMessage("Group Description"),
         "groupName": MessageLookupByLibrary.simpleMessage("Group Name"),
         "groupSetting": MessageLookupByLibrary.simpleMessage("Group Setting"),
+        "highest": MessageLookupByLibrary.simpleMessage("Highest"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "howMuch": MessageLookupByLibrary.simpleMessage("How much?"),
         "introBody1": MessageLookupByLibrary.simpleMessage(
@@ -84,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you sure you want to leave this group? This action cannot be undone."),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "lowest": MessageLookupByLibrary.simpleMessage("Lowest"),
         "march": MessageLookupByLibrary.simpleMessage("March"),
         "markAsPaid": MessageLookupByLibrary.simpleMessage("Mark as paid"),
         "markAsPaidDescription": MessageLookupByLibrary.simpleMessage(
@@ -96,8 +102,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "nameCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage("Name cannot be empty"),
+        "newest": MessageLookupByLibrary.simpleMessage("Newest"),
         "november": MessageLookupByLibrary.simpleMessage("November"),
         "october": MessageLookupByLibrary.simpleMessage("October"),
+        "oldest": MessageLookupByLibrary.simpleMessage("Oldest"),
         "orEnterEmail":
             MessageLookupByLibrary.simpleMessage("Or enter the email address"),
         "owedToYou": MessageLookupByLibrary.simpleMessage("Owed to you: "),
@@ -114,9 +122,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "removeMember": MessageLookupByLibrary.simpleMessage("Remove Member"),
         "removeMemberDescription": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to remove this member? This action cannot be undone."),
+        "reset": MessageLookupByLibrary.simpleMessage("Reset"),
         "scanQRCode": MessageLookupByLibrary.simpleMessage("Scan the QR Code"),
         "september": MessageLookupByLibrary.simpleMessage("September"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "sortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "totalBudget": MessageLookupByLibrary.simpleMessage("Total budget"),
         "totalExpense": MessageLookupByLibrary.simpleMessage("Total expense"),

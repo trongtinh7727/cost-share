@@ -839,6 +839,86 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Filter Transaction`
+  String get filterTransaction {
+    return Intl.message(
+      'Filter Transaction',
+      name: 'filterTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sort by`
+  String get sortBy {
+    return Intl.message(
+      'Sort by',
+      name: 'sortBy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Highest`
+  String get highest {
+    return Intl.message(
+      'Highest',
+      name: 'highest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lowest`
+  String get lowest {
+    return Intl.message(
+      'Lowest',
+      name: 'lowest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Newest`
+  String get newest {
+    return Intl.message(
+      'Newest',
+      name: 'newest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oldest`
+  String get oldest {
+    return Intl.message(
+      'Oldest',
+      name: 'oldest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose Category`
+  String get chooseCategory {
+    return Intl.message(
+      'Choose Category',
+      name: 'chooseCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset`
+  String get reset {
+    return Intl.message(
+      'Reset',
+      name: 'reset',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

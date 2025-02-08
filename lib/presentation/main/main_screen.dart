@@ -7,6 +7,7 @@ import 'package:cost_share/model/user.dart';
 import 'package:cost_share/presentation/budget/budget_screen.dart';
 import 'package:cost_share/presentation/common/avatar.dart';
 import 'package:cost_share/presentation/common/background_icon.dart';
+import 'package:cost_share/presentation/common/filter_transaction_dialog.dart';
 import 'package:cost_share/presentation/common/group_card.dart';
 import 'package:cost_share/presentation/group/group_member_screen.dart';
 import 'package:cost_share/presentation/home/home_screen.dart';
@@ -34,25 +35,11 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     _screens = [
       HomeScreen(mainScaffoldKey: scaffoldKey),
-      TransactionScreen(
-        onFilterPressed: _showFilterBottomSheet,
-      ),
+      TransactionScreen(),
       BudgetScreen(),
       GroupMemberScreen(),
       Center(child: Text("Member Screen")),
     ];
-  }
-
-  void _showFilterBottomSheet() {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return Container(
-          height: 200,
-          color: Colors.black,
-        );
-      },
-    );
   }
 
   @override

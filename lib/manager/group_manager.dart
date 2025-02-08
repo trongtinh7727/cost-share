@@ -5,6 +5,7 @@ import 'package:cost_share/repository/budget_repository.dart';
 import 'package:cost_share/repository/expense_repository.dart';
 import 'package:cost_share/repository/group_repository.dart';
 import 'package:cost_share/utils/BaseBloC.dart';
+import 'package:cost_share/utils/enum/sort_by.dart';
 import 'package:rxdart/rxdart.dart';
 import 'dart:async';
 
@@ -21,6 +22,12 @@ class GroupManager extends BaseBloC {
   GroupDetail? get currentGroup => _userGroupsSubject.value.firstWhereOrNul(
         (element) => element.groupId == currentGroupId,
       );
+
+  SortBy? _selectedSortBy;
+  List<String> _selectedCategories = [];
+
+  SortBy? get selectedSortBy => _selectedSortBy;
+  List<String> get selectedCategories => _selectedCategories;
 
   final _userGroupsSubject = BehaviorSubject<List<GroupDetail>>();
   final _groupExpensesSubject = BehaviorSubject<List<Expense>>();
@@ -111,8 +118,11 @@ class GroupManager extends BaseBloC {
   /// Filter and sort expenses
   void filterAndSortExpenses({
     List<String>? categories,
-    String? sortBy,
+    SortBy? sortBy,
   }) {
+    _selectedCategories = categories ?? [];
+    _selectedSortBy = sortBy;
+
     List<Expense> expenses = _groupExpensesSubject.value;
 
     // Filter by categories
@@ -125,16 +135,16 @@ class GroupManager extends BaseBloC {
     // Sort expenses
     if (sortBy != null) {
       switch (sortBy) {
-        case 'high':
+        case SortBy.HIGHEST:
           expenses.sort((a, b) => b.amount.compareTo(a.amount));
           break;
-        case 'low':
+        case SortBy.LOWEST:
           expenses.sort((a, b) => a.amount.compareTo(b.amount));
           break;
-        case 'new':
+        case SortBy.NEWEST:
           expenses.sort((a, b) => b.date.compareTo(a.date));
           break;
-        case 'old':
+        case SortBy.OLDEST:
           expenses.sort((a, b) => a.date.compareTo(b.date));
           break;
       }

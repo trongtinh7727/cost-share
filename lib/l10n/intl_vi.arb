@@ -77,5 +77,13 @@
   "removeMemberDescription": "Bạn có chắc chắn muốn xóa thành viên này không? Hành động này không thể hoàn tác.",
   "groubSetting": "Cài đặt nhóm",
   "deleteGroup": "Xóa nhóm",
-  "deleteGroupDescription": "Bạn có chắc chắn muốn xóa nhóm không? Hành động này không thể hoàn tác."
+  "deleteGroupDescription": "Bạn có chắc chắn muốn xóa nhóm không? Hành động này không thể hoàn tác.",
+  "filterTransaction": "Lọc giao dịch",
+  "sortBy": "sắp xếp theo",
+  "highest": "Cao nhất",
+  "lowest": "Thấp nhất",
+  "newest": "Mới nhất",
+  "oldest": "Cũ nhất",
+  "chooseCategory": "Chọn danh mục",
+  "reset": "Đặt lại"
 }

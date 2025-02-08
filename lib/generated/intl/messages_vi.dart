@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Chi tiết ngân sách"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
         "category": MessageLookupByLibrary.simpleMessage("Danh mục"),
+        "chooseCategory": MessageLookupByLibrary.simpleMessage("Chọn danh mục"),
         "chooseGroup":
             MessageLookupByLibrary.simpleMessage("Chọn nhóm của bạn"),
         "confirm": MessageLookupByLibrary.simpleMessage("Xác nhậnnhận"),
@@ -52,10 +53,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "expenseSpliting":
             MessageLookupByLibrary.simpleMessage("Chia sẻ chi phí"),
         "february": MessageLookupByLibrary.simpleMessage("Tháng 2"),
+        "filterTransaction":
+            MessageLookupByLibrary.simpleMessage("Lọc giao dịch"),
         "googleSignUp":
             MessageLookupByLibrary.simpleMessage("Đăng ký với Google"),
         "groupDescription": MessageLookupByLibrary.simpleMessage("Mô tả nhóm"),
         "groupName": MessageLookupByLibrary.simpleMessage("Tên nhóm"),
+        "highest": MessageLookupByLibrary.simpleMessage("Cao nhất"),
         "home": MessageLookupByLibrary.simpleMessage("Trang chủ"),
         "howMuch": MessageLookupByLibrary.simpleMessage("Số tiền?"),
         "introBody1": MessageLookupByLibrary.simpleMessage(
@@ -87,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Bạn có chắc chắn muốn rời nhóm không? Bạn sẽ không thể truy cập vào nhóm này nữa."),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
         "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
+        "lowest": MessageLookupByLibrary.simpleMessage("Thấp nhất"),
         "march": MessageLookupByLibrary.simpleMessage("Tháng 3"),
         "markAsPaid":
             MessageLookupByLibrary.simpleMessage("Đánh dấu đã thanh toán"),
@@ -101,8 +106,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Tên"),
         "nameCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage("Tên không được để trống"),
+        "newest": MessageLookupByLibrary.simpleMessage("Mới nhất"),
         "november": MessageLookupByLibrary.simpleMessage("Tháng 11"),
         "october": MessageLookupByLibrary.simpleMessage("Tháng 10"),
+        "oldest": MessageLookupByLibrary.simpleMessage("Cũ nhất"),
         "orEnterEmail": MessageLookupByLibrary.simpleMessage("Hoặc nhập email"),
         "owedToYou": MessageLookupByLibrary.simpleMessage("Nợ bạn: "),
         "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
@@ -117,9 +124,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "removeMember": MessageLookupByLibrary.simpleMessage("Xóa thành viên"),
         "removeMemberDescription": MessageLookupByLibrary.simpleMessage(
             "Bạn có chắc chắn muốn xóa thành viên này không? Hành động này không thể hoàn tác."),
+        "reset": MessageLookupByLibrary.simpleMessage("Đặt lại"),
         "scanQRCode": MessageLookupByLibrary.simpleMessage("Quét mã QR"),
         "september": MessageLookupByLibrary.simpleMessage("Tháng 9"),
         "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+        "sortBy": MessageLookupByLibrary.simpleMessage("sắp xếp theo"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Tiếp tục"),
         "totalBudget": MessageLookupByLibrary.simpleMessage("Tổng ngân sách"),
         "totalExpense": MessageLookupByLibrary.simpleMessage("Tổng chi tiêu"),

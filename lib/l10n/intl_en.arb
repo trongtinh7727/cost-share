@@ -78,5 +78,13 @@
   "removeMemberDescription": "Are you sure you want to remove this member? This action cannot be undone.",
   "groupSetting": "Group Setting",
   "deleteGroup": "Delete Group",
-  "deleteGroupDescription": "Are you sure you want to delete this group? This action cannot be undone."
+  "deleteGroupDescription": "Are you sure you want to delete this group? This action cannot be undone.",
+  "filterTransaction": "Filter Transaction",
+  "sortBy": "Sort by",
+  "highest": "Highest",
+  "lowest": "Lowest",
+  "newest": "Newest",
+  "oldest": "Oldest",
+  "chooseCategory": "Choose Category",
+  "reset": "Reset"
 }

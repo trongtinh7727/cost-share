@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cost_share/presentation/common/filter_transaction_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,9 +13,7 @@ import 'package:cost_share/utils/helper.dart';
 class TransactionScreen extends StatefulWidget {
   const TransactionScreen({
     Key? key,
-    required this.onFilterPressed,
   }) : super(key: key);
-  final VoidCallback onFilterPressed;
 
   @override
   State<TransactionScreen> createState() => _TransactionScreenState();
@@ -29,14 +28,23 @@ class _TransactionScreenState extends State<TransactionScreen> {
         actions: [
           IconButton(
             icon: Assets.icon.svg.iconFillter.svg(),
-            onPressed: widget.onFilterPressed,
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return FilterTransactionDialog(
+                    groupManager: context.read<GroupManager>(),
+                  );
+                },
+              );
+            },
           ),
         ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.symmetric( horizontal: 16),
+            margin: EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
                 StreamBuilder<List<Expense>>(
@@ -51,7 +59,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                     } else {
                       Map<String, List<Expense>> groupedExpenses =
                           Helper.groupExpensesByDate(snapshot.data!);
-            
+
                       return Column(
                         children: groupedExpenses.keys.map((date) {
                           List<Expense> expenses = groupedExpenses[date]!;
