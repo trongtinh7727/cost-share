@@ -152,6 +152,16 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                                   .then((value) {
                                 if (value != null) {
                                   setState(() {
+                                    if (selectedDate.month != value.month ||
+                                        selectedDate.year != value.year) {
+                                      bloC.getWalletRemaining(
+                                          context
+                                              .read<GroupManager>()
+                                              .currentGroupId,
+                                          value.month.toString(),
+                                          value.year.toString());
+                                    }
+                                    bloC.selectWallet(AppWallet.PERSONAL.name);
                                     selectedDate = value;
                                   });
                                 }

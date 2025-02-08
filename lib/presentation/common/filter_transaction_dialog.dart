@@ -1,7 +1,5 @@
-import 'package:cost_share/main.dart';
 import 'package:cost_share/manager/group_manager.dart';
 import 'package:cost_share/presentation/common/my_app_button.dart';
-import 'package:cost_share/presentation/transaction/bloc/transaction_bloc.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/enum/app_category.dart';

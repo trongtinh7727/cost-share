@@ -66,6 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
               month = m;
               year = y;
             });
+            context.read<GroupManager>().filterExpensesByDate(m, y);
           },
               initialSelectedMonth: month,
               initialSelectedYear: year,

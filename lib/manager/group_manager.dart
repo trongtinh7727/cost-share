@@ -44,8 +44,8 @@ class GroupManager extends BaseBloC {
   Stream<List<Budget>> get groupBudgetStream => _groupBudgetSubject.stream;
 
   /// Calculate the total expense of the current group
-  double get totalExpense => _groupExpensesSubject.hasValue
-      ? _groupExpensesSubject.value
+  double get totalExpense => _filteredExpensesSubject.hasValue
+      ? _filteredExpensesSubject.value
           .fold(0, (sum, expense) => sum + expense.amount)
       : 0;
 
@@ -150,6 +150,15 @@ class GroupManager extends BaseBloC {
       }
     }
 
+    _filteredExpensesSubject.add(expenses);
+  }
+
+  void filterExpensesByDate(int month, int year) {
+    List<Expense> expenses = _groupExpensesSubject.value;
+    expenses = expenses
+        .where((expense) =>
+            expense.date.month == month && expense.date.year == year)
+        .toList();
     _filteredExpensesSubject.add(expenses);
   }
 

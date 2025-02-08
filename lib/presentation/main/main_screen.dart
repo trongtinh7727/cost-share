@@ -7,7 +7,6 @@ import 'package:cost_share/model/user.dart';
 import 'package:cost_share/presentation/budget/budget_screen.dart';
 import 'package:cost_share/presentation/common/avatar.dart';
 import 'package:cost_share/presentation/common/background_icon.dart';
-import 'package:cost_share/presentation/common/filter_transaction_dialog.dart';
 import 'package:cost_share/presentation/common/group_card.dart';
 import 'package:cost_share/presentation/group/group_member_screen.dart';
 import 'package:cost_share/presentation/home/home_screen.dart';

@@ -59,14 +59,16 @@ class TransactionBloc extends BaseBloC {
 
   void selectCategory(int index) {
     _category.add(AppCategoryExtension.fromIndex(index));
+    _wallet.add(AppWallet.PERSONAL);
   }
 
   void selectCategoryByName(String name) {
     _category.add(AppCategoryExtension.fromString(name));
   }
 
-  void getWalletRemaining(String groupId) {
-    _budgetRepository.getGroupBudgets(groupId).then((budgets) {
+  void getWalletRemaining(String groupId, String month, String year) {
+    _budgetRemaining = {};
+    _budgetRepository.loadMonthlyBudget(groupId, month, year).listen((budgets) {
       budgets.forEach((budget) {
         _budgetRemaining[budget.category] = budget.remainingAmount;
       });
@@ -121,7 +123,11 @@ class TransactionBloc extends BaseBloC {
   void init() async {
     _category.add(AppCategory.SHOPPING);
     _wallet.add(AppWallet.PERSONAL);
-    getWalletRemaining(groupId);
+
+    final now = DateTime.now();
+    String month = now.month.toString();
+    String year = now.year.toString();
+    getWalletRemaining(groupId, month, year);
     getGroupMembers();
   }
 

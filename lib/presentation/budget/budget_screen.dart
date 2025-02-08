@@ -29,6 +29,10 @@ class _BudgetScreenState extends State<BudgetScreen> {
     final currentDate = DateTime.now();
     month = currentDate.month;
     year = currentDate.year;
+    context.read<GroupManager>().loadGroupBudget(
+        context.read<GroupManager>().currentGroupId,
+        month.toString(),
+        year.toString());
   }
 
   @override
@@ -128,7 +132,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
                                 child: Text('Error: ${snapshot.error}'));
                           } else if (!snapshot.hasData ||
                               snapshot.data!.isEmpty) {
-                            return Center(child: Text('No expenses available'));
+                            return Center(child: Text('No budgets available'));
                           } else {
                             List<Budget> budgets = snapshot.data!;
                             return ListView.builder(
