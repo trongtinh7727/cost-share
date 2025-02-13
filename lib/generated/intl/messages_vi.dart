@@ -21,9 +21,22 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'vi';
 
   static String m0(name, amount) =>
+      "vui lòng đóng góp ${amount} vào ngân sách của ${name}.";
+
+  static String m1(name, amount) => "${name} đã thanh toán nợ ${amount}.";
+
+  static String m2(name, amount) => "${name} đã xóa một chi tiêu ${amount}.";
+
+  static String m3(name, amount) =>
       "${name} đã thêm một chi tiêu mới ${amount}.";
 
-  static String m1(name, oldAmount, newAmount) =>
+  static String m4(name) => "${name} đã rời nhóm.";
+
+  static String m5(name) => "${name} đã được thêm vào nhóm.";
+
+  static String m6(name) => "${name} đã bị xóa khỏi nhóm.";
+
+  static String m7(name, oldAmount, newAmount) =>
       "${name} đã cập nhật một chi tiêu từ ${oldAmount} thành ${newAmount}.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -44,20 +57,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("Xác nhận"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Xác nhận mật khẩu"),
+        "contributeBudget":
+            MessageLookupByLibrary.simpleMessage("Đóng góp vào ngân sách"),
+        "contributeBudgetBody": m0,
         "contributied": MessageLookupByLibrary.simpleMessage("Đã đóng góp: "),
         "contributions": MessageLookupByLibrary.simpleMessage("Đóng góp"),
+        "debtPaid":
+            MessageLookupByLibrary.simpleMessage("Nợ đã được thanh toán"),
+        "debtPaidBody": m1,
         "december": MessageLookupByLibrary.simpleMessage("Tháng 12"),
         "delete": MessageLookupByLibrary.simpleMessage("Xóa"),
         "deleteGroup": MessageLookupByLibrary.simpleMessage("Xóa nhóm"),
         "deleteGroupDescription": MessageLookupByLibrary.simpleMessage(
             "Bạn có chắc chắn muốn xóa nhóm không? Hành động này không thể hoàn tác."),
+        "deletedExpense":
+            MessageLookupByLibrary.simpleMessage("Một chi tiêu đã bị xóa"),
+        "deletedExpenseMessage": m2,
         "description": MessageLookupByLibrary.simpleMessage("Mô tả"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "exceedLimit":
             MessageLookupByLibrary.simpleMessage("Bạn đã vượt quá giới hạn"),
         "expenseDetail":
             MessageLookupByLibrary.simpleMessage("Chi tiết chi phí"),
-        "expenseMessage": m0,
+        "expenseMessage": m3,
         "expenseSpliting":
             MessageLookupByLibrary.simpleMessage("Chia sẻ chi phí"),
         "february": MessageLookupByLibrary.simpleMessage("Tháng 2"),
@@ -98,6 +120,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "leaveGroup": MessageLookupByLibrary.simpleMessage("Rời nhóm"),
         "leaveGroupDescription": MessageLookupByLibrary.simpleMessage(
             "Bạn có chắc chắn muốn rời nhóm không? Bạn sẽ không thể truy cập vào nhóm này nữa."),
+        "leaveGroupNotificate":
+            MessageLookupByLibrary.simpleMessage("Một thành viên đã rời nhóm"),
+        "leaveGroupNotificateBody": m4,
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
         "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
         "lowest": MessageLookupByLibrary.simpleMessage("Thấp nhất"),
@@ -118,6 +143,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tên không được để trống"),
         "newExpenseAdded":
             MessageLookupByLibrary.simpleMessage("Chi tiêu mới đã được thêm"),
+        "newMemberAdded": MessageLookupByLibrary.simpleMessage(
+            "Một thành viên mới đã được thêm"),
+        "newMemberAddedBody": m5,
         "newest": MessageLookupByLibrary.simpleMessage("Mới nhất"),
         "november": MessageLookupByLibrary.simpleMessage("Tháng 11"),
         "october": MessageLookupByLibrary.simpleMessage("Tháng 10"),
@@ -136,6 +164,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "removeMember": MessageLookupByLibrary.simpleMessage("Xóa thành viên"),
         "removeMemberDescription": MessageLookupByLibrary.simpleMessage(
             "Bạn có chắc chắn muốn xóa thành viên này không? Hành động này không thể hoàn tác."),
+        "removeMemberNotificate":
+            MessageLookupByLibrary.simpleMessage("Một thành viên đã bị xóa"),
+        "removeMemberNotificateBody": m6,
         "reset": MessageLookupByLibrary.simpleMessage("Đặt lại"),
         "scanQRCode": MessageLookupByLibrary.simpleMessage("Quét mã QR"),
         "september": MessageLookupByLibrary.simpleMessage("Tháng 9"),
@@ -151,7 +182,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "transaction": MessageLookupByLibrary.simpleMessage("Giao dịch"),
         "updatedExpense": MessageLookupByLibrary.simpleMessage(
             "Một chi tiêu đã được cập nhật"),
-        "updatedExpenseMessage": m1,
+        "updatedExpenseMessage": m7,
         "userNotFound":
             MessageLookupByLibrary.simpleMessage("Không tìm thấy người dùng"),
         "wellcome": MessageLookupByLibrary.simpleMessage(

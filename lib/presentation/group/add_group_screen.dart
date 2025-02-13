@@ -5,6 +5,7 @@ import 'package:cost_share/presentation/common/avatar.dart';
 import 'package:cost_share/presentation/common/my_app_button.dart';
 import 'package:cost_share/presentation/group/bloc/group_bloc.dart';
 import 'package:cost_share/repository/group_repository.dart';
+import 'package:cost_share/repository/notification_repository.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
@@ -22,7 +23,7 @@ class _AddGroupScreenState extends State<AddGroupScreen> {
   @override
   Widget build(BuildContext context) {
     return Provider<GroupBloc>(
-      create: (context) => GroupBloc(locator<GroupRepository>()),
+      create: (context) => GroupBloc(locator<GroupRepository>(),locator<NotificationRepository>()),
       builder: (context, child) {
         return Scaffold(
           appBar: AppBar(

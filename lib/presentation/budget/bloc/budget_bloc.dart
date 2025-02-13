@@ -2,22 +2,33 @@ import 'dart:async';
 
 import 'package:cost_share/model/budget.dart';
 import 'package:cost_share/model/user_split.dart';
+import 'package:cost_share/repository/notification_repository.dart';
+import 'package:cost_share/service/firebase_messaging_service.dart';
+import 'package:cost_share/utils/enum/notification_status.dart';
+import 'package:cost_share/utils/enum/notification_type.dart';
+import 'package:cost_share/utils/extension/double_ext.dart';
 import 'package:cost_share/utils/extension/string_ext.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:cost_share/repository/budget_repository.dart';
 import 'package:cost_share/repository/group_repository.dart';
 import 'package:cost_share/utils/BaseBloC.dart';
 import 'package:cost_share/utils/enum/app_category.dart';
+import 'package:cost_share/model/notification.dart' as AppNotification;
 
 class BudgetBloc extends BaseBloC {
   final BudgetRepository _budgetRepository;
   final GroupRepository _groupRepository;
+  final NotificationRepository _notificationRepository;
   final String groupId;
   final String userId;
 
+  final FirebaseMessagingService _firebaseMessagingService =
+      FirebaseMessagingService().instance;
+
   BudgetBloc(
-    this._budgetRepository, 
+    this._budgetRepository,
     this._groupRepository,
+    this._notificationRepository,
     this.groupId,
     this.userId,
   );
@@ -119,6 +130,51 @@ class BudgetBloc extends BaseBloC {
     } catch (error) {
       // Handle any errors during the contribution process
       print("Error adding contribution: $error");
+    }
+  }
+
+  Future<void> remindFunds(Budget budget, String title, String body) async {
+    try {
+      // Get the group members
+      List<UserSplit> members = _groupMembers.value;
+      // Get the group budget
+      // Get the members who have not contributed
+      double amountPerPerson = budget.totalAmount / budget.contributions.length;
+      List<UserSplit> nonContributors = members
+          .where((member) =>
+              (budget.contributions[member.userId!] ?? double.infinity) <
+              amountPerPerson)
+          .toList();
+      // Send a reminder to each non-contributor
+      for (var member in nonContributors) {
+        if (member.FCMToken != null) {
+          // Send a reminder to the user
+          _firebaseMessagingService.sendFCMMessage(
+            title: title,
+            body: body,
+            FCMToken: member.FCMToken!,
+          );
+
+          // Save the reminder using the repository
+          _notificationRepository.addNotification(AppNotification.Notification(
+            groupId: groupId,
+            userId: member.userId!,
+            message: NotificationType.CONTRIBUTE_BUDGET.name,
+            status: NotificationStatus.UNREAD.name,
+            timestamp: DateTime.now(),
+            id: '',
+            data: {
+              'name': budget.category,
+              'amount': amountPerPerson.toCommaSeparated(),
+            },
+          ));
+        }
+      }
+      // Optional: Log or handle success feedback
+      print("Reminders sent successfully.");
+    } catch (error) {
+      // Handle any errors during the reminder process
+      print("Error sending reminders: $error");
     }
   }
 

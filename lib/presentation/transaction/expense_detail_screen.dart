@@ -72,7 +72,21 @@ class _ExpenseDetailScreenState extends State<ExpenseDetailScreen> {
                               context.localization.removeExpenseDescription,
                           confirmText: context.localization.remove,
                           onConfirm: () {
-                            bloC.removeExpense(widget.expense.id);
+                            String name =
+                                context.read<UserManager>().currentUser!.name;
+                            String title = context.localization.deletedExpense;
+                            String body =
+                                context.localization.deletedExpenseMessage(
+                              name,
+                              widget.expense.amount.toCommaSeparated(),
+                            );
+
+                            bloC.removeExpense(
+                                id: widget.expense.id,
+                                name: name,
+                                amount: widget.expense.amount,
+                                title: title,
+                                body: body);
                             Navigator.pop(context);
                             Navigator.pop(context);
                           },

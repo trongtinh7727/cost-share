@@ -5,6 +5,7 @@ class UserSplit {
   String? userId;
   String? userAvatar;
   String? userName;
+  String? email;
   double amount;
   double ratio;
   double weight;
@@ -40,6 +41,7 @@ class UserSplit {
     this.expenseId,
     this.weight = 0,
     this.FCMToken,
+    this.email,
   });
 
   factory UserSplit.formUser(User user) {
@@ -48,6 +50,7 @@ class UserSplit {
       userAvatar: user.photoUrl,
       userName: user.name,
       FCMToken: user.fcmToken,
+      email: user.email,
     );
   }
 
@@ -83,6 +86,7 @@ class UserSplit {
     String? splitId,
     String? expenseId,
     String? FCMToken,
+    String? email,
   }) {
     return UserSplit(
       userId: userId ?? this.userId,
@@ -94,6 +98,7 @@ class UserSplit {
       splitId: splitId ?? this.splitId,
       expenseId: expenseId ?? this.expenseId,
       FCMToken: FCMToken ?? this.FCMToken,
+      email: email ?? this.email,
     );
   }
 }

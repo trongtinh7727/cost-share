@@ -1,9 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
+import 'package:cost_share/repository/notification_repository.dart';
+import 'package:cost_share/service/firebase_messaging_service.dart';
+import 'package:cost_share/utils/enum/notification_status.dart';
+import 'package:cost_share/utils/enum/notification_type.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:cost_share/model/notification.dart' as AppNotification;
 
 import 'package:cost_share/model/group.dart';
 import 'package:cost_share/model/member.dart';
@@ -15,8 +20,15 @@ import 'package:cost_share/utils/enum/user_role.dart';
 class GroupBloc extends BaseBloC {
   final GroupRepository _groupRepository;
   final String? groupId;
+  final NotificationRepository _notificationRepository;
+  final FirebaseMessagingService _firebaseMessagingService =
+      FirebaseMessagingService().instance;
 
-  GroupBloc(this._groupRepository, {this.groupId});
+  GroupBloc(
+    this._groupRepository,
+    this._notificationRepository, {
+    this.groupId,
+  });
 
   String _groupName = '';
   final _groupMembers = BehaviorSubject<List<UserSplit>>();
@@ -80,11 +92,40 @@ class GroupBloc extends BaseBloC {
 
   void removeMember(String? userId) {
     _groupRepository.removeMember(groupId!, userId);
+    String userName = _groupMembers.value
+        .firstWhere((element) => element.userId == userId)
+        .userName!;
+    _notificationRepository.addNotification(AppNotification.Notification(
+      groupId: groupId!,
+      userId: '',
+      message: NotificationType.REMOVE_MEMBER.name,
+      status: NotificationStatus.UNREAD.name,
+      timestamp: DateTime.now(),
+      id: '',
+      data: {
+        'name': userName,
+      },
+    ));
   }
 
   void addMember(BuildContext context) async {
     try {
       await _groupRepository.addMember(groupId!, _email, context);
+      String userName = _groupMembers.value
+          .firstWhere((element) => element.email == _email)
+          .userName!;
+      _notificationRepository.addNotification(AppNotification.Notification(
+        groupId: groupId!,
+        userId: '',
+        message: NotificationType.REMOVE_MEMBER.name,
+        status: NotificationStatus.UNREAD.name,
+        timestamp: DateTime.now(),
+        id: '',
+        data: {
+          'name': userName,
+        },
+      ));
+
       context.pop();
     } catch (e) {}
   }
@@ -129,8 +170,35 @@ class GroupBloc extends BaseBloC {
   }
 
   Future<void> markAsPaid(
-      String groupId, String currentUserId, String userId) async {
+      {required String title,
+      required String body,
+      required String amout,
+      required String groupId,
+      required String currentUserId,
+      required String userId}) async {
     await _groupRepository.markAsPaid(groupId, currentUserId, userId);
     await _groupRepository.markAsPaid(groupId, userId, currentUserId);
+
+    // Send notification to all group members
+    _groupMembers.value.forEach((userSplit) {
+      if (userSplit.FCMToken != null &&
+          (userSplit.userId == currentUserId || userSplit.userId == userId)) {
+        // Send notification to the user
+        _firebaseMessagingService.sendFCMMessage(
+            title: title, body: body, FCMToken: userSplit.FCMToken!);
+
+        _notificationRepository.addNotification(AppNotification.Notification(
+          groupId: groupId,
+          userId: userSplit.userId!,
+          message: NotificationType.DEBT_PAID.name,
+          status: NotificationStatus.UNREAD.name,
+          timestamp: DateTime.now(),
+          id: '',
+          data: {
+            'name': userSplit.userName!,
+          },
+        ));
+      }
+    });
   }
 }

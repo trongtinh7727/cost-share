@@ -4,9 +4,8 @@ enum NotificationType {
   DELETE_EXPENSE,
   NEW_MEMBER_ADDED,
   REMOVE_MEMBER,
-  NEW_BUDGET,
-  UPDATE_BUDGET,
-  DELETE_BUDGET,
+  LEAVE_GROUP,
+  CONTRIBUTE_BUDGET,
   DEBT_PAID,
   DEBT_UNPAID
 }
@@ -24,12 +23,10 @@ extension NotificationTypeExtension on NotificationType {
         return 'NEW_MEMBER_ADDED';
       case NotificationType.REMOVE_MEMBER:
         return 'REMOVE_MEMBER';
-      case NotificationType.NEW_BUDGET:
-        return 'NEW_BUDGET';
-      case NotificationType.UPDATE_BUDGET:
-        return 'UPDATE_BUDGET';
-      case NotificationType.DELETE_BUDGET:
-        return 'DELETE_BUDGET';
+      case NotificationType.LEAVE_GROUP:
+        return 'LEAVE_GROUP';
+      case NotificationType.CONTRIBUTE_BUDGET:
+        return 'CONTRIBUTE_BUDGET';
       case NotificationType.DEBT_PAID:
         return 'DEBT_PAID';
       case NotificationType.DEBT_UNPAID:
@@ -51,12 +48,10 @@ extension NotificationTypeExtension on NotificationType {
         return NotificationType.NEW_MEMBER_ADDED;
       case 'REMOVE_MEMBER':
         return NotificationType.REMOVE_MEMBER;
-      case 'NEW_BUDGET':
-        return NotificationType.NEW_BUDGET;
-      case 'UPDATE_BUDGET':
-        return NotificationType.UPDATE_BUDGET;
-      case 'DELETE_BUDGET':
-        return NotificationType.DELETE_BUDGET;
+      case 'LEAVE_GROUP':
+        return NotificationType.LEAVE_GROUP;
+      case 'CONTRIBUTE_BUDGET':
+        return NotificationType.CONTRIBUTE_BUDGET;
       case 'DEBT_PAID':
         return NotificationType.DEBT_PAID;
       case 'DEBT_UNPAID':

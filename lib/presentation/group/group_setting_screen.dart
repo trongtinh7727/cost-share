@@ -5,6 +5,7 @@ import 'package:cost_share/presentation/common/remove_dialog.dart';
 import 'package:cost_share/presentation/common/text_input_bottom_sheet.dart';
 import 'package:cost_share/presentation/group/bloc/group_bloc.dart';
 import 'package:cost_share/repository/group_repository.dart';
+import 'package:cost_share/repository/notification_repository.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
@@ -26,7 +27,8 @@ class _GroupSettingScreenState extends State<GroupSettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Provider<GroupBloc>(
-      create: (context) => GroupBloc(locator<GroupRepository>(),
+      create: (context) => GroupBloc(
+          locator<GroupRepository>(), locator<NotificationRepository>(),
           groupId: context.read<GroupManager>().currentGroupId),
       builder: (context, child) {
         _groupManager = context.read<GroupManager>();

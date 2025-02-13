@@ -119,5 +119,68 @@
         "type": "String"
       }
     }
+  },
+  "deletedExpense": "An expense has been deleted",
+  "deletedExpenseMessage": "{name} deleted an expense of {amount}.",
+  "@deletedExpenseMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "removeMemberNotificate": "A memmer has been removed",
+  "removeMemberNotificateBody": "{name} has been removed from the group.",
+  "@removeMemberNotificateBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "newMemberAdded": "A memmer has been added",
+  "newMemberAddedBody": "{name} has been added to the group.",
+  "@newMemberAddedBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "leaveGroupNotificate": "A memmer has left the group",
+  "leaveGroupNotificateBody": "{name} has left the group.",
+  "@leaveGroupNotificateBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "debtPaid": "Debt has been paid",
+  "debtPaidBody": "{name} has paid the debt of {amount}.",
+  "@debtPaidBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "contributeBudget": "Contribute to the budget",
+  "contributeBudgetBody": "please contribute {amount} to the budget of {name}.",
+  "@contributeBudgetBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
   }
 }

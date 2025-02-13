@@ -70,7 +70,20 @@ extension StringExt on String {
         return localization.newExpenseAdded;
       case NotificationType.UPDATE_EXPENSE:
         return localization.updatedExpense;
+      case NotificationType.DELETE_EXPENSE:
+        return localization.deletedExpense;
+      case NotificationType.NEW_MEMBER_ADDED:
+        return localization.newMemberAdded;
+      case NotificationType.REMOVE_MEMBER:
+        return localization.removeMember;
+      case NotificationType.DEBT_PAID:
+        return localization.debtPaid;
+      case NotificationType.CONTRIBUTE_BUDGET:
+        return localization.contributeBudget;
 
+      case NotificationType.LEAVE_GROUP:
+      case NotificationType.DEBT_UNPAID:
+        return "";
       default:
         return "";
     }
@@ -84,7 +97,18 @@ extension StringExt on String {
       case NotificationType.UPDATE_EXPENSE:
         return localization.updatedExpenseMessage(
             data['name']!, data['oldAmount']!, data['newAmount']!);
-
+      case NotificationType.DELETE_EXPENSE:
+        return localization.deletedExpenseMessage(
+            data['name']!, data['amount']!);
+      case NotificationType.NEW_MEMBER_ADDED:
+        return localization.newMemberAddedBody(data['name']!);
+      case NotificationType.REMOVE_MEMBER:
+        return localization.removeMemberNotificateBody(data['name']!);
+      case NotificationType.DEBT_PAID:
+        return localization.debtPaidBody(data['name']!, data['amount']!);
+      case NotificationType.CONTRIBUTE_BUDGET:
+        return localization.contributeBudgetBody(
+            data['name']!, data['amount']!);
       default:
         return "";
     }

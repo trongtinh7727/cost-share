@@ -20,9 +20,22 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(name, amount) => "${name} added an expense of ${amount}.";
+  static String m0(name, amount) =>
+      "please contribute ${amount} to the budget of ${name}.";
 
-  static String m1(name, oldAmount, newAmount) =>
+  static String m1(name, amount) => "${name} has paid the debt of ${amount}.";
+
+  static String m2(name, amount) => "${name} deleted an expense of ${amount}.";
+
+  static String m3(name, amount) => "${name} added an expense of ${amount}.";
+
+  static String m4(name) => "${name} has left the group.";
+
+  static String m5(name) => "${name} has been added to the group.";
+
+  static String m6(name) => "${name} has been removed from the group.";
+
+  static String m7(name, oldAmount, newAmount) =>
       "${name} updated an expense from ${oldAmount} to ${newAmount}.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -43,19 +56,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
+        "contributeBudget":
+            MessageLookupByLibrary.simpleMessage("Contribute to the budget"),
+        "contributeBudgetBody": m0,
         "contributied": MessageLookupByLibrary.simpleMessage("Contribuied: "),
         "contributions": MessageLookupByLibrary.simpleMessage("Contributions"),
+        "debtPaid": MessageLookupByLibrary.simpleMessage("Debt has been paid"),
+        "debtPaidBody": m1,
         "december": MessageLookupByLibrary.simpleMessage("December"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "deleteGroup": MessageLookupByLibrary.simpleMessage("Delete Group"),
         "deleteGroupDescription": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to delete this group? This action cannot be undone."),
+        "deletedExpense":
+            MessageLookupByLibrary.simpleMessage("An expense has been deleted"),
+        "deletedExpenseMessage": m2,
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "exceedLimit":
             MessageLookupByLibrary.simpleMessage("You’ve exceed the limit"),
         "expenseDetail": MessageLookupByLibrary.simpleMessage("Expense Detail"),
-        "expenseMessage": m0,
+        "expenseMessage": m3,
         "expenseSpliting":
             MessageLookupByLibrary.simpleMessage("Expense Spliting"),
         "february": MessageLookupByLibrary.simpleMessage("February"),
@@ -95,6 +116,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "leaveGroup": MessageLookupByLibrary.simpleMessage("Leave Group"),
         "leaveGroupDescription": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to leave this group? This action cannot be undone."),
+        "leaveGroupNotificate":
+            MessageLookupByLibrary.simpleMessage("A memmer has left the group"),
+        "leaveGroupNotificateBody": m4,
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "lowest": MessageLookupByLibrary.simpleMessage("Lowest"),
@@ -113,6 +137,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Name cannot be empty"),
         "newExpenseAdded":
             MessageLookupByLibrary.simpleMessage("New expense added"),
+        "newMemberAdded":
+            MessageLookupByLibrary.simpleMessage("A memmer has been added"),
+        "newMemberAddedBody": m5,
         "newest": MessageLookupByLibrary.simpleMessage("Newest"),
         "november": MessageLookupByLibrary.simpleMessage("November"),
         "october": MessageLookupByLibrary.simpleMessage("October"),
@@ -133,6 +160,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "removeMember": MessageLookupByLibrary.simpleMessage("Remove Member"),
         "removeMemberDescription": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to remove this member? This action cannot be undone."),
+        "removeMemberNotificate":
+            MessageLookupByLibrary.simpleMessage("A memmer has been removed"),
+        "removeMemberNotificateBody": m6,
         "reset": MessageLookupByLibrary.simpleMessage("Reset"),
         "scanQRCode": MessageLookupByLibrary.simpleMessage("Scan the QR Code"),
         "september": MessageLookupByLibrary.simpleMessage("September"),
@@ -148,7 +178,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "transaction": MessageLookupByLibrary.simpleMessage("Transaction"),
         "updatedExpense":
             MessageLookupByLibrary.simpleMessage("An expense has been updated"),
-        "updatedExpenseMessage": m1,
+        "updatedExpenseMessage": m7,
         "userNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
         "wellcome": MessageLookupByLibrary.simpleMessage("Wellcome Cost Share"),
         "yesterday": MessageLookupByLibrary.simpleMessage("Yesterday"),

@@ -118,5 +118,68 @@
         "type": "String"
       }
     }
+  },
+  "deletedExpense": "Một chi tiêu đã bị xóa",
+  "deletedExpenseMessage": "{name} đã xóa một chi tiêu {amount}.",
+  "@deletedExpenseMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "removeMemberNotificate": "Một thành viên đã bị xóa",
+  "removeMemberNotificateBody": "{name} đã bị xóa khỏi nhóm.",
+  "@removeMemberNotificateBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "newMemberAdded": "Một thành viên mới đã được thêm",
+  "newMemberAddedBody": "{name} đã được thêm vào nhóm.",
+  "@newMemberAddedBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "leaveGroupNotificate": "Một thành viên đã rời nhóm",
+  "leaveGroupNotificateBody": "{name} đã rời nhóm.",
+  "@leaveGroupNotificateBody": {
+    "placeholders": {
+        "name": {
+            "type": "String"
+        }
+    }
+  },
+  "debtPaid": "Nợ đã được thanh toán",
+  "debtPaidBody": "{name} đã thanh toán nợ {amount}.",
+  "@debtPaidBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "contributeBudget": "Đóng góp vào ngân sách",
+  "contributeBudgetBody": "vui lòng đóng góp {amount} vào ngân sách của {name}.",
+  "@contributeBudgetBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -10,6 +10,7 @@ import 'package:cost_share/presentation/common/user_transaction_status.dart';
 import 'package:cost_share/presentation/group/bloc/group_bloc.dart';
 import 'package:cost_share/presentation/transaction/widgets/paid_expense_dialog.dart';
 import 'package:cost_share/repository/group_repository.dart';
+import 'package:cost_share/repository/notification_repository.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/constant.dart';
@@ -34,7 +35,8 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
   @override
   Widget build(BuildContext context) {
     return Provider<GroupBloc>(
-      create: (context) => GroupBloc(locator<GroupRepository>(),
+      create: (context) => GroupBloc(
+          locator<GroupRepository>(), locator<NotificationRepository>(),
           groupId: context.read<GroupManager>().currentGroupId),
       builder: (context, child) {
         _groupManager = context.read<GroupManager>();
@@ -138,8 +140,10 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                                           size: 50,
                                           border: 0,
                                           remove: _groupManager
-                                                  .currentGroup?.authorId ==
-                                              _groupManager.currentUserId,
+                                                      .currentGroup?.authorId ==
+                                                  _groupManager.currentUserId &&
+                                              _groupManager.currentUserId !=
+                                                  userSplit.userId,
                                           padding: 8,
                                           onTap: () {
                                             if (_groupManager
@@ -159,7 +163,7 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                                                     onConfirm: () {
                                                       _groupBloc.removeMember(
                                                           userSplit.userId);
-                                                          context.pop();
+                                                      context.pop();
                                                     },
                                                   );
                                                 },
@@ -230,12 +234,27 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
                                                   userSplit: userSplit,
                                                   isPaid: userSplit.amount == 0,
                                                   onPaid: () async {
+                                                    String title = context
+                                                        .localization.debtPaid;
+                                                    String body = context
+                                                        .localization
+                                                        .debtPaidBody(
+                                                            userSplit.userName!,
+                                                            userSplit.amount
+                                                                .toCommaSeparated());
+
                                                     await _groupBloc.markAsPaid(
-                                                        _groupManager
+                                                        title: title,
+                                                        body: body,
+                                                        amout: userSplit.amount
+                                                            .toCommaSeparated(),
+                                                        groupId: _groupManager
                                                             .currentGroupId,
-                                                        _groupManager
-                                                            .currentUserId,
-                                                        userSplit.userId!);
+                                                        currentUserId:
+                                                            _groupManager
+                                                                .currentUserId,
+                                                        userId:
+                                                            userSplit.userId!);
                                                     setState(() {});
                                                   },
                                                 );
@@ -283,42 +302,36 @@ class _GroupMemberScreenState extends State<GroupMemberScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          RichText(
-              text: TextSpan(children: [
-            TextSpan(
-                text: '${context.localization.totalRemainingBudget}:',
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+            Text('${context.localization.totalRemainingBudget}:',
                 style: AppTextStyles.title3
                     .copyWith(color: AppColors.colorDark50)),
-            WidgetSpan(child: SizedBox(width: 80)),
-            TextSpan(
-                text: ' ${_groupManager.totalBudgetRemaining.toVND()}',
+            Text(' ${_groupManager.totalBudgetRemaining.toVND()}',
                 style: AppTextStyles.title3
                     .copyWith(color: AppColors.colorDark100)),
-          ])),
-          RichText(
-              text: TextSpan(children: [
-            TextSpan(
-                text: '${context.localization.totalBudget}:',
+          ]),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+            Text('${context.localization.totalBudget}:',
                 style: AppTextStyles.title3
                     .copyWith(color: AppColors.colorDark50)),
-            WidgetSpan(child: SizedBox(width: 166)),
-            TextSpan(
-                text: ' ${_groupManager.totalBudget.toVND()}',
+            Text(' ${_groupManager.totalBudget.toVND()}',
                 style: AppTextStyles.title3
                     .copyWith(color: AppColors.colorGreen100)),
-          ])),
-          RichText(
-              text: TextSpan(children: [
-            TextSpan(
-                text: '${context.localization.totalExpense}:',
+          ]),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+            Text('${context.localization.totalExpense}:',
                 style: AppTextStyles.title3
                     .copyWith(color: AppColors.colorDark50)),
-            WidgetSpan(child: SizedBox(width: 156)),
-            TextSpan(
-                text: ' ${_groupManager.totalExpense.toVND()}',
+            Text(' ${_groupManager.totalExpense.toVND()}',
                 style: AppTextStyles.title3
                     .copyWith(color: AppColors.colorRed100)),
-          ])),
+          ]),
         ],
       ),
     );

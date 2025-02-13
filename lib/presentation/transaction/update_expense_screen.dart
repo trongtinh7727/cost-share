@@ -314,7 +314,7 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
                                   .copyWith(color: AppColors.colorGreen100)),
                           MyAppButton(
                             onPressed: () async {
-                              bloC.removeExpense(widget.expense.id);
+                              bloC.removeExpense(id: widget.expense.id);
                               String name =
                                   context.read<UserManager>().currentUser!.name;
                               String title =

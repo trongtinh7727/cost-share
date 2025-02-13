@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cost_share/model/budget.dart';
 import 'package:cost_share/presentation/common/avatar.dart';
+import 'package:cost_share/repository/notification_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cost_share/locator.dart';
@@ -51,6 +52,7 @@ class _AddContributionScreenState extends State<AddContributionScreen> {
         create: (context) => BudgetBloc(
               locator<BudgetRepository>(),
               locator<GroupRepository>(),
+              locator<NotificationRepository>(),
               context.read<GroupManager>().currentGroupId,
               context.read<UserManager>().currentUser!.id,
             ),

@@ -1020,6 +1020,126 @@ class AppLocalizations {
       args: [name, oldAmount, newAmount],
     );
   }
+
+  /// `An expense has been deleted`
+  String get deletedExpense {
+    return Intl.message(
+      'An expense has been deleted',
+      name: 'deletedExpense',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{name} deleted an expense of {amount}.`
+  String deletedExpenseMessage(String name, String amount) {
+    return Intl.message(
+      '$name deleted an expense of $amount.',
+      name: 'deletedExpenseMessage',
+      desc: '',
+      args: [name, amount],
+    );
+  }
+
+  /// `A memmer has been removed`
+  String get removeMemberNotificate {
+    return Intl.message(
+      'A memmer has been removed',
+      name: 'removeMemberNotificate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{name} has been removed from the group.`
+  String removeMemberNotificateBody(String name) {
+    return Intl.message(
+      '$name has been removed from the group.',
+      name: 'removeMemberNotificateBody',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `A memmer has been added`
+  String get newMemberAdded {
+    return Intl.message(
+      'A memmer has been added',
+      name: 'newMemberAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{name} has been added to the group.`
+  String newMemberAddedBody(String name) {
+    return Intl.message(
+      '$name has been added to the group.',
+      name: 'newMemberAddedBody',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `A memmer has left the group`
+  String get leaveGroupNotificate {
+    return Intl.message(
+      'A memmer has left the group',
+      name: 'leaveGroupNotificate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{name} has left the group.`
+  String leaveGroupNotificateBody(String name) {
+    return Intl.message(
+      '$name has left the group.',
+      name: 'leaveGroupNotificateBody',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Debt has been paid`
+  String get debtPaid {
+    return Intl.message(
+      'Debt has been paid',
+      name: 'debtPaid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{name} has paid the debt of {amount}.`
+  String debtPaidBody(String name, String amount) {
+    return Intl.message(
+      '$name has paid the debt of $amount.',
+      name: 'debtPaidBody',
+      desc: '',
+      args: [name, amount],
+    );
+  }
+
+  /// `Contribute to the budget`
+  String get contributeBudget {
+    return Intl.message(
+      'Contribute to the budget',
+      name: 'contributeBudget',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please contribute {amount} to the budget of {name}.`
+  String contributeBudgetBody(String name, String amount) {
+    return Intl.message(
+      'please contribute $amount to the budget of $name.',
+      name: 'contributeBudgetBody',
+      desc: '',
+      args: [name, amount],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

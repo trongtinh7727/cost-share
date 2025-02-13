@@ -221,7 +221,33 @@ class TransactionBloc extends BaseBloC {
     _expenseRepository.updateSplit(splitData);
   }
 
-  void removeExpense(String id) {
+  void removeExpense(
+      {required String id,
+      String? name,
+      double? amount,
+      String? title,
+      String? body}) async {
     _expenseRepository.deleteExpense(id);
+    if (name != null) {
+      _groupMembers.value.forEach((userSplit) {
+        if (userSplit.FCMToken != null) {
+          // Send notification to the user
+          _firebaseMessagingService.sendFCMMessage(
+              title: title!, body: body!, FCMToken: userSplit.FCMToken!);
+        }
+      });
+      _notificationRepository.addNotification(AppNotification.Notification(
+        groupId: groupId,
+        userId: '',
+        message: NotificationType.DELETE_EXPENSE.name,
+        status: NotificationStatus.UNREAD.name,
+        timestamp: DateTime.now(),
+        id: '',
+        data: {
+          'name': name,
+          'amount': amount!.toCommaSeparated(),
+        },
+      ));
+    }
   }
 }

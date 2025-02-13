@@ -9,6 +9,7 @@ import 'package:cost_share/presentation/common/background_icon.dart';
 import 'package:cost_share/presentation/common/user_transaction_status.dart';
 import 'package:cost_share/repository/budget_repository.dart';
 import 'package:cost_share/repository/group_repository.dart';
+import 'package:cost_share/repository/notification_repository.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/enum/app_category.dart';
@@ -38,6 +39,7 @@ class _BudgetDetailScreenState extends State<BudgetDetailScreen> {
       create: (context) => BudgetBloc(
         locator<BudgetRepository>(),
         locator<GroupRepository>(),
+        locator<NotificationRepository>(),
         context.read<GroupManager>().currentGroupId,
         context.read<UserManager>().currentUser!.id,
       ),
@@ -145,9 +147,21 @@ class _BudgetDetailScreenState extends State<BudgetDetailScreen> {
                         style: AppTextStyles.title2
                             .copyWith(color: AppColors.colorDark25),
                       ),
-                      Assets.icon.svg.iconNotifiaction.svg(
-                          colorFilter: ColorFilter.mode(
-                              AppColors.colorYellow100, BlendMode.srcIn)),
+                      InkWell(
+                        onTap: () {
+                          String title = context.localization.contributeBudget;
+                          double amoutPerPerson = widget.budget.totalAmount /
+                              widget.budget.contributions.length;
+                          String body = context.localization
+                              .contributeBudgetBody(widget.budget.category,
+                                  amoutPerPerson.toCommaSeparated());
+
+                          bloC.remindFunds(widget.budget, title, body);
+                        },
+                        child: Assets.icon.svg.iconNotifiaction.svg(
+                            colorFilter: ColorFilter.mode(
+                                AppColors.colorYellow100, BlendMode.srcIn)),
+                      ),
                     ],
                   ),
                   Row(

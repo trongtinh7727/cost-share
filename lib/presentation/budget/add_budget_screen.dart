@@ -8,6 +8,7 @@ import 'package:cost_share/presentation/common/category_picker.dart';
 import 'package:cost_share/presentation/common/my_app_button.dart';
 import 'package:cost_share/repository/budget_repository.dart';
 import 'package:cost_share/repository/group_repository.dart';
+import 'package:cost_share/repository/notification_repository.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/enum/app_category.dart';
@@ -46,6 +47,7 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
       create: (context) => BudgetBloc(
         locator<BudgetRepository>(),
         locator<GroupRepository>(),
+        locator<NotificationRepository>(),
         context.read<GroupManager>().currentGroupId,
         context.read<UserManager>().currentUser!.id,
       ),
