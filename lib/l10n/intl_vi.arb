@@ -85,5 +85,23 @@
   "newest": "Mới nhất",
   "oldest": "Cũ nhất",
   "chooseCategory": "Chọn danh mục",
-  "reset": "Đặt lại"
+  "reset": "Đặt lại",
+  "settings": "Cài đặt",
+  "language": "Ngôn ngữ",
+  "newExpenseAdded": "Chi tiêu mới đã được thêm",
+  "expenseMessage": "{name} đã thêm một chi tiêu mới {amount}.",
+  "@expenseMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "Hôm nay",
+  "yesterday": "Hôm qua",
+  "delete": "Xóa",
+  "markAsRead": "Đánh dấu đã đọc"
 }

@@ -1,3 +1,5 @@
+import 'package:cost_share/generated/l10n.dart';
+import 'package:cost_share/utils/enum/notification_type.dart';
 import 'package:cost_share/utils/extension/date_ext.dart';
 import 'package:intl/intl.dart';
 
@@ -40,7 +42,7 @@ extension StringExt on String {
         this.contains(RegExp(r'[0-9]'));
   }
 
-  String toCustomDateString() {
+  String toCustomDateString(AppLocalizations localization) {
     try {
       // Parse the string to a DateTime object
       DateTime date =
@@ -51,14 +53,35 @@ extension StringExt on String {
       final yesterday = today.subtract(const Duration(days: 1));
 
       if (date.isSameDate(today)) {
-        return 'Today';
+        return localization.today;
       } else if (date.isSameDate(yesterday)) {
-        return 'Yesterday';
+        return localization.yesterday;
       } else {
         return DateFormat('MMMM dd, yyyy').format(date);
       }
     } catch (e) {
       return 'Invalid date'; // Handle invalid date strings
+    }
+  }
+
+  String toNotificationTitle(AppLocalizations localization) {
+    switch (NotificationTypeExtension.fromString(this)) {
+      case NotificationType.NEW_EXPENSE_ADDED:
+        return localization.newExpenseAdded;
+
+      default:
+        return "";
+    }
+  }
+
+  String toNotificationBody(
+      AppLocalizations localization, Map<String, String> data) {
+    switch (NotificationTypeExtension.fromString(this)) {
+      case NotificationType.NEW_EXPENSE_ADDED:
+        return localization.expenseMessage(data['name']!, data['amount']!);
+
+      default:
+        return "";
     }
   }
 

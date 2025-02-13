@@ -14,6 +14,7 @@ import 'package:cost_share/presentation/transaction/widgets/wallet_picker.dart';
 import 'package:cost_share/repository/budget_repository.dart';
 import 'package:cost_share/repository/expense_repository.dart';
 import 'package:cost_share/repository/group_repository.dart';
+import 'package:cost_share/repository/notification_repository.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/enum/app_category.dart';
@@ -56,6 +57,7 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
         locator<BudgetRepository>(),
         locator<GroupRepository>(),
         locator<ExpenseRepository>(),
+        locator<NotificationRepository>(),
         context.read<GroupManager>().currentGroupId,
         context.read<UserManager>().currentUser!.id,
       ),
@@ -313,8 +315,14 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
                           MyAppButton(
                             onPressed: () async {
                               bloC.removeExpense(widget.expense.id);
-                              Expense addedExpense =
-                                  await bloC.addExpense(selectedDate);
+                              String name =
+                                  context.read<UserManager>().currentUser!.name;
+                              String title =
+                                  context.localization.newExpenseAdded;
+                              String body = context.localization.expenseMessage(
+                                  name, bloC.amount.toCommaSeparated());
+                              Expense addedExpense = await bloC.addExpense(
+                                  selectedDate, name, title, body);
                               Navigator.pushReplacementNamed(
                                   context, RouteName.expenseDetail,
                                   arguments: addedExpense);

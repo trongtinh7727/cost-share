@@ -95,6 +95,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 await context
                                     .read<GroupManager>()
                                     .loadUserGroups(user.id);
+
                                 Navigator.pushNamedAndRemoveUntil(
                                   context,
                                   RouteName.intro,

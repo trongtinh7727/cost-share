@@ -1,6 +1,7 @@
 import 'package:cost_share/gen/assets.gen.dart';
 import 'package:cost_share/manager/bottom_navigation_manager.dart';
 import 'package:cost_share/manager/group_manager.dart';
+import 'package:cost_share/manager/notification_manager.dart';
 import 'package:cost_share/manager/user_manager.dart';
 import 'package:cost_share/model/group_detail.dart';
 import 'package:cost_share/model/user.dart';
@@ -44,6 +45,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     User currentUser = context.read<UserManager>().currentUser!;
+    Locale locale = context.read<UserManager>().currentLocale!;
 
     return Scaffold(
       key: scaffoldKey,
@@ -135,6 +137,14 @@ class _MainScreenState extends State<MainScreen> {
                                   context
                                       .read<GroupManager>()
                                       .setCurrentGroup(group.groupId);
+                                  context
+                                      .read<NotificationManager>()
+                                      .loadNotifications(
+                                          context
+                                              .read<UserManager>()
+                                              .currentUser!
+                                              .id,
+                                          group.groupId);
                                   Navigator.pushReplacementNamed(
                                       context, RouteName.main);
                                 },
@@ -153,13 +163,16 @@ class _MainScreenState extends State<MainScreen> {
                 height: 8.0,
               ),
               ListTile(
+                onTap: () {
+                  Navigator.pushNamed(context, RouteName.personalSetting);
+                },
                 leading: BackgroundIcon(
                   icon: Assets.icon.svg.iconSettings.svg(
                       colorFilter: ColorFilter.mode(
                           AppColors.colorViolet100, BlendMode.srcIn)),
                   backgroundColor: AppColors.colorViolet40,
                 ),
-                title: Text("Logout"),
+                title: Text(context.localization.settings),
               ),
               Divider(
                 indent: 12,
@@ -172,7 +185,7 @@ class _MainScreenState extends State<MainScreen> {
                             AppColors.colorRed100, BlendMode.srcIn)),
                     backgroundColor: AppColors.colorRed20,
                   ),
-                  title: Text("Logout"),
+                  title: Text(context.localization.logout),
                   onTap: () {
                     context.read<UserManager>().signOut();
                     Navigator.pushReplacementNamed(context, RouteName.intro);
@@ -218,7 +231,7 @@ class _MainScreenState extends State<MainScreen> {
                   _bottomBarItem(Assets.icon.svg.iconTransaction.path,
                       context.localization.transaction, value, 1),
                   SizedBox(
-                    width: 100,
+                    width: locale.countryCode == "VN" ? 60 : 100,
                   ),
                   _bottomBarItem(Assets.icon.svg.iconPieChart.path,
                       context.localization.budget, value, 2),

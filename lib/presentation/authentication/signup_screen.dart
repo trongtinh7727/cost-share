@@ -145,6 +145,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 await context
                                     .read<GroupManager>()
                                     .loadUserGroups(user.id);
+
                                 Navigator.pushNamedAndRemoveUntil(
                                   context,
                                   RouteName.intro,

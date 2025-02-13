@@ -1,5 +1,6 @@
 import 'package:cost_share/model/expense.dart';
 import 'package:cost_share/presentation/common/expense_card.dart';
+import 'package:cost_share/utils/extension/context_ext.dart';
 import 'package:cost_share/utils/extension/string_ext.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class SectionByDate extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            date.toCustomDateString(),
+            date.toCustomDateString(context.localization),
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),

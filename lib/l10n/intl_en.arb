@@ -86,5 +86,23 @@
   "newest": "Newest",
   "oldest": "Oldest",
   "chooseCategory": "Choose Category",
-  "reset": "Reset"
+  "reset": "Reset",
+  "settings": "Settings",
+  "language": "Language",
+  "newExpenseAdded": "New expense added",
+  "expenseMessage": "{name} added an expense of {amount}.",
+  "@expenseMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "delete": "Delete",
+  "markAsRead": "Mark as read"
 }

@@ -13,5 +13,8 @@ class RouteName {
   static const budgetDetai = "/budget/detail";
   static const addContribute = "/budget/add_contribute";
   static const groupSetting = "/group/setting";
-
+  static const notification = "/notification";
+  static const notificationDetail = "/notification/detail";
+  static const personalSetting = "/personal/setting";
+  static const changeLanguage = "/personal/change_language";
 }

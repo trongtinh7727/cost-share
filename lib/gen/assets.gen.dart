@@ -111,6 +111,10 @@ class $AssetsIconSvgGen {
   SvgGenImage get iconShoppingBag =>
       const SvgGenImage('assets/icon/svg/icon_shopping_bag.svg');
 
+  /// File path: assets/icon/svg/icon_success.svg
+  SvgGenImage get iconSuccess =>
+      const SvgGenImage('assets/icon/svg/icon_success.svg');
+
   /// File path: assets/icon/svg/icon_transaction.svg
   SvgGenImage get iconTransaction =>
       const SvgGenImage('assets/icon/svg/icon_transaction.svg');
@@ -150,6 +154,7 @@ class $AssetsIconSvgGen {
         iconSalary,
         iconSettings,
         iconShoppingBag,
+        iconSuccess,
         iconTransaction,
         iconTrash,
         iconUser,

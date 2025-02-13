@@ -11,6 +11,7 @@ class UserSplit {
   bool isPaid;
   String? splitId;
   String? expenseId;
+  String? FCMToken;
 
   void setratio(double value) {
     if (value < 0) {
@@ -38,6 +39,7 @@ class UserSplit {
     this.splitId,
     this.expenseId,
     this.weight = 0,
+    this.FCMToken,
   });
 
   factory UserSplit.formUser(User user) {
@@ -45,6 +47,7 @@ class UserSplit {
       userId: user.id,
       userAvatar: user.photoUrl,
       userName: user.name,
+      FCMToken: user.fcmToken,
     );
   }
 
@@ -79,6 +82,7 @@ class UserSplit {
     bool? isPaid,
     String? splitId,
     String? expenseId,
+    String? FCMToken,
   }) {
     return UserSplit(
       userId: userId ?? this.userId,
@@ -89,6 +93,7 @@ class UserSplit {
       isPaid: isPaid ?? this.isPaid,
       splitId: splitId ?? this.splitId,
       expenseId: expenseId ?? this.expenseId,
+      FCMToken: FCMToken ?? this.FCMToken,
     );
   }
 }

@@ -10,7 +10,11 @@ import 'package:cost_share/presentation/group/add_group_screen.dart';
 import 'package:cost_share/presentation/group/group_setting_screen.dart';
 import 'package:cost_share/presentation/main/main_screen.dart';
 import 'package:cost_share/presentation/intro/intro_screen.dart';
+import 'package:cost_share/presentation/main/personal_setting_screen.dart';
+import 'package:cost_share/presentation/main/select_language_screen.dart';
 import 'package:cost_share/presentation/main/wellcome_screen.dart';
+import 'package:cost_share/presentation/notification/notification_detail.dart';
+import 'package:cost_share/presentation/notification/notification_screen.dart';
 import 'package:cost_share/presentation/transaction/add_expense_screen.dart';
 import 'package:cost_share/presentation/transaction/expense_detail_screen.dart';
 import 'package:cost_share/presentation/transaction/update_expense_screen.dart';
@@ -81,6 +85,23 @@ extension GenerateRoute on RouteSettings {
           builder: (context) => UpdateExpenseScreen(
             expense: expense,
           ),
+        );
+      case RouteName.notificationDetail:
+        String title = arguments as String;
+        return MaterialPageRoute(
+          builder: (context) => NotificationDetail(
+            title: title,
+          ),
+        );
+      case RouteName.personalSetting:
+        return MaterialPageRoute(
+          builder: (context) => const PersonalSettingScreen(),
+        );
+      case RouteName.notification:
+        return MaterialPageRoute(builder: (context) => NotificationScreen());
+      case RouteName.changeLanguage:
+        return MaterialPageRoute(
+          builder: (context) => const SelectLanguageScreen(),
         );
       case RouteName.groupSetting:
         return MaterialPageRoute(builder: (context) => GroupSettingScreen());

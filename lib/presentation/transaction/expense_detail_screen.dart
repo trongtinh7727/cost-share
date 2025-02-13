@@ -11,6 +11,7 @@ import 'package:cost_share/presentation/transaction/widgets/paid_expense_dialog.
 import 'package:cost_share/repository/budget_repository.dart';
 import 'package:cost_share/repository/expense_repository.dart';
 import 'package:cost_share/repository/group_repository.dart';
+import 'package:cost_share/repository/notification_repository.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/enum/app_category.dart';
@@ -46,6 +47,7 @@ class _ExpenseDetailScreenState extends State<ExpenseDetailScreen> {
         locator<BudgetRepository>(),
         locator<GroupRepository>(),
         locator<ExpenseRepository>(),
+        locator<NotificationRepository>(),
         context.read<GroupManager>().currentGroupId,
         context.read<UserManager>().currentUser!.id,
         expenseId: widget.expense.id,
@@ -80,7 +82,6 @@ class _ExpenseDetailScreenState extends State<ExpenseDetailScreen> {
                   },
                   child: Assets.icon.svg.iconTrash.svg()),
               SizedBox(width: 4),
-              // TODO: Implement edit expense
               InkWell(
                   onTap: () {
                     Navigator.pushReplacementNamed(

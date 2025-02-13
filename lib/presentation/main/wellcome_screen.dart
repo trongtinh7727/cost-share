@@ -1,5 +1,6 @@
 import 'package:cost_share/gen/assets.gen.dart';
 import 'package:cost_share/manager/group_manager.dart';
+import 'package:cost_share/manager/notification_manager.dart';
 import 'package:cost_share/manager/user_manager.dart';
 import 'package:cost_share/model/group_detail.dart';
 import 'package:cost_share/presentation/authentication/bloc/authenticate_bloc.dart';
@@ -75,6 +76,14 @@ class _WellcomeScreenState extends State<WellcomeScreen> {
                               context
                                   .read<GroupManager>()
                                   .setCurrentGroup(group.groupId);
+                              context
+                                  .read<NotificationManager>()
+                                  .loadNotifications(
+                                      context
+                                          .read<UserManager>()
+                                          .currentUser!
+                                          .id,
+                                      group.groupId);
                               Navigator.pushReplacementNamed(
                                   context, RouteName.main);
                             },

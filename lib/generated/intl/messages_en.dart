@@ -20,6 +20,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(name, amount) => "${name} added an expense of ${amount}.";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "addMember": MessageLookupByLibrary.simpleMessage("Add Member"),
@@ -41,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "contributied": MessageLookupByLibrary.simpleMessage("Contribuied: "),
         "contributions": MessageLookupByLibrary.simpleMessage("Contributions"),
         "december": MessageLookupByLibrary.simpleMessage("December"),
+        "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "deleteGroup": MessageLookupByLibrary.simpleMessage("Delete Group"),
         "deleteGroupDescription": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to delete this group? This action cannot be undone."),
@@ -49,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "exceedLimit":
             MessageLookupByLibrary.simpleMessage("You’ve exceed the limit"),
         "expenseDetail": MessageLookupByLibrary.simpleMessage("Expense Detail"),
+        "expenseMessage": m0,
         "expenseSpliting":
             MessageLookupByLibrary.simpleMessage("Expense Spliting"),
         "february": MessageLookupByLibrary.simpleMessage("February"),
@@ -83,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "january": MessageLookupByLibrary.simpleMessage("January"),
         "july": MessageLookupByLibrary.simpleMessage("July"),
         "june": MessageLookupByLibrary.simpleMessage("June"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
         "leave": MessageLookupByLibrary.simpleMessage("Leave"),
         "leaveGroup": MessageLookupByLibrary.simpleMessage("Leave Group"),
         "leaveGroupDescription": MessageLookupByLibrary.simpleMessage(
@@ -94,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "markAsPaid": MessageLookupByLibrary.simpleMessage("Mark as paid"),
         "markAsPaidDescription": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to mark this invoice as paid?"),
+        "markAsRead": MessageLookupByLibrary.simpleMessage("Mark as read"),
         "markAsUnpaid": MessageLookupByLibrary.simpleMessage("Mark as unpaid"),
         "markAsUnpaidDescription": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to mark this invoice as unpaid? This may affect the payment records."),
@@ -102,6 +108,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "nameCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage("Name cannot be empty"),
+        "newExpenseAdded":
+            MessageLookupByLibrary.simpleMessage("New expense added"),
         "newest": MessageLookupByLibrary.simpleMessage("Newest"),
         "november": MessageLookupByLibrary.simpleMessage("November"),
         "october": MessageLookupByLibrary.simpleMessage("October"),
@@ -125,9 +133,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "reset": MessageLookupByLibrary.simpleMessage("Reset"),
         "scanQRCode": MessageLookupByLibrary.simpleMessage("Scan the QR Code"),
         "september": MessageLookupByLibrary.simpleMessage("September"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "sortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Continue"),
+        "today": MessageLookupByLibrary.simpleMessage("Today"),
         "totalBudget": MessageLookupByLibrary.simpleMessage("Total budget"),
         "totalExpense": MessageLookupByLibrary.simpleMessage("Total expense"),
         "totalRemainingBudget":
@@ -135,6 +145,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "transaction": MessageLookupByLibrary.simpleMessage("Transaction"),
         "userNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
         "wellcome": MessageLookupByLibrary.simpleMessage("Wellcome Cost Share"),
+        "yesterday": MessageLookupByLibrary.simpleMessage("Yesterday"),
         "youOwe": MessageLookupByLibrary.simpleMessage("You owe: ")
       };
 }

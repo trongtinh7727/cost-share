@@ -919,6 +919,86 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New expense added`
+  String get newExpenseAdded {
+    return Intl.message(
+      'New expense added',
+      name: 'newExpenseAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{name} added an expense of {amount}.`
+  String expenseMessage(String name, String amount) {
+    return Intl.message(
+      '$name added an expense of $amount.',
+      name: 'expenseMessage',
+      desc: '',
+      args: [name, amount],
+    );
+  }
+
+  /// `Today`
+  String get today {
+    return Intl.message(
+      'Today',
+      name: 'today',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yesterday`
+  String get yesterday {
+    return Intl.message(
+      'Yesterday',
+      name: 'yesterday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message(
+      'Delete',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mark as read`
+  String get markAsRead {
+    return Intl.message(
+      'Mark as read',
+      name: 'markAsRead',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

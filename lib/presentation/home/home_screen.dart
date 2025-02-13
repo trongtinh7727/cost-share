@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cost_share/manager/bottom_navigation_manager.dart';
 import 'package:cost_share/manager/group_manager.dart';
+import 'package:cost_share/manager/notification_manager.dart';
 import 'package:cost_share/model/expense.dart';
 import 'package:cost_share/model/group_detail.dart';
 import 'package:cost_share/presentation/common/app_date_picker_button.dart';
@@ -10,6 +11,7 @@ import 'package:cost_share/presentation/home/widgets/total_balance_card.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
 import 'package:cost_share/utils/extension/double_ext.dart';
 import 'package:cost_share/utils/extension/int_ext.dart';
+import 'package:cost_share/utils/route/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_month_picker/flutter_custom_month_picker.dart';
 
@@ -45,6 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     GroupDetail currentGroup = context.read<GroupManager>().currentGroup!;
+    NotificationManager notificationManager =
+        context.read<NotificationManager>();
 
     return Scaffold(
       appBar: AppBar(
@@ -81,193 +85,200 @@ class _HomeScreenState extends State<HomeScreen> {
               dialogBackgroundColor: Colors.grey[200]),
         ),
         actions: [
-          Stack(
-            children: [
-              IconButton(
-                  onPressed: () {},
-                  icon: Assets.icon.svg.iconNotifiaction.svg(
+          StreamBuilder(
+            stream: notificationManager.notificationsStream,
+            builder: (context, snapshot) {
+              return Stack(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, RouteName.notification);
+                    },
+                    icon: Assets.icon.svg.iconNotifiaction.svg(
                       colorFilter: ColorFilter.mode(
-                          AppColors.colorViolet100, BlendMode.srcIn))),
-              if (5 != null)
-                Positioned(
-                  height: 16,
-                  width: 16,
-                  right: 4,
-                  top: 8,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: AppColors.colorRed100, shape: BoxShape.circle),
-                    child: Center(
-                      child: Text(
-                        '${5}', // Replace this with dynamic notification count if needed
-                        textAlign: TextAlign.center,
-                        style: AppTextStyles.tiny
-                            .copyWith(color: AppColors.colorLight100),
-                      ),
+                          AppColors.colorViolet100, BlendMode.srcIn),
                     ),
                   ),
-                ),
-            ],
+                  if (notificationManager.totalUnreadNotifications > 0)
+                    Positioned(
+                      height: 16,
+                      width: 16,
+                      right: 4,
+                      top: 8,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: AppColors.colorRed100,
+                            shape: BoxShape.circle),
+                        child: Center(
+                          child: Text(
+                            '${notificationManager.totalUnreadNotifications}',
+                            textAlign: TextAlign.center,
+                            style: AppTextStyles.tiny
+                                .copyWith(color: AppColors.colorLight100),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            },
           )
         ],
       ),
       body: Container(
-          color: AppColors.colorLight60,
-          child: Column(
-            children: [
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.only(bottom: 36),
-                decoration: BoxDecoration(
-                    color: AppColors.colorYellow10,
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(32))),
-                child: Column(
-                  children: [
-                    Text(
-                      'Total remaining budget',
-                      style: AppTextStyles.body3
-                          .copyWith(color: AppColors.colorLight20),
-                    ),
-                    StreamBuilder<List<Expense>>(
-                      stream: context.read<GroupManager>().groupExpensesStream,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return Center(child: CircularProgressIndicator());
-                        } else if (snapshot.hasError) {
-                          return Center(
-                              child: Text('Error: ${snapshot.error}'));
-                        } else {
-                          return Text(
-                            context
-                                .read<GroupManager>()
-                                .totalBudgetRemaining
-                                .toCommaSeparated(),
-                            style: AppTextStyles.title1
-                                .copyWith(color: AppColors.colorDark100),
-                          );
-                        }
-                      },
-                    ),
-                    SizedBox(
-                      height: 24,
-                    ),
-                    StreamBuilder<List<Expense>>(
-                      stream: context.read<GroupManager>().groupExpensesStream,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return Center(child: CircularProgressIndicator());
-                        } else if (snapshot.hasError) {
-                          return Center(
-                              child: Text('Error: ${snapshot.error}'));
-                        } else {
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              TotalBalanceCard(
-                                  icon: BackgroundIcon(
-                                      icon: Assets.icon.svg.iconIncome.svg(),
-                                      backgroundColor: AppColors.colorLight100),
-                                  label: 'Total budget',
-                                  value: context
-                                      .read<GroupManager>()
-                                      .totalBudget
-                                      .toVND(),
-                                  backgroundColor: AppColors.colorGreen100),
-                              TotalBalanceCard(
-                                  icon: BackgroundIcon(
-                                      icon: Assets.icon.svg.iconExpense.svg(
-                                          colorFilter: ColorFilter.mode(
-                                              AppColors.colorRed100,
-                                              BlendMode.srcIn)),
-                                      backgroundColor: AppColors.colorLight100),
-                                  label: 'Total Expense',
-                                  value: context
-                                      .read<GroupManager>()
-                                      .totalExpense
-                                      .toVND(),
-                                  backgroundColor: AppColors.colorRed100)
-                            ],
-                          );
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Recent Transaction',
-                          style: AppTextStyles.title3
-                              .copyWith(color: AppColors.colorDark25),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Provider.of<BottomNavigationManager>(context,
-                                    listen: false)
-                                .updateTabIndex(1);
-                            ;
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 8),
-                            decoration: BoxDecoration(
-                                color: AppColors.colorViolet20,
-                                borderRadius: BorderRadius.circular(40)),
-                            child: Text(
-                              'See All',
-                              style: AppTextStyles.body3
-                                  .copyWith(color: AppColors.colorViolet100),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    StreamBuilder<List<Expense>>(
-                      stream: context.read<GroupManager>().groupExpensesStream,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return Center(child: CircularProgressIndicator());
-                        } else if (snapshot.hasError) {
-                          return Center(
-                              child: Text('Error: ${snapshot.error}'));
-                        } else if (!snapshot.hasData ||
-                            snapshot.data!.isEmpty) {
-                          return Center(child: Text('No expenses available'));
-                        } else {
-                          List<Expense> groupedExpenses =
-                              snapshot.data!.take(4).toList();
+        color: AppColors.colorLight60,
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.only(bottom: 36),
+              decoration: BoxDecoration(
+                  color: AppColors.colorYellow10,
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(32))),
+              child: Column(
+                children: [
+                  Text(
+                    'Total remaining budget',
+                    style: AppTextStyles.body3
+                        .copyWith(color: AppColors.colorLight20),
+                  ),
+                  StreamBuilder<List<Expense>>(
+                    stream: context.read<GroupManager>().groupExpensesStream,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text('Error: ${snapshot.error}'));
+                      } else {
+                        context
+                            .read<GroupManager>()
+                            .filterExpensesByDate(month, year);
 
-                          return Column(
-                            children: groupedExpenses.map(
-                              (e) {
-                                return ExpenseCard(
-                                  expense: e,
-                                );
-                              },
-                            ).toList(),
-                          );
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              )
-            ],
-          )),
+                        return Text(
+                          context
+                              .read<GroupManager>()
+                              .totalBudgetRemaining
+                              .toCommaSeparated(),
+                          style: AppTextStyles.title1
+                              .copyWith(color: AppColors.colorDark100),
+                        );
+                      }
+                    },
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  StreamBuilder<List<Expense>>(
+                    stream: context.read<GroupManager>().groupExpensesStream,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text('Error: ${snapshot.error}'));
+                      } else {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            TotalBalanceCard(
+                                icon: BackgroundIcon(
+                                    icon: Assets.icon.svg.iconIncome.svg(),
+                                    backgroundColor: AppColors.colorLight100),
+                                label: 'Total budget',
+                                value: context
+                                    .read<GroupManager>()
+                                    .totalBudget
+                                    .toVND(),
+                                backgroundColor: AppColors.colorGreen100),
+                            TotalBalanceCard(
+                                icon: BackgroundIcon(
+                                    icon: Assets.icon.svg.iconExpense.svg(
+                                        colorFilter: ColorFilter.mode(
+                                            AppColors.colorRed100,
+                                            BlendMode.srcIn)),
+                                    backgroundColor: AppColors.colorLight100),
+                                label: 'Total Expense',
+                                value: context
+                                    .read<GroupManager>()
+                                    .totalExpense
+                                    .toVND(),
+                                backgroundColor: AppColors.colorRed100)
+                          ],
+                        );
+                      }
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Recent Transaction',
+                        style: AppTextStyles.title3
+                            .copyWith(color: AppColors.colorDark25),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Provider.of<BottomNavigationManager>(context,
+                                  listen: false)
+                              .updateTabIndex(1);
+                          ;
+                        },
+                        child: Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          decoration: BoxDecoration(
+                              color: AppColors.colorViolet20,
+                              borderRadius: BorderRadius.circular(40)),
+                          child: Text(
+                            'See All',
+                            style: AppTextStyles.body3
+                                .copyWith(color: AppColors.colorViolet100),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  StreamBuilder<List<Expense>>(
+                    stream: context.read<GroupManager>().groupExpensesStream,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text('Error: ${snapshot.error}'));
+                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        return Center(child: Text('No expenses available'));
+                      } else {
+                        List<Expense> groupedExpenses =
+                            snapshot.data!.take(4).toList();
+
+                        return Column(
+                          children: groupedExpenses.map(
+                            (e) {
+                              return ExpenseCard(
+                                expense: e,
+                              );
+                            },
+                          ).toList(),
+                        );
+                      }
+                    },
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

@@ -13,12 +13,14 @@ import 'package:cost_share/presentation/transaction/widgets/wallet_picker.dart';
 import 'package:cost_share/repository/budget_repository.dart';
 import 'package:cost_share/repository/expense_repository.dart';
 import 'package:cost_share/repository/group_repository.dart';
+import 'package:cost_share/repository/notification_repository.dart';
 import 'package:cost_share/utils/app_colors.dart';
 import 'package:cost_share/utils/app_textstyle.dart';
 import 'package:cost_share/utils/enum/app_category.dart';
 import 'package:cost_share/utils/enum/app_wallet.dart';
 import 'package:cost_share/utils/extension/context_ext.dart';
 import 'package:cost_share/utils/extension/date_ext.dart';
+import 'package:cost_share/utils/extension/double_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +44,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         locator<BudgetRepository>(),
         locator<GroupRepository>(),
         locator<ExpenseRepository>(),
+        locator<NotificationRepository>(),
         context.read<GroupManager>().currentGroupId,
         context.read<UserManager>().currentUser!.id,
       ),
@@ -296,9 +299,20 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                               style: AppTextStyles.body1
                                   .copyWith(color: AppColors.colorGreen100)),
                           MyAppButton(
-                            onPressed: () => {
-                              bloC.addExpense(selectedDate),
-                              Navigator.pop(context),
+                            onPressed: () {
+                              String name =
+                                  context.read<UserManager>().currentUser!.name;
+                              String title =
+                                  context.localization.newExpenseAdded;
+                              String body = context.localization.expenseMessage(
+                                  name, bloC.amount.toCommaSeparated());
+                              bloC.addExpense(
+                                selectedDate,
+                                name,
+                                title,
+                                body,
+                              );
+                              Navigator.pop(context);
                             },
                             message: context.localization.textContinue,
                             isPrimary: true,

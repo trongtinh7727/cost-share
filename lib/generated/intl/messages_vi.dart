@@ -20,6 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'vi';
 
+  static String m0(name, amount) =>
+      "${name} đã thêm một chi tiêu mới ${amount}.";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "addMember": MessageLookupByLibrary.simpleMessage("Thêm thành viên"),
@@ -41,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "contributied": MessageLookupByLibrary.simpleMessage("Đã đóng góp: "),
         "contributions": MessageLookupByLibrary.simpleMessage("Đóng góp"),
         "december": MessageLookupByLibrary.simpleMessage("Tháng 12"),
+        "delete": MessageLookupByLibrary.simpleMessage("Xóa"),
         "deleteGroup": MessageLookupByLibrary.simpleMessage("Xóa nhóm"),
         "deleteGroupDescription": MessageLookupByLibrary.simpleMessage(
             "Bạn có chắc chắn muốn xóa nhóm không? Hành động này không thể hoàn tác."),
@@ -50,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bạn đã vượt quá giới hạn"),
         "expenseDetail":
             MessageLookupByLibrary.simpleMessage("Chi tiết chi phí"),
+        "expenseMessage": m0,
         "expenseSpliting":
             MessageLookupByLibrary.simpleMessage("Chia sẻ chi phí"),
         "february": MessageLookupByLibrary.simpleMessage("Tháng 2"),
@@ -85,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "january": MessageLookupByLibrary.simpleMessage("Tháng 1"),
         "july": MessageLookupByLibrary.simpleMessage("Tháng 7"),
         "june": MessageLookupByLibrary.simpleMessage("Tháng 6"),
+        "language": MessageLookupByLibrary.simpleMessage("Ngôn ngữ"),
         "leave": MessageLookupByLibrary.simpleMessage("Rời"),
         "leaveGroup": MessageLookupByLibrary.simpleMessage("Rời nhóm"),
         "leaveGroupDescription": MessageLookupByLibrary.simpleMessage(
@@ -97,6 +103,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Đánh dấu đã thanh toán"),
         "markAsPaidDescription": MessageLookupByLibrary.simpleMessage(
             "Bạn có chắc chắn muốn đánh dấu hóa đơn này đã thanh toán không?"),
+        "markAsRead": MessageLookupByLibrary.simpleMessage("Đánh dấu đã đọc"),
         "markAsUnpaid":
             MessageLookupByLibrary.simpleMessage("Đánh dấu chưa thanh toán"),
         "markAsUnpaidDescription": MessageLookupByLibrary.simpleMessage(
@@ -106,6 +113,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Tên"),
         "nameCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage("Tên không được để trống"),
+        "newExpenseAdded":
+            MessageLookupByLibrary.simpleMessage("Chi tiêu mới đã được thêm"),
         "newest": MessageLookupByLibrary.simpleMessage("Mới nhất"),
         "november": MessageLookupByLibrary.simpleMessage("Tháng 11"),
         "october": MessageLookupByLibrary.simpleMessage("Tháng 10"),
@@ -127,9 +136,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "reset": MessageLookupByLibrary.simpleMessage("Đặt lại"),
         "scanQRCode": MessageLookupByLibrary.simpleMessage("Quét mã QR"),
         "september": MessageLookupByLibrary.simpleMessage("Tháng 9"),
+        "settings": MessageLookupByLibrary.simpleMessage("Cài đặt"),
         "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "sortBy": MessageLookupByLibrary.simpleMessage("sắp xếp theo"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Tiếp tục"),
+        "today": MessageLookupByLibrary.simpleMessage("Hôm nay"),
         "totalBudget": MessageLookupByLibrary.simpleMessage("Tổng ngân sách"),
         "totalExpense": MessageLookupByLibrary.simpleMessage("Tổng chi tiêu"),
         "totalRemainingBudget":
@@ -139,6 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Không tìm thấy người dùng"),
         "wellcome": MessageLookupByLibrary.simpleMessage(
             "Chào mừng đến với Cost Share"),
+        "yesterday": MessageLookupByLibrary.simpleMessage("Hôm qua"),
         "youOwe": MessageLookupByLibrary.simpleMessage("Bạn nợ: ")
       };
 }

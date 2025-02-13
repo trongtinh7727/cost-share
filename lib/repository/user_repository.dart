@@ -15,6 +15,7 @@ abstract class UserRepository {
   });
   Future<void> signOut();
   Future<User?> getCurrentUser();
+  Future<void> updateUserData(User user);
 }
 
 class UserRepositoryImpl extends UserRepository {
@@ -39,7 +40,8 @@ class UserRepositoryImpl extends UserRepository {
         name: name,
         email: email,
         groups: [], // Empty list initially
-        photoUrl: AppConstant.baseUrl,
+        photoUrl: AppConstant.avatarUrl,
+        fcmToken: '', // Empty string initially
       );
 
       await _firestore
@@ -107,6 +109,15 @@ class UserRepositoryImpl extends UserRepository {
       return null;
     } catch (e) {
       throw Exception('Failed to fetch current user: $e');
+    }
+  }
+
+  @override
+  Future<void> updateUserData(User user) {
+    try {
+      return _firestore.collection('users').doc(user.id).update(user.toJson());
+    } catch (e) {
+      throw Exception('Failed to update user data: $e');
     }
   }
 }

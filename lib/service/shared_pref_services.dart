@@ -24,6 +24,15 @@ class SharedPrefService {
   late SharedPreferences _sharedPref;
 
   static const String _isOnBoarding = "is_on_boarding";
+  static const String _locate = "locate";
+
+  String get locate {
+    return _sharedPref.getString(_locate) ?? "en";
+  }
+
+  Future<bool> setLocate({required String locate}) {
+    return _sharedPref.setString(_locate, locate);
+  }
 
   bool get isOnBoarding {
     return _sharedPref.getBool(_isOnBoarding) ?? true;

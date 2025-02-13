@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:cost_share/model/user.dart';
 import 'package:cost_share/repository/user_repository.dart';
+import 'package:cost_share/service/firebase_messaging_service.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -33,6 +34,9 @@ class UserManager {
       final user = await _userRepository.getCurrentUser();
       _userStream.add(user);
       debugPrint('Success loading user: ${user?.email ?? 'None'}');
+      String? token = FirebaseMessagingService().instance.token ?? '';
+      // Update FCM token
+      _userRepository.updateUserData(user!.copyWith(fcmToken: token));
     } catch (e) {
       debugPrint('Error loading user: $e');
       _userStream.add(null);
@@ -40,6 +44,11 @@ class UserManager {
   }
 
   void signOut() {
+    final user = currentUser;
+
+    // Update FCM token
+    user?.copyWith(fcmToken: '');
+    _userRepository.updateUserData(user!);
     _userStream.add(null);
     _userRepository.signOut();
   }

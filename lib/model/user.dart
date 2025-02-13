@@ -8,6 +8,7 @@ class User {
   final String name;
   final String email;
   final List<String> groups;
+  final String? fcmToken;
   final String? photoUrl;
 
   User({
@@ -16,6 +17,7 @@ class User {
     required this.email,
     required this.groups,
     required this.photoUrl,
+    required this.fcmToken,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -27,6 +29,7 @@ class User {
     String? email,
     List<String>? groups,
     String? photoUrl,
+    String? fcmToken,
   }) {
     return User(
       id: id ?? this.id,
@@ -34,6 +37,7 @@ class User {
       email: email ?? this.email,
       groups: groups ?? this.groups,
       photoUrl: photoUrl ?? this.photoUrl,
+      fcmToken: fcmToken ?? this.fcmToken,
     );
   }
 }
