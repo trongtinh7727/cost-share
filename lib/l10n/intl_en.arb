@@ -104,5 +104,20 @@
   "today": "Today",
   "yesterday": "Yesterday",
   "delete": "Delete",
-  "markAsRead": "Mark as read"
+  "markAsRead": "Mark as read",
+  "updatedExpense": "An expense has been updated",
+  "updatedExpenseMessage": "{name} updated an expense from {oldAmount} to {newAmount}.",
+  "@updatedExpenseMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "oldAmount": {
+        "type": "String"
+      },
+      "newAmount": {
+        "type": "String"
+      }
+    }
+  }
 }

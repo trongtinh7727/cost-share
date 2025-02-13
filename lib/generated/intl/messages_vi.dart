@@ -23,6 +23,9 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(name, amount) =>
       "${name} đã thêm một chi tiêu mới ${amount}.";
 
+  static String m1(name, oldAmount, newAmount) =>
+      "${name} đã cập nhật một chi tiêu từ ${oldAmount} thành ${newAmount}.";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "addMember": MessageLookupByLibrary.simpleMessage("Thêm thành viên"),
@@ -38,7 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "chooseCategory": MessageLookupByLibrary.simpleMessage("Chọn danh mục"),
         "chooseGroup":
             MessageLookupByLibrary.simpleMessage("Chọn nhóm của bạn"),
-        "confirm": MessageLookupByLibrary.simpleMessage("Xác nhậnnhận"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Xác nhận"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Xác nhận mật khẩu"),
         "contributied": MessageLookupByLibrary.simpleMessage("Đã đóng góp: "),
@@ -146,6 +149,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalRemainingBudget":
             MessageLookupByLibrary.simpleMessage("Tổng ngân sách còn lại"),
         "transaction": MessageLookupByLibrary.simpleMessage("Giao dịch"),
+        "updatedExpense": MessageLookupByLibrary.simpleMessage(
+            "Một chi tiêu đã được cập nhật"),
+        "updatedExpenseMessage": m1,
         "userNotFound":
             MessageLookupByLibrary.simpleMessage("Không tìm thấy người dùng"),
         "wellcome": MessageLookupByLibrary.simpleMessage(

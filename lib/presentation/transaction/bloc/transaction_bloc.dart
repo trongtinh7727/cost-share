@@ -141,6 +141,50 @@ class TransactionBloc extends BaseBloC {
     return addedExpense;
   }
 
+  Future<Expense> updateExpense(DateTime date, String name, String title,
+      String body, double oldAmount) async {
+    final expense = Expense(
+      id: '',
+      userId: userId,
+      groupId: groupId,
+      paidBy: wallet.name,
+      amount: amount,
+      description: description,
+      category: category.name,
+      date: date,
+    );
+    final addedExpense = await _expenseRepository.addExpense(expense);
+    List<AppSplit.Split> splits = _groupMembers.value.map((userSplit) {
+      return userSplit.toSplit(addedExpense.id, amount);
+    }).toList();
+    await _expenseRepository.addSplits(splits);
+
+    // Send notification to all group members
+    _groupMembers.value.forEach((userSplit) {
+      if (userSplit.FCMToken != null) {
+        // Send notification to the user
+        _firebaseMessagingService.sendFCMMessage(
+            title: title, body: body, FCMToken: userSplit.FCMToken!);
+      }
+    });
+
+    _notificationRepository.addNotification(AppNotification.Notification(
+      groupId: groupId,
+      userId: '',
+      message: NotificationType.UPDATE_EXPENSE.name,
+      status: NotificationStatus.UNREAD.name,
+      timestamp: DateTime.now(),
+      id: '',
+      data: {
+        'name': name,
+        'oldAmount': oldAmount.toCommaSeparated(),
+        'newAmount': amount.toCommaSeparated(),
+      },
+    ));
+
+    return addedExpense;
+  }
+
   Future<List<AppSplit.Split>> getSplits(String expenseId) async {
     return _expenseRepository.getExpenseSplits(expenseId);
   }

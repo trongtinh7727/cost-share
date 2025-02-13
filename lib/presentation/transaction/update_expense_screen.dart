@@ -318,11 +318,18 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
                               String name =
                                   context.read<UserManager>().currentUser!.name;
                               String title =
-                                  context.localization.newExpenseAdded;
-                              String body = context.localization.expenseMessage(
-                                  name, bloC.amount.toCommaSeparated());
-                              Expense addedExpense = await bloC.addExpense(
-                                  selectedDate, name, title, body);
+                                  context.localization.updatedExpense;
+                              String body = context.localization
+                                  .updatedExpenseMessage(
+                                      name,
+                                      widget.expense.amount.toCommaSeparated(),
+                                      bloC.amount.toCommaSeparated());
+                              Expense addedExpense = await bloC.updateExpense(
+                                  selectedDate,
+                                  name,
+                                  title,
+                                  body,
+                                  widget.expense.amount);
                               Navigator.pushReplacementNamed(
                                   context, RouteName.expenseDetail,
                                   arguments: addedExpense);

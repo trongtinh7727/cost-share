@@ -19,7 +19,7 @@
   "invalidPassword": "Ít nhất 8 ký tự, 1 số và 1 chữ in hoa",
   "nameCannotBeEmpty": "Tên không được để trống",
   "passwordMismatch": "Mật khẩu không khớp",
-  "confirm": "Xác nhậnnhận",
+  "confirm": "Xác nhận",
   "cancel": "Hủy",
   "home": "Trang chủ",
   "transaction": "Giao dịch",
@@ -103,5 +103,20 @@
   "today": "Hôm nay",
   "yesterday": "Hôm qua",
   "delete": "Xóa",
-  "markAsRead": "Đánh dấu đã đọc"
+  "markAsRead": "Đánh dấu đã đọc",
+  "updatedExpense": "Một chi tiêu đã được cập nhật",
+  "updatedExpenseMessage": "{name} đã cập nhật một chi tiêu từ {oldAmount} thành {newAmount}.",
+  "@updatedExpenseMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "oldAmount": {
+        "type": "String"
+      },
+      "newAmount": {
+        "type": "String"
+      }
+    }
+  }
 }

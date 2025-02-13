@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(name, amount) => "${name} added an expense of ${amount}.";
 
+  static String m1(name, oldAmount, newAmount) =>
+      "${name} updated an expense from ${oldAmount} to ${newAmount}.";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "addMember": MessageLookupByLibrary.simpleMessage("Add Member"),
@@ -143,6 +146,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalRemainingBudget":
             MessageLookupByLibrary.simpleMessage("Total remaining budget"),
         "transaction": MessageLookupByLibrary.simpleMessage("Transaction"),
+        "updatedExpense":
+            MessageLookupByLibrary.simpleMessage("An expense has been updated"),
+        "updatedExpenseMessage": m1,
         "userNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
         "wellcome": MessageLookupByLibrary.simpleMessage("Wellcome Cost Share"),
         "yesterday": MessageLookupByLibrary.simpleMessage("Yesterday"),

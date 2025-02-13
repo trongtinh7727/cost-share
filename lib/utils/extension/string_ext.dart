@@ -68,6 +68,8 @@ extension StringExt on String {
     switch (NotificationTypeExtension.fromString(this)) {
       case NotificationType.NEW_EXPENSE_ADDED:
         return localization.newExpenseAdded;
+      case NotificationType.UPDATE_EXPENSE:
+        return localization.updatedExpense;
 
       default:
         return "";
@@ -79,6 +81,9 @@ extension StringExt on String {
     switch (NotificationTypeExtension.fromString(this)) {
       case NotificationType.NEW_EXPENSE_ADDED:
         return localization.expenseMessage(data['name']!, data['amount']!);
+      case NotificationType.UPDATE_EXPENSE:
+        return localization.updatedExpenseMessage(
+            data['name']!, data['oldAmount']!, data['newAmount']!);
 
       default:
         return "";

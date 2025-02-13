@@ -999,6 +999,27 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `An expense has been updated`
+  String get updatedExpense {
+    return Intl.message(
+      'An expense has been updated',
+      name: 'updatedExpense',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{name} updated an expense from {oldAmount} to {newAmount}.`
+  String updatedExpenseMessage(
+      String name, String oldAmount, String newAmount) {
+    return Intl.message(
+      '$name updated an expense from $oldAmount to $newAmount.',
+      name: 'updatedExpenseMessage',
+      desc: '',
+      args: [name, oldAmount, newAmount],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

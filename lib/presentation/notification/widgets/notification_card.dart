@@ -40,7 +40,7 @@ class NotificationCard extends StatelessWidget {
                 onDelete(notification.id);
               },
               icon: Icons.delete,
-              backgroundColor: AppColors.colorRed100,
+              foregroundColor: AppColors.colorRed100,
               label: context.localization.delete,
             ),
             if (notification.status == NotificationStatus.UNREAD.name)
@@ -49,7 +49,7 @@ class NotificationCard extends StatelessWidget {
                   onRead(notification);
                 },
                 icon: Icons.bookmark,
-                backgroundColor: AppColors.colorGreen100,
+                foregroundColor: AppColors.colorGreen100,
                 label: context.localization.markAsRead,
               )
           ],
